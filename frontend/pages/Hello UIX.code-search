@@ -1,0 +1,8 @@
+# Query: Hello UIX
+# ContextLines: 1
+
+1 result - 1 file
+
+app.dx:
+  1: name: "Hello UIX",
+  2  description: "A simple UIX app project"

@@ -1,0 +1,55 @@
+@use "../../base/scss/global" as global;
+@use "../../utilities/scss/variables" as variables;
+
+*{
+	box-sizing: border-box;
+	margin:0;
+	padding: 0;
+}
+
+#navbar {
+	height: 75px;
+	color: variables.$main-text-color;
+	font-family: 'Jost';
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	background-color: variables.$main-green;
+	h1{
+		margin-left: 60px;
+		cursor: pointer;
+	}
+
+	.nav-links{
+		display: flex;;
+		list-style: none;
+		margin-right: 60px;
+		align-items: center;
+		
+		*{
+			cursor: pointer;
+		}
+
+		li{
+			display: inline-block;
+			padding: 0px 10px;
+			a{
+				transition: all	0.3s ease 0s;
+			}
+		}
+
+		li:hover{
+			color: variables.$main-text-color-hover;
+		}
+
+		.profile-picture{
+			margin-left: 30px;
+			width: 35px;
+			height: 35px;
+			border-radius: 50%;
+		}
+	}
+
+}
+
