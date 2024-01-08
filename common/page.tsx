@@ -2,15 +2,35 @@ import { UIX } from "uix";
 import { datexVersion, denoVersion, uixVersion } from "../backend/data.ts";
 
 export default 
-	<main class="hello-container">
-		<section>
-			<h1>Welcome to UIX &lt;3</h1>
-			<p>This page was rendered on the <b>{UIX.context}</b></p>
-			<ul>
-				<li><b>UIX version:</b> {uixVersion}</li>
-				<li><b>DATEX version:</b> {datexVersion}</li>
-				<li><b>Deno version:</b> {denoVersion}</li>
-			</ul>
-			<p>To get started, take a look at the <a href="https://docs.unyt.org/manual/uix/getting-started" target="_blank">UIX documentation</a></p>
+	<main >
+		<section class="Header">
+			<h1>PantryPal</h1>
+		</section>
+
+		<section class="hello-container">
+			<div class="LoginContainer">
+				
+				<div class="HeaderContainer">
+					<h4>Welcome to PantryPal</h4>
+					<div class="SignUpContainer">
+						<h6>No Account?</h6>
+						<button class="BtnSignUp">sign up</button>
+					</div>
+				</div>
+
+				<h2>Sign In</h2>
+				<h5>Enter your E-Mail:</h5>
+				<input class="InputField" name="username" placeholder={"E-Mail"} type="text" />
+				<h5>Enter your Password:</h5>
+				<input class="InputField" name="password" placeholder={"Password"} type="password" />
+				<button class="BtnForgotPassword">Forgot Password</button>
+				<button class="BtnLogin">login</button>
+			</div>
+
+		</section>
+
+		<section class="whitespace">
+
 		</section>
 	</main>
+

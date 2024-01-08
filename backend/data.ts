@@ -8,3 +8,9 @@ import { UIX } from "uix";
 export const denoVersion = Deno.version.deno;
 export const datexVersion = Datex.Runtime.VERSION;
 export const uixVersion = UIX.version;
+
+
+export const loginCred = new Map<string,string>();
+loginCred.set("admin", "admin");
+
+

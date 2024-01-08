@@ -2,16 +2,105 @@
  * Global style definitions
  */
 
+input{
+    border-radius: 20px;
+    border: none;
+    padding-left: 20px;
+}
+
+section{
+    margin: 0px;
+}
+body{
+    margin: 0px;
+}
+
 .hello-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    height: 100vh;
-    
-    section {
+    flex-direction: column;
+
+    height: 50vh;
+    background-color:rgb(8, 92, 54);
+
+    .Test {
         padding: 20px;
         margin: 10px;
         background: var(--bg-content) ;
         border-radius: 10px;
+
     }
+}
+.whitespace
+{
+    height: 30vh;
+    background-color: white;
+}
+
+.InputField{
+    width: 100%;
+    margin-bottom: 0px;
+}
+.HeaderContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+.LoginContainer{
+    padding: 20px;
+    margin: 10px;
+    background: rgba(188, 236, 201, 0.89);
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: -200px;
+}
+.Header{
+    height: 20vh;
+    position: relative;
+    margin-top: 0%;
+    background-color: rgb(8, 92, 54);
+    border: none;
+    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.BtnLogin{
+   width: 100%;
+   border-radius: 20px;
+   color:white;
+   background-color:rgb(8, 92, 54);
+   border: none;
+}
+
+.BtnSignUp{
+    color: rgb(8, 92, 54);
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+}
+.BtnForgotPassword{
+    color: blue;
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+    margin-bottom: 20px;
+}
+
+h6{
+    font-weight: 400;
+    margin: 0px;
+}
+
+h5{
+    font-size:medium;
+    font-weight:bold;
+    margin: 0px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+h1{
+    color: white;
 }
