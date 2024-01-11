@@ -1,6 +1,10 @@
 //@use "../../base/scss/global" as global;
 @use "../../utilities/scss/variables" as variables;
 
+body{
+    width: 100%;
+    height: 100vh;
+}
 
 .loginBackground {
     display: flex;
