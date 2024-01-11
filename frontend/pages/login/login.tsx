@@ -4,8 +4,8 @@ import { AuthIcon } from "auth";
 
 
 export default
-		<body class="loginBackground">
-			<div>
+		<body>
+			<div class="loginBackground">
 				<div class="loginBlock">
 					<h1>Welcome to PantryPal</h1>
 					<AuthIcon/>
