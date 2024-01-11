@@ -1,4 +1,5 @@
-import { NavBar } from "../components/navbar/navbar.tsx"	
+import { NavBar } from "../../components/navbar/navbar.tsx"
+import { Footer } from "../../components/footer/footer.tsx"
 
 
 export default
@@ -9,7 +10,7 @@ export default
 		</head>
 		<body>
 			<NavBar/>
-
+			<Footer/>
 		</body>
 	</html>
-	
+		

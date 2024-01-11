@@ -1,14 +1,9 @@
 @use "../../base/scss/global" as global;
 @use "../../utilities/scss/variables" as variables;
 
-*{
-	box-sizing: border-box;
-	margin:0;
-	padding: 0;
-}
-
 #navbar {
-	height: 75px;
+	height: 80px;
+	font-size: 1rem;
 	color: variables.$main-text-color;
 	font-family: 'Jost';
 	display: flex;
@@ -18,6 +13,7 @@
 	background-color: variables.$main-green;
 	h1{
 		margin-left: 60px;
+		font-size: 3em;
 		cursor: pointer;
 	}
 
@@ -32,6 +28,7 @@
 		}
 
 		li{
+			font-size: 1.5em;
 			display: inline-block;
 			padding: 0px 10px;
 			a{
@@ -45,8 +42,8 @@
 
 		.profile-picture{
 			margin-left: 30px;
-			width: 35px;
-			height: 35px;
+			width: 50px;
+			height: 50px;
 			border-radius: 50%;
 		}
 	}

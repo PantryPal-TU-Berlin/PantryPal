@@ -1,4 +1,4 @@
-import { NavBar } from "../components/navbar/navbar.tsx"
+import { NavBar } from "../../components/navbar/navbar.tsx"	
 
 
 export default
@@ -12,4 +12,4 @@ export default
 
 		</body>
 	</html>
-		
+	
