@@ -1,0 +1,20 @@
+//@use "../../base/scss/global" as global;
+@use "../../utilities/scss/variables" as variables;
+
+
+.loginBackground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+		width: 50px;
+    height: 100vh;
+}
+
+.loginBlock {
+    background-color: #8f1010;
+    padding: 20px;
+    border-radius: 8px;
+	width: 50px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
