@@ -2,7 +2,7 @@
 @use "../../utilities/scss/variables" as variables;
 
 #navbar {
-	height: 80px;
+	height: 10vh;
 	font-size: 1rem;
 	color: variables.$main-text-color;
 	font-family: 'Jost';
@@ -42,8 +42,8 @@
 
 		.profile-picture{
 			margin-left: 30px;
-			width: 50px;
-			height: 50px;
+			width: 7.5vh;
+			height: 7.5vh;
 			border-radius: 50%;
 		}
 	}
