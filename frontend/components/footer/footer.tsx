@@ -8,13 +8,6 @@ import { Component } from "uix/components/Component.ts";
 				<h2>Melde dich zum Newsletter an!</h2>			<input type="text" id="lname" name="lname"/>
 			</div>
 			<div class="footer-navigation">
-				<ul>
-					<li>Fresh Recipe</li>
-					<li>Recipes</li>
-					<li>Winter salads</li>
-				</ul>
-
-				
 				<h1>PantryPal</h1>
 				<ul>
 					<li>About US</li>
