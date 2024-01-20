@@ -8,7 +8,6 @@ import { Component } from "uix/components/Component.ts";
 				<li><a>Pal</a></li>
 				<li><a>Create</a></li>
 				<li><a>Notifications</a></li>
-				<li><i class="fa-solid fa-plus"></i></li>
 				<img
 					src="../../utilities/images/profile-picture.jpg"
 					alt="profile picture"
