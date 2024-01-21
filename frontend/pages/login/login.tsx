@@ -1,6 +1,6 @@
 import { NavBar } from "../../components/navbar/navbar.tsx"
 import { Footer } from "../../components/footer/footer.tsx"
-import { fetchCompletion } from "backend/openai-api.ts";
+import { chatGpt } from "backend/openai-api.ts";
 
 
 export default
@@ -10,7 +10,7 @@ export default
 			<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"/>
 		</head>
 		<body>
-			<button onclick={fetchCompletion}>test</button>
+			<button onclick={chatGpt}>test</button>
 		</body>
 	</html>
 		

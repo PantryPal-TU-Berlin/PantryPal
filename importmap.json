@@ -8,6 +8,7 @@
         "uix/": "https://cdn.unyt.org/uix@0.1.x/src/",
         "uix/jsx-runtime": "https://cdn.unyt.org/uix@0.1.x/src/jsx-runtime/jsx.ts",
         "unyt-tests/": "https://cdn.unyt.org/unyt_tests/",
-        "openai": "https://deno.land/x/openai@v4.24.7/mod.ts"
+        "openai": "https://deno.land/x/openai@v4.20.1/mod.ts",
+        "openai/": "https://deno.land/x/openai@v4.20.1/"
     }
 }
