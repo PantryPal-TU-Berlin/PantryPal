@@ -11,5 +11,6 @@ UIX.Theme.useTheme("uix-light-plain");
 
 export default {
 	// show frontend-rendered page on /frontend
-	'/': import("./pages/login/login.tsx") 
+	'/login': import("frontend/pages/login/login.tsx"), 
+	'/ai-helper': import("frontend/pages/ai-helper/ai.tsx") 
 }

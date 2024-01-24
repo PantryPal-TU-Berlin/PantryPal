@@ -1,5 +1,5 @@
-import { NavBar } from "../../components/navbar/navbar.tsx"
-import { Footer } from "../../components/footer/footer.tsx"
+import { NavBar } from "frontend/components/navbar/navbar.tsx"
+import { Footer } from "frontend/components/footer/footer.tsx"
 
 
 export default
