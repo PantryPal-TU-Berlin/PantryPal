@@ -18,7 +18,9 @@ import { Component } from "uix/components/Component.ts";
 				
 			</div>
 			<div class="social-media-links">
-				
+				<div class="social-media-icons">
+					
+				</div>
 			</div>
 		</div>
 	</footer>

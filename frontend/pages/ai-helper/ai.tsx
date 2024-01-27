@@ -12,7 +12,6 @@ export default
 			
 		</head>
 		<body>
-	  		<Ai/>
 			<Ai/>
 		</body>
 	</html>
