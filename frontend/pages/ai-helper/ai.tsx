@@ -5,13 +5,9 @@ const Ai = template(() => (
   <div>
     <link rel="stylesheet" href="./ai.scss" />
 
-    <div class="main">
+    <div class="main-container">
       <NavBar />
-      <div>
-        <div class="left-side-bar"></div>
-        <div class="main-content"></div>
-        <div class="left-side-bar"></div>
-      </div>
+      <div class="content">HI</div>
       <Footer />
     </div>
   </div>
@@ -19,7 +15,16 @@ const Ai = template(() => (
 
 export default (
   <html>
-    <head></head>
+    <head>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      />
+    </head>
     <body>
       <Ai />
     </body>
