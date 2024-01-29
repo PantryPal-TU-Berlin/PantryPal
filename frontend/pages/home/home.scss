@@ -1,0 +1,14 @@
+@use "../../base/scss/global" as global;
+@use "../../utilities/scss/variables" as variables;
+
+
+@scope {
+    .main-container {
+      height: 100vh;
+      padding: 0;
+      display: flex;
+      background-color: green;
+  
+      position: relative;
+    }
+  }
