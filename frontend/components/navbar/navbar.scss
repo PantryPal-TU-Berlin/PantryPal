@@ -9,12 +9,20 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	z-index: 1;
+	left: 0;
+	right: 0;
+	position: fixed;
 
 	background-color: variables.$main-green;
 	h1{
 		margin-left: 60px;
 		font-size: 3em;
 		cursor: pointer;
+	}
+
+	nav {
+		align-items: center;
 	}
 
 	.nav-links{
