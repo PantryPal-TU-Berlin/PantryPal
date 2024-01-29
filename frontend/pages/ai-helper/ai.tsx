@@ -7,7 +7,21 @@ const Ai = template(() => (
 
     <div class="main-container">
       <NavBar />
-      <div class="content">HI</div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-3 column">
+            <div class="left-sidebar">HI</div>
+          </div>
+          <div class="col-6 column">
+            <div class="main-content"></div>
+          </div>
+          <div class="col-3 column">
+            <div class="right-sidebar">
+              <div class="recipe-of-the-day"></div>
+            </div>
+          </div>
+        </div>
+      </div>
       <Footer />
     </div>
   </div>
