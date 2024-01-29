@@ -31,7 +31,7 @@ const Login = template(() => (
 
         <div class="columnR">
           <img
-            style="max-width: 300px; height: auto; object-fit: contain"
+            style="max-width: 300px; height: 300px; object-fit: contain"
             src="../../utilities/images/LoginFood.jpg"
             alt="login food"
             class="LoginFood"
