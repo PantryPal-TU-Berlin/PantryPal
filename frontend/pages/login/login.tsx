@@ -1,7 +1,7 @@
 import { NavBar } from "../../components/navbar/navbar.tsx";
 import { Footer } from "../../components/footer/footer.tsx";
-
 import { AuthIcon } from "auth";
+import { Component } from "uix/components/Component.ts";
 
 const Login = template(() => (
   <div>
@@ -30,7 +30,7 @@ const Login = template(() => (
 
       <div class="columnR">
         <img
-          style="max-width: 300px; height: 300px; object-fit: contain"
+          style="max-width: 300px; height: auto; object-fit: contain"
           src="../../utilities/images/LoginFood.jpg"
           alt="login food"
           class="LoginFood"
