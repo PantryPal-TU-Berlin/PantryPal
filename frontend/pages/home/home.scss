@@ -152,14 +152,13 @@
             display: grid;
             column-gap: 20px;
             row-gap: 20px;
-            grid-template-columns: 1fr 1fr; 
+            grid-template-columns: 1fr 1f; 
 
             scrollbar-color: lightgray white;
 
             .dish-element {
-                width: auto;
+                width: 100px;
                 height: 150px;
-
                 background-color: red;
             }
 
@@ -169,5 +168,11 @@
 
     }
 
+    }
+    #add-dish-modal.visible {
+        opacity: 1;
+    }
+    #add-dish-modal {
+        opacity: 0;
     }
 }
