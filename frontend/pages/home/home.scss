@@ -1,14 +1,173 @@
 @use "../../base/scss/global" as global;
 @use "../../utilities/scss/variables" as variables;
+@import "https://unpkg.com/open-props/normalize.min.css";
+@import "https://unpkg.com/open-props";
 
 
 @scope {
     .main-container {
-      height: 100vh;
-      padding: 0;
-      display: flex;
-      background-color: green;
-  
-      position: relative;
+        height: 100vh;
+        padding-left: 60px;
+        padding-right: 60px;
+        //display: flex;
+        background-color: white;
+        position: relative;
+        font-family: 'Jost';
+
+        .hallo-heading {
+            font-size: 24px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            line-height: 1;
+        }
+
+        .frage-text {
+            font-size: 16px;
+            font-weight: 300;
+            margin-top: 5px;
+            margin-bottom: 0px;
+            line-height: 1;
+            color: gray;
+        }
+
+        .user-block{
+            width: px;
+            height: 45px; 
+        }
+
+        .horizontal-container {
+            padding-top: 120px;
+
+        .top-div {
+
+            display: flex;
+            direction: horizontal;
+            gap: 20px;
+
+        
+
+            .filter-block {
+                display: flex;
+                gap: 20px;
+
+                .sort-button, .filter-button {
+                    width: 160px;
+                    border-radius: 15px;
+                    border: none;
+                    font-weight : thin;
+                    background: LightGray;
+                    color: gray;
+                    font-size : 16px;
+                    transition: all	0.3s linear 0s;
+                }
+
+                .sort-button:hover, .filter-button:hover {
+                    background: variables.$main-green;
+                    color: white;
+                    font-size : 16.5px;
+                }                
+            }
+
+        }
+
+        .horizontal-scroller {
+            padding-top: 20px;
+            height: 140px;
+            width: 92vw;
+            display: grid;
+            grid-auto-flow: column;
+            overflow-x: auto;
+            overscroll-behavior-inline: contain;
+            gap: 20px;
+            scrollbar-color: lightgray white;
+        }
+
+        .media-element{
+            width: 450px;
+            height: 100px;
+            line-height: 50px;
+            background-color: grey;
+
+            border-radius: 10px;
+            border: none;
+        }
+
     }
-  }
+
+    .vertical-container{
+        margin-top: 10px;
+        
+        .category-block{
+            display: flex;
+            gap: 10px;
+            padding-top: 20px;
+            align-items: center;
+
+            .category{
+                border-radius: 10px;
+                height: 40px;
+                width: 120px;
+                color: black;
+                
+                
+            }
+
+            .dairy{
+                background-color: yellow;
+            }
+
+            .meat{
+                background-color: pink;
+            }
+            .fish{
+                background-color: blue;
+            }
+            .vegan{
+                background-color: green;
+            }
+            .search-field{
+              width: 350px;
+              height: 40px;
+              background: white;
+              border-radius: 15px;
+              border-width: 1px;      
+              margin-left: 150px;
+              font-size: 16px;
+              font-weight: light;
+              border-color: rgba(0, 0, 0, 0.29);
+
+              padding: 12px 20px;
+            }
+            .search-field::placeholder{
+                color: rgba(0, 0, 0, 0.29);
+            }
+
+        }
+
+
+        .vertical-scroller {
+            width: auto;
+            height: auto;
+            margin-top: 20px;
+            display: grid;
+            column-gap: 20px;
+            row-gap: 20px;
+            grid-template-columns: 1fr 1fr; 
+
+            scrollbar-color: lightgray white;
+
+            .dish-element {
+                width: auto;
+                height: 150px;
+
+                background-color: red;
+            }
+
+        }
+
+        
+
+    }
+
+    }
+}
