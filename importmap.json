@@ -1,7 +1,5 @@
 {
     "imports": {
-        "react": "https://unpkg.com/react@17/umd/react.production.min.js",
-        "react-dom": "https://unpkg.com/react-dom@17/umd/react-dom.production.min.js",
         "auth": "https://cdn.unyt.org/uix-components-new/AuthNew/AuthIcon.tsx",
         "auth/": "https://cdn.unyt.org/uix-components-new/AuthNew/",
         "datex-core-legacy": "https://cdn.unyt.org/datex-core-js-legacy@0.0.x/datex.ts",

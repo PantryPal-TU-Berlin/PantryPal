@@ -30,148 +30,156 @@
             color: gray;
         }
 
-        .user-block{
+        .user-block {
             width: px;
-            height: 45px; 
+            height: 45px;
         }
 
         .horizontal-container {
             padding-top: 120px;
 
-        .top-div {
+            .top-div {
 
-            display: flex;
-            direction: horizontal;
-            gap: 20px;
-
-        
-
-            .filter-block {
                 display: flex;
+                direction: horizontal;
                 gap: 20px;
 
-                .sort-button, .filter-button {
-                    width: 160px;
-                    border-radius: 15px;
-                    border: none;
-                    font-weight : thin;
-                    background: LightGray;
-                    color: gray;
-                    font-size : 16px;
-                    transition: all	0.3s linear 0s;
+
+
+                .filter-block {
+                    display: flex;
+                    gap: 20px;
+
+                    .sort-button,
+                    .filter-button {
+                        width: 160px;
+                        border-radius: 15px;
+                        border: none;
+                        font-weight: thin;
+                        background: LightGray;
+                        color: gray;
+                        font-size: 16px;
+                        transition: all 0.3s linear 0s;
+                    }
+
+                    .sort-button:hover,
+                    .filter-button:hover {
+                        background: variables.$main-green;
+                        color: white;
+                        font-size: 16.5px;
+                    }
                 }
 
-                .sort-button:hover, .filter-button:hover {
-                    background: variables.$main-green;
-                    color: white;
-                    font-size : 16.5px;
-                }                
             }
 
-        }
+            .horizontal-scroller {
+                padding-top: 20px;
+                height: 140px;
+                width: 92vw;
+                display: grid;
+                grid-auto-flow: column;
+                overflow-x: auto;
+                overscroll-behavior-inline: contain;
+                gap: 20px;
+                scrollbar-color: lightgray white;
+            }
 
-        .horizontal-scroller {
-            padding-top: 20px;
-            height: 140px;
-            width: 92vw;
-            display: grid;
-            grid-auto-flow: column;
-            overflow-x: auto;
-            overscroll-behavior-inline: contain;
-            gap: 20px;
-            scrollbar-color: lightgray white;
-        }
+            .media-element {
+                width: 450px;
+                height: 100px;
+                line-height: 50px;
+                background-color: grey;
 
-        .media-element{
-            width: 450px;
-            height: 100px;
-            line-height: 50px;
-            background-color: grey;
-
-            border-radius: 10px;
-            border: none;
-        }
-
-    }
-
-    .vertical-container{
-        margin-top: 10px;
-        
-        .category-block{
-            display: flex;
-            gap: 10px;
-            padding-top: 20px;
-            align-items: center;
-
-            .category{
                 border-radius: 10px;
-                height: 40px;
-                width: 120px;
-                color: black;
-                
-                
-            }
-
-            .dairy{
-                background-color: yellow;
-            }
-
-            .meat{
-                background-color: pink;
-            }
-            .fish{
-                background-color: blue;
-            }
-            .vegan{
-                background-color: green;
-            }
-            .search-field{
-              width: 350px;
-              height: 40px;
-              background: white;
-              border-radius: 15px;
-              border-width: 1px;      
-              margin-left: 150px;
-              font-size: 16px;
-              font-weight: light;
-              border-color: rgba(0, 0, 0, 0.29);
-
-              padding: 12px 20px;
-            }
-            .search-field::placeholder{
-                color: rgba(0, 0, 0, 0.29);
+                border: none;
             }
 
         }
 
+        .vertical-container {
+            margin-top: 10px;
 
-        .vertical-scroller {
-            width: auto;
-            height: auto;
-            margin-top: 20px;
-            display: grid;
-            column-gap: 20px;
-            row-gap: 20px;
-            grid-template-columns: 1fr 1f; 
+            .category-block {
+                display: flex;
+                gap: 10px;
+                padding-top: 20px;
+                align-items: center;
 
-            scrollbar-color: lightgray white;
+                .category {
+                    border-radius: 10px;
+                    height: 40px;
+                    width: 120px;
+                    color: black;
 
-            .dish-element {
-                width: 100px;
-                height: 150px;
-                background-color: red;
+
+                }
+
+                .dairy {
+                    background-color: yellow;
+                }
+
+                .meat {
+                    background-color: pink;
+                }
+
+                .fish {
+                    background-color: blue;
+                }
+
+                .vegan {
+                    background-color: green;
+                }
+
+                .search-field {
+                    width: 350px;
+                    height: 40px;
+                    background: white;
+                    border-radius: 15px;
+                    border-width: 1px;
+                    margin-left: 150px;
+                    font-size: 16px;
+                    font-weight: light;
+                    border-color: rgba(0, 0, 0, 0.29);
+
+                    padding: 12px 20px;
+                }
+
+                .search-field::placeholder {
+                    color: rgba(0, 0, 0, 0.29);
+                }
+
             }
+
+
+            .vertical-scroller {
+                width: auto;
+                height: auto;
+                margin-top: 20px;
+                display: grid;
+                column-gap: 20px;
+                row-gap: 20px;
+                grid-template-columns: 1fr 1f;
+
+                scrollbar-color: lightgray white;
+
+                .dish-element {
+                    width: 100px;
+                    height: 150px;
+                    background-color: red;
+                }
+
+            }
+
+
 
         }
 
-        
-
     }
 
-    }
     #add-dish-modal.visible {
         opacity: 1;
     }
+
     #add-dish-modal {
         opacity: 0;
     }
