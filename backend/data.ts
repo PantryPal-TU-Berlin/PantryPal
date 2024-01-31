@@ -7,11 +7,14 @@ import { UIX } from "uix";
 
 interface Dish {
     title: string,
-    time: string,
-    servings: number
+    time: number,
+    servings: number,
+    country: string,
+    image: string, //Not implemented
+    categorie: string,
 }
 
-const users: Record<string, Datex.ObjectRef<Array<Item>>> = {};
+const users: Record<string, Datex.ObjectRef<Array<Dish>>> = {};
 
 
 export function useDish() {
@@ -22,7 +25,7 @@ export function useDish() {
     if (!(user in users)) {
 		console.log(`Creating database entry for ${user}`);
 		users[user] = $$([
-			{title: "Spaghetti", time: "25 min", servings: 2} as Dish
+			{title: "Spaghetti", time: 25, servings: 2, country: "Deutschland", categorie: "Meat"} as Dish
 		]);
 	}
 
@@ -31,5 +34,5 @@ export function useDish() {
 }
 
 export const dishes = $$([
-	{title: "Döner", time: "5 min", servings: 1}
+	{title: "Pancakes mit Himbeersauße", time: 25, servings: 1, country: "Griechenland", categorie: "Vegan"}
 ]);

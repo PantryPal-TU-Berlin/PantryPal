@@ -74,6 +74,7 @@
 
             .horizontal-scroller {
                 padding-top: 20px;
+                margin-bottom: 30px;
                 height: 140px;
                 width: 92vw;
                 display: grid;
@@ -85,13 +86,12 @@
             }
 
             .media-element {
-                width: 450px;
-                height: 100px;
-                line-height: 50px;
+                min-width: 520px;
+                height: 120px;
                 background-color: grey;
-
+                object-fit: cover;
                 border-radius: 10px;
-                border: none;
+
             }
 
         }
@@ -152,17 +152,21 @@
 
 
             .vertical-scroller {
-                width: auto;
+                margin-left: auto;
+                margin-right: auto;
+                width: 80%;
+                
                 height: auto;
-                margin-top: 20px;
+                margin-top: 60px;
                 display: grid;
-                column-gap: 20px;
-                row-gap: 20px;
-                grid-template-columns: 1fr 1f;
-
+                column-gap: 60px;
+                row-gap: 60px;
+                grid-template-columns: 1fr 1fr;
+                
                 scrollbar-color: lightgray white;
 
                 .dish-element {
+
                     width: 100px;
                     height: 150px;
                     background-color: red;

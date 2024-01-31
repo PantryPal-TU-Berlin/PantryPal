@@ -11,8 +11,11 @@ const modalVisible = $$(false);
 function addDish() {
     dishes.push({
         title: title.val,
+        time: time.val,
         servings: servings.val,
-        time: time.val
+        country: country.val,
+        image: image.val,
+        categorie: categorie.val
     });
 
     modalVisible.val = false;
@@ -20,7 +23,10 @@ function addDish() {
 
 const title = $$("Apfel");
 const servings = $$(1);
-const time = $$("");
+const time = $$(10);
+const country = $$("");
+const categorie = $$("dairy");
+const image = $$("../../utilities/images/dish-pic.png");
 
 const dishes = await useDish();
 
@@ -49,12 +55,37 @@ const Home = template(() => (
                     </div>
                 </div>
                 <div class="horizontal-scroller">
-                    <div class="media-element">pizza</div>
-                    <div class="media-element">pizza</div>
-                    <div class="media-element">pizza</div>
-                    <div class="media-element">pizza</div>
-                    <div class="media-element">pizza</div>
-                    <div class="media-element">pizza</div>
+                    <img
+                        src="../../utilities/images/CategoryFood/pizza-category.png"
+                        alt="pizza category"
+                        class="media-element"
+                    />
+                    <img
+                        src="../../utilities/images/CategoryFood/salad-category.png"
+                        alt="salad category"
+                        class="media-element"
+                    />
+                    <img
+                        src="../../utilities/images/CategoryFood/dessert-category.png"
+                        alt="dessert category"
+                        class="media-element"
+                    />
+                      <img
+                        src="../../utilities/images/CategoryFood/pizza-category.png"
+                        alt="pizza category"
+                        class="media-element"
+                    />
+                    <img
+                        src="../../utilities/images/CategoryFood/salad-category.png"
+                        alt="salad category"
+                        class="media-element"
+                    />
+                    <img
+                        src="../../utilities/images/CategoryFood/dessert-category.png"
+                        alt="dessert category"
+                        class="media-element"
+                    />
+
                 </div>
             </div>
 
@@ -88,15 +119,24 @@ const Home = template(() => (
                         <legend>Dish Properties</legend>
                         <input type="text" id="title" placeholder="DishName" value={title} />
                         <input type="text" id="serving" placeholder="Serving for" value={servings} />
-                        <input type="text" id="time" placeholder="Time" value={time} />
+                        <input type="number" id="time" placeholder="Time" value={time} />
+                        <input type="text" id="country" placeholder="Country" value={country} />
+                        <select id="type" value={categorie}>
+                            <option selected>Vegan</option>
+                            <option>Dairy</option>
+                            <option>Meat</option>
+                            <option>Fish</option>
+                        </select>
+                        <input type="text" id="image" placeholder="image-drop" value={image} />
                     </fieldset>
                     <button onclick={addDish}>Add Dish</button>
                 </div>
+
             </div>
 
 
         </div>
-        <Footer />
+
     </div>
 ));
 
