@@ -61,7 +61,7 @@ const tabfavs = $$("tab-pane fade");
 						<br></br>
 
 
-						<p class="inhalt">{profilDaten.$.topRezept}</p>
+						<p class="inhalt">{profilDaten.topRezept}</p>
 
 					</div>
 
@@ -70,7 +70,7 @@ const tabfavs = $$("tab-pane fade");
 						<br></br>
 
 
-						<p class="inhalt">{profilDaten.$.bewertung}</p>
+						<p class="inhalt">{profilDaten.bewertung}</p>
 
 					</div>
 
@@ -79,7 +79,7 @@ const tabfavs = $$("tab-pane fade");
 						<br></br>
 
 
-						<p class="inhalt">{profilDaten.$.follower}</p>
+						<p class="inhalt">{profilDaten.follower}</p>
 
 					</div>
 
@@ -88,7 +88,7 @@ const tabfavs = $$("tab-pane fade");
 						<br></br>
 
 
-						<p class="inhalt">{profilDaten.$.land}</p>
+						<p class="inhalt">{profilDaten.land}</p>
 
 					</div>
 
@@ -97,7 +97,7 @@ const tabfavs = $$("tab-pane fade");
 						<br></br>
 
 
-						<p class="inhalt">{profilDaten.$.aktivität}</p>
+						<p class="inhalt">{profilDaten.aktivität}</p>
 
 					</div>
 				</div>
@@ -105,7 +105,7 @@ const tabfavs = $$("tab-pane fade");
 					Beschreibung 
 
 
-					<p class="inhalt">{profilDaten.$.beschreibung}</p>
+					<p class="inhalt">{profilDaten.beschreibung}</p>
 
 				</div>
     		</div>
