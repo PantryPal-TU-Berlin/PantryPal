@@ -1,9 +1,12 @@
 import { Component } from "uix/components/Component.ts";
 import { Datex } from "unyt_core/datex.ts";
+
+
 import { createProfil } from "backend/data.ts";
 
 
 const profilDaten = await createProfil();
+
 
 const rezepte = $$("--Rezepte--");
 const favoriten = $$("--Favoriten--");
@@ -49,41 +52,61 @@ const tabfavs = $$("tab-pane fade");
 					<div class="kategorie">
 						Eigene Rezepte
 						<br></br>
+
 						<p class="inhalt">{profilDaten.anzahlRezepte}</p>
+
 					</div>
         			<div class="kategorie">
 						Top Rezept
 						<br></br>
+
+
 						<p class="inhalt">{profilDaten.$.topRezept}</p>
+
 					</div>
 
         			<div class="kategorie">
 						Bewertung
 						<br></br>
+
+
 						<p class="inhalt">{profilDaten.$.bewertung}</p>
+
 					</div>
 
 					<div class="kategorie">
 						Follower
 						<br></br>
+
+
 						<p class="inhalt">{profilDaten.$.follower}</p>
+
 					</div>
 
         			<div class="kategorie">
 						Land
 						<br></br>
+
+
 						<p class="inhalt">{profilDaten.$.land}</p>
+
 					</div>
 
         			<div class="kategorie">
 						Aktivität
 						<br></br>
+
+
 						<p class="inhalt">{profilDaten.$.aktivität}</p>
+
 					</div>
 				</div>
         		<div>
 					Beschreibung 
+
+
 					<p class="inhalt">{profilDaten.$.beschreibung}</p>
+
 				</div>
     		</div>
 
