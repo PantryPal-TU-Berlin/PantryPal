@@ -1,5 +1,6 @@
 import { NavBar } from "frontend/components/navbar/navbar.tsx";
 import { Footer } from "frontend/components/footer/footer.tsx";
+import { exampleRecipePost } from "../../../backend/data/eternal/recipePosts.ts";
 
 const Ai = template(() => (
   <div>
@@ -10,7 +11,12 @@ const Ai = template(() => (
       <div class="container-fluid">
         <div class="row">
           <div class="col-3 column">
-            <div class="left-sidebar">HI</div>
+            <div class="left-sidebar">
+              <div class="recommended-recipe">
+                <div class="recipe-of-the-day">Rezept des Tages!</div>
+              </div>
+              <div class="categories"></div>
+            </div>
           </div>
           <div class="col-6 column">
             <div class="main-content"></div>

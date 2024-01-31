@@ -1,13 +1,13 @@
-type ingredient = {
+type Ingredient = {
   name: string;
   quantity: number;
   unit: string;
 };
 
-type recipe = {
+export type Recipe = {
   id: number;
   name: string;
   descripiton: string;
-  ingredients: ingredient[];
+  ingredients: Ingredient[];
   instruction: string;
 };
