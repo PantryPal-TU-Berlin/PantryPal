@@ -1,70 +1,5 @@
-// // frontend/components/recipeview/recipeview.tsx
-// import React, { useState, useEffect } from 'react';
-
-// // Define the type for your recipe
-// interface Recipe {
-//   name: string;
-//   ingredients: string[];
-//   instructions: string[];
-// }
-
-// const RecipeDropup: React.FC = () => {
-//   const [recipe, setRecipe] = useState<Recipe | null>(null);
-//   const [isVisible, setIsVisible] = useState(false);
-
-//   useEffect(() => {
-//     // Here you would fetch the recipe data from your backend
-//     // For this example, we will use mock data
-//     const mockRecipe: Recipe = {
-//       name: 'Bowl mit Reis und Kimchi',
-//       ingredients: ['100g Reis', '1 Dose Kimchi', '1 Avocado', 'Sesam'],
-//       instructions: [
-//         'Reis kochen.',
-//         'Avocado schneiden.',
-//         'Kimchi, Avocado, und Reis in eine Schüssel geben.',
-//         'Mit Sesam verzieren und servieren.'
-//       ],
-//     };
-//     setRecipe(mockRecipe);
-//   }, []);
-
-//   const toggleDropup = () => {
-//     setIsVisible(!isVisible);
-//   };
-
-//   return (
-//     <div className={`recipe-dropup ${isVisible ? 'show' : ''}`}>
-//       {recipe && (
-//         <>
-//           <h1>{recipe.name}</h1>
-//           <ul>
-//             {recipe.ingredients.map((ingredient: string, index: number) => (
-//               <li key={index}>{ingredient}</li>
-//             ))}
-//           </ul>
-//           <ol>
-//             {recipe.instructions.map((instruction: string, index: number) => (
-//               <li key={index}>{instruction}</li>
-//             ))}
-//           </ol>
-//           <button onclick={toggleDropup}>
-//             {isVisible ? 'Hide' : 'Show'} Recipe
-//           </button>
-//         </>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default RecipeDropup;
-
-
+import { Datex } from "unyt_core/datex.ts";
 // Define the type for your recipe
-
-
-import { Component } from "uix/components/Component.ts";
-//export class RecipeDropup extends Component{}
-
 interface Recipe {
   name: string;
   ingredients: string[];
@@ -80,7 +15,7 @@ interface Recipe {
 }
 
 // Define a custom element
-class RecipeDropup extends HTMLElement implements Recipe {
+class RecipeDropup extends HTMLDivElement implements Recipe {
 isVisible: boolean = false;
 name: string = '';
 tags: string[] = [];
@@ -106,7 +41,7 @@ emptyStars: number = 0;
   fullStars: number, 
   halfStars: number,
   img: string,
-  emptyStars: number
+  emptyStars: number 
   )
     {
       super();
@@ -255,8 +190,7 @@ this.innerHTML = `
   }
 }
 
+RecipeDropup.prototype = Object.create(HTMLElement.prototype);
 // Define the new element
-customElements.define('recipe-dropup', RecipeDropup);
-
-
-
+// customElements.define('recipe-dropup', RecipeDropup);
+export default RecipeDropup;
