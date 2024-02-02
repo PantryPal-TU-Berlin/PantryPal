@@ -1,17 +1,332 @@
 // recipe-dropup.component.scss
-.recipe-dropup {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #fff;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    transition: transform 0.3s ease;
-  
-    &.hidden {
-      transform: translateY(100%);
-    }
-  
-    // Rest of your SCSS styling
+
+.cook {
+  display: flex;
+
+    .time, .person {
+     span, div {
+      color: green;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 28.9px;
+     }
+
+     .text {
+         text-align: center;
+     }
+
   }
+
+   .time {
+      margin-left: 20px;
+    }
+    .person {
+      margin-right: 20px;
+    }
+}
+
+
+.header {
+  display: flex;
+    span {
+      display: flex;
+     
+        img {
+          position: relative;
+          margin: 8px 0px 0px 10px;
+        }
+
+        p {
+          margin-left: 10px;
+        }
+   }
+}
+
+.recipe-dropup {
+position: fixed;
+left: 0;
+right: 0;
+background-color: #fff;
+border-radius: 20px;
+box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.17);
+margin: 0px 0px 12% 7.3%;
+
+transition: transform 0.3s ease;
+div.m {
+display: flex;
+
+padding: 0px 0px 30px 30px;
+  div.header_description {
+    width: 71%;
+  }
+}
+
+img.cross {
+  width: 30px; 
+  height: 30px;
+  margin: 10px 0px 0px 10px;
+}
+
+
+&.hidden {
+ transform: translateY(100%);
+}
+   &.hidden {
+transform: translateY(100%);
+}
+
+
+
+
+
+
+
+
+
+.description {
+
+h1 {
+margin: 0;
+}
+
+
+.short_info {
+display: flex;
+width: 100%;
+p, span {
+ font-family: 'Jost';
+}
+
+.tags {
+  width: 45%;
+  height: 33px;
+  position: relative;
+  top: 18px;
+  
+
+  span {
+    padding: 9px 7% 12px 7%;
+    color: white;
+    background-color: #085C36;
+    margin-right: 15px;
+    border: 1px solid white;
+    border-radius: 10px;
+    text-align: text-center;
+
+    
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 28.9px;
+
+  }
+}
+
+
+.bewertungen {
+ padding-top: 2.5%;
+
+  div {
+    display: flex;
+      img {
+        margin: 0px 10px 0px 0px;
+        width: 22px;
+        height: 20px;
+      }
+
+      .star_to_join {
+        display: flex;
+        width: 21px;
+           img {
+            margin: 0px 10px 0px 0px;
+            width: 22px;
+        height: 20px;
+           }
+      }
+
+     
+
+  }
+
+   span {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26.01px; 
+    font-weight: bold;    
+      }
+}
+
+
+
+
+}
+
+   .titel {
+position: relative;
+top: 15px;
+}
+}
+
+
+}
+
+.recipe-dropup-parent {
+width: 60%;
+background-color: #fff;
+padding: 0px 0px 12% 7.3%;
+
+
+.cross {
+ img {
+   margin: 10px 0px 0px 10px;
+ }
+}
+
+}
+
+@media only screen and (max-width: 800px) {
+
+.recipe-dropup {
+width: 85%;
+}
+}
+
+@media only screen and (min-width: 800px) {
+.recipe-dropup {
+width: 60%;
+}
+}
+
+@media only screen and (max-width: 440px) {
+ .image {
+  margin-right: 16%;
+    img {
+        width: 110px;
+        height: 101px;
+    }    
+ }
+}
+
+@media only screen and (max-width: 970px) {
+
+
+.description {
+margin-top: 20px;
+ h1 {
+   font-size: 160%;
+ }
+}
+}
+
+@media only screen and (max-width: 600px) {
+
+
+.description {
+ h1 {
+   font-size: 140%;
+ }
+}
+}
+
+@media only screen and (max-width: 560px) {
+
+
+.description {
+ h1 {
+   font-size: 120%;
+ }
+}
+}
+
+@media only screen and (max-width: 510px) {
+
+
+.description {
+ h1 {
+   font-size: 100%;
+ }
+}
+}
+
+@media only screen and (max-width: 460px) {
+
+
+.description {
+ h1 {
+   font-size: 90%;
+ }
+}
+}
+
+
+
+@media only screen and (max-width: 1300px) {
+.recipe-dropup {
+
+
+
+
+.header_description {
+.description {
+
+.short_info{
+display: block;
+   .cook {
+      width: 32%;
+      margin-top: 2.5%;
+
+
+   .time {
+      margin-left: 0px;
+    }
+    .person {
+      margin-right: 0px;
+    }
+  }
+
+}
+}    // description
+}
+
+.bewertungen {
+margin-top: 30px;
+}
+
+
+}   // recipe-dropup
+
+
+}   // < 1300px
+
+@media only screen and (max-width: 1530px) and (min-width: 1300px) {
+ .description {
+    h1 {
+      font-size: 280%;
+      margin: 0;
+    }
+ }
+}
+
+
+@media only screen and (min-width: 1530px) {
+ .description {
+    h1 {
+      font-size: 380%;
+      margin: 0;
+    }
+ }
+}
+
+@media only screen and (max-width: 1020px) {
+ .header {
+    display: block;
+
+ }
+ .image {
+        margin-right: 5%;
+       }
+}
+
+
+
+
+// Rest of your SCSS styling
