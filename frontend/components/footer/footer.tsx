@@ -17,13 +17,17 @@ import { Component } from "uix/components/Component.ts";
         </ul>
       </div>
       <div class="social-media-links">
+        <div class="social-media-title">Social Media</div>
         <div class="social-media-icons">
-          <div class="social-media-title">Social Media</div>
-          <div class="social-media-icons">
+          <a href="https://chat.whatsapp.com/FHMTDjcKdbzBLwS9wMD6TW">
             <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://chat.whatsapp.com/FHMTDjcKdbzBLwS9wMD6TW">
             <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://chat.whatsapp.com/FHMTDjcKdbzBLwS9wMD6TW">
             <i class="fab fa-whatsapp"></i>
-          </div>
+          </a>
         </div>
       </div>
     </div>
