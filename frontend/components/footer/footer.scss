@@ -1,115 +1,107 @@
 @use "../../base/scss/global" as global;
 @use "../../utilities/scss/variables" as variables;
 
-#footer{
-	width: 100%;
+#footer {
+  width: 100%;
 
-	position: absolute;
-	bottom: 10px;
+  position: absolute;
+  bottom: 10px;
 
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-	font-family: 'Jost';
+  font-family: "Jost";
 
-	.footer-content{
-		width: 95%;
-		height: 15vh;
-		max-height: 200px;
+  .footer-content {
+    width: 95%;
+    height: 15vh;
+    max-height: 200px;
 
-		background-color: variables.$main-grey;
+    background-color: variables.$main-grey;
 
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-		border-radius: 10px;
+    border-radius: 10px;
 
-		margin: 0;
-		padding: 0;
+    margin: 0;
+    padding: 0;
 
-		*{
-			height: 90%;
-			width: 20%;
-		}
+    * {
+      height: 90%;
+      width: 20%;
+    }
 
-		.news-letter{
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			text-align: center;
-			margin: 0 50px;
+    .news-letter {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin: 0 50px;
 
-			h2{
-				display: flex;
-				justify-content: center;
-				text-align: center;
-				margin: 0;
-				font-size: 1rem;
-				white-space: nowrap;
-			}
+      h2 {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        margin: 0;
+        font-size: 1rem;
+      }
 
-			input{
-				border-radius: 10px;
-				border: 1px solid black;
-				max-width: 200px;
-				width: 75%;
-				height: 20%;
-			}
-		}
+      input {
+        border-radius: 10px;
+        border: 1px solid black;
+        max-width: 200px;
+        width: 75%;
+        height: 20%;
+      }
+    }
 
-		.footer-navigation{
-			display: flex;
-			flex-direction: column;
-			justify-content:center;
-			align-items: center;
-			width: 30%;
-		
+    .footer-navigation {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 30%;
 
-			ul{	
-				margin: 0;
-				padding: 0;
+      ul {
+        margin: 0;
+        padding: 0;
 
-				display: flex;
-				justify-content: center;
+        display: flex;
+        justify-content: center;
 
-				list-style: none;
-				width: 100%;
-				
-				li{
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					text-align: center;
-					cursor: pointer;
-					margin: 0 10px;
-					font-size: 0.75rem;
-					white-space: nowrap;
-					flex: 0 0 auto;
-					width: auto;
-				}
-			}
+        list-style: none;
+        width: 100%;
 
-			h1{
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				text-align: center;
-				font-size: 3.5rem;
-				margin: 0;
-			}
-			
-		}
+        li {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          cursor: pointer;
+          margin: 0 10px;
+          font-size: 0.75rem;
+          flex: 0 0 auto;
+          width: auto;
+        }
+      }
 
-		.social-media-links{
-		
-		}
+      h1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 3.5rem;
+        margin: 0;
+      }
+    }
 
-	}
-
-
-	
+    .social-media-links {
+      .social-media-title {
+      }
+    }
+  }
 }
