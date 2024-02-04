@@ -10,6 +10,6 @@ UIX.Theme.useTheme("uix-light-plain");
 
 export default {
   // show frontend-rendered page on /frontend
-  "/profil": import("./pages/profile_template.tsx"),
+  "/profil": import("./pages/profile/profile_template.tsx"),
   "/": import("./pages/login/login.tsx"),
 };
