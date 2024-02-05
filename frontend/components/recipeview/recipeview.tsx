@@ -1,4 +1,67 @@
-import { Datex } from "unyt_core/datex.ts";
+// // frontend/components/recipeview/recipeview.tsx
+// import React, { useState, useEffect } from 'react';
+
+// // Define the type for your recipe
+// interface Recipe {
+//   name: string;
+//   ingredients: string[];
+//   instructions: string[];
+// }
+
+// const RecipeDropup: React.FC = () => {
+//   const [recipe, setRecipe] = useState<Recipe | null>(null);
+//   const [isVisible, setIsVisible] = useState(false);
+
+//   useEffect(() => {
+//     // Here you would fetch the recipe data from your backend
+//     // For this example, we will use mock data
+//     const mockRecipe: Recipe = {
+//       name: 'Bowl mit Reis und Kimchi',
+//       ingredients: ['100g Reis', '1 Dose Kimchi', '1 Avocado', 'Sesam'],
+//       instructions: [
+//         'Reis kochen.',
+//         'Avocado schneiden.',
+//         'Kimchi, Avocado, und Reis in eine Schüssel geben.',
+//         'Mit Sesam verzieren und servieren.'
+//       ],
+//     };
+//     setRecipe(mockRecipe);
+//   }, []);
+
+//   const toggleDropup = () => {
+//     setIsVisible(!isVisible);
+//   };
+
+//   return (
+//     <div className={`recipe-dropup ${isVisible ? 'show' : ''}`}>
+//       {recipe && (
+//         <>
+//           <h1>{recipe.name}</h1>
+//           <ul>
+//             {recipe.ingredients.map((ingredient: string, index: number) => (
+//               <li key={index}>{ingredient}</li>
+//             ))}
+//           </ul>
+//           <ol>
+//             {recipe.instructions.map((instruction: string, index: number) => (
+//               <li key={index}>{instruction}</li>
+//             ))}
+//           </ol>
+//           <button onclick={toggleDropup}>
+//             {isVisible ? 'Hide' : 'Show'} Recipe
+//           </button>
+//         </>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default RecipeDropup;
+
+
+
+
+
 // Define the type for your recipe
 interface Recipe {
   name: string;
@@ -46,7 +109,7 @@ emptyStars: number = 0;
     {
       super();
          // this.recipe: Recipe | null = null;
-          this.isVisible = false;
+          this.isVisible = true;
           this.name = name;
           this.tags = tags;
           this.bewertungen = bewertungen;
@@ -72,13 +135,35 @@ emptyStars: number = 0;
   }
 
   toggleDropup() {
-    this.isVisible = !this.isVisible;
-    this.render(); // Re-render to reflect state change
+
+        const closed_block = document.querySelector('.recipe-dropup') as HTMLDivElement | null;
+
+
+if (this.isVisible && closed_block?.classList) {
+  this.isVisible = false;
+
+closed_block.classList.add('none');
+  closed_block.classList.remove('show');
+
+
+} else {
+if (closed_block?.classList) {
+  this.isVisible = true;
+
+  closed_block.classList.remove('none');
+  closed_block.classList.add('show');
+
+}
+
+}
+
+
+  // this.render(); // Re-render to reflect state change
   }
 
   addEventListeners() {
-    const toggleButton = this.querySelector('.toggle-dropup');
-    toggleButton?.addEventListener('click', () => this.toggleDropup());
+    const closeButton = this.querySelector('.cross_img');
+    closeButton?.addEventListener('click', () => this.toggleDropup());
   }
 
       stars() {
@@ -107,17 +192,14 @@ for(let i = 0; i < this.emptyStars; i++) {
     return div_main.innerHTML;
   }
 
-    visibility() {
-     this.isVisible = !this.isVisible;
-  }
 
   render() {
 
 this.innerHTML = `
 
-<div class="recipe-dropup ${this.isVisible ? 'show' : ''}">
+<div class="recipe-dropup show">
 
-   <input type="button" onClick="${this.visibility()}"><img src="img/cross.png" alt="" class="cross"> 
+   <img src="img/cross.png" alt="" class="cross_img"> 
 
 <div class="m">
 <div class="header_description">
@@ -191,6 +273,11 @@ this.innerHTML = `
 }
 
 RecipeDropup.prototype = Object.create(HTMLElement.prototype);
+
+// const u = new RecipeDropup("John", ["Tomate", "Gurken"], ["no instructions"], ["vegan"], 50, 15, 2, 3, 1, "gfdf.png", 1);
+// u.addEventListeners();
+// u.render();
+
 // Define the new element
 // customElements.define('recipe-dropup', RecipeDropup);
 export default RecipeDropup;
