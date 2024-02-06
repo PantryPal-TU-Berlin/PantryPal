@@ -1,6 +1,8 @@
 import { Component } from "uix/components/Component.ts";
 import { Datex } from "unyt_core/datex.ts";
 
+import { createRecipe } from "backend/data.ts";
+
 const anzahlRezepte = await datex `@user.anzahlRezepte` ?? 0
 const topRezept = $$("-");
 const bewertung = $$(0);
