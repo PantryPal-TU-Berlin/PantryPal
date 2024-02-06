@@ -1,20 +1,9 @@
 @use "../../base/scss/global" as global;
 @use "../../utilities/scss/variables" as variables;
 
-<<<<<<< HEAD
-*{
-	box-sizing: border-box;
-	margin:0;
-	padding: 0;
-}
-
-#navbar {
-	height: 75px;
-=======
 #navbar {
 	height: 10vh;
 	font-size: 1rem;
->>>>>>> footer
 	color: variables.$main-text-color;
 	font-family: 'Jost';
 	display: flex;
@@ -24,10 +13,7 @@
 	background-color: variables.$main-green;
 	h1{
 		margin-left: 60px;
-<<<<<<< HEAD
-=======
 		font-size: 3em;
->>>>>>> footer
 		cursor: pointer;
 	}
 
@@ -42,10 +28,7 @@
 		}
 
 		li{
-<<<<<<< HEAD
-=======
 			font-size: 1.5em;
->>>>>>> footer
 			display: inline-block;
 			padding: 0px 10px;
 			a{
@@ -59,19 +42,10 @@
 
 		.profile-picture{
 			margin-left: 30px;
-<<<<<<< HEAD
-			width: 35px;
-			height: 35px;
-=======
 			width: 7.5vh;
 			height: 7.5vh;
->>>>>>> footer
 			border-radius: 50%;
 		}
 	}
 
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> footer
