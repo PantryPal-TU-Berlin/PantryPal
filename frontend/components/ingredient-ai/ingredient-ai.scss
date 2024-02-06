@@ -1,14 +1,30 @@
 @use "../../base/scss/global" as global;
 @use "../../utilities/scss/variables" as variables;
 
+.ingredient-row {
+  display: flex;
+
+  button {
+    border: none;
+    background-color: white;
+    color: red;
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+    font-size: 0.8em;
+    margin-left: 5px;
+  }
+}
+
 .ingredient-comp {
   font-family: "Jost";
   display: flex;
-  justify-content: center;
+
   align-items: center;
-  width: 100%;
+  width: auto;
   max-width: 250px;
   height: 20px;
+  padding: 0 10px;
   * {
     color: white;
   }
@@ -22,6 +38,13 @@
     margin: 0 10px;
     * {
       margin: 0 5px;
+    }
+
+    .ingredient-text {
+      width: 75px;
+      max-width: 75px;
+      overflow-x: auto;
+      white-space: nowrap;
     }
   }
 

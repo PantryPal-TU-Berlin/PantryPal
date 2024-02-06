@@ -29,7 +29,7 @@ const Ai = template(() => (
               <div class="ingredients">
                 <div class="header-side-component">Ingredients</div>
                 <div class="list">
-                  <IngredientAI ingredient="Hallo" />
+                  <IngredientAI ingredient="Hallo" unit="Gr" />
                   <IngredientAI ingredient="anderes" />
                 </div>
               </div>
