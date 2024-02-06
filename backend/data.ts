@@ -10,8 +10,7 @@ interface RecipeData {
 	creator: string;
 }
 const recipes: Record<string, Datex.ObjectRef<RecipeData>> = {};
-export function createRecipe() {
-	const recipeName = datex.meta.sender.main.toString();
+export function createRecipe(recipeName: string) {
 	console.log(`Creating database entry for ${recipeName}`);
 	recipes[recipeName] = $$(
 	{
