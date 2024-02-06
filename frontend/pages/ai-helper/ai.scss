@@ -7,8 +7,7 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-
-    position: relative;
+    font-family: "Jost";
 
     .container-fluid {
       height: 100%;
@@ -19,17 +18,7 @@
       height: 100%;
     }
 
-    .column {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      * {
-        width: 90%;
-        border-radius: 10px;
-        background-color: variables.$main-green-light;
-      }
-    }
-
+    .right-sidebar,
     .left-sidebar {
       height: 100%;
       display: flex;
@@ -37,30 +26,40 @@
       justify-content: center;
       align-items: center;
 
-      * {
+      & > div {
         margin: 10px 0;
-        height: 40%;
+        height: 45%;
         width: 90%;
-        background-color: variables.$main-grey-light;
-      }
-
-      .recommended-recipe {
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
         align-items: center;
-        .recipe-of-the-day {
-          background-color: variables.$main-green;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 30px;
-          width: 90%;
-          text-align: center;
-        }
+        border-radius: 10px;
+        background-color: variables.$main-grey-light;
+      }
+    }
+
+    .column {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      & > div {
+        width: 90%;
+        border-radius: 10px;
+        background-color: variables.$main-green-light;
       }
 
-      .categories {
+      .header-side-component {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        width: 90%;
+        text-align: center;
+      }
+    }
+
+    .left-sidebar {
+      .recommended-recipe {
       }
     }
 
@@ -69,7 +68,28 @@
     }
 
     .right-sidebar {
-      height: 100%;
+      .list {
+        height: 90%;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        & > * {
+          margin: 3px 0;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 992px) {
+    .row {
+      & > div {
+        height: 800px;
+      }
     }
   }
 }

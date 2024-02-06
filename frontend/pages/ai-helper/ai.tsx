@@ -1,5 +1,6 @@
 import { NavBar } from "frontend/components/navbar/navbar.tsx";
 import { Footer } from "frontend/components/footer/footer.tsx";
+import { IngredientAI } from "frontend/components/ingredient-ai/ingredient-ai.tsx";
 import { exampleRecipePost } from "../../../backend/data/eternal/recipePosts.ts";
 
 const Ai = template(() => (
@@ -13,17 +14,29 @@ const Ai = template(() => (
           <div class="col-12 col-lg-3 column">
             <div class="left-sidebar">
               <div class="recommended-recipe">
-                <div class="recipe-of-the-day">Rezept des Tages!</div>
+                <div class="header-side-component">Recipe of the Day!</div>
               </div>
-              <div class="categories"></div>
+              <div class="categories">
+                <div class="header-side-component">Random Recipe!</div>
+              </div>
             </div>
           </div>
-          <div class="col-12 col-lg-6 column">
+          <div class="col-12 col-lg-6 column justify-content-center">
             <div class="main-content"></div>
           </div>
           <div class="col-12 col-lg-3 column">
             <div class="right-sidebar">
-              <div class="recipe-of-the-day"></div>
+              <div class="ingredients">
+                <div class="header-side-component">Ingredients</div>
+                <div class="list">
+                  <IngredientAI ingredient="Hallo" />
+                  <IngredientAI ingredient="anderes" />
+                </div>
+              </div>
+              <div class="categories">
+                <div class="header-side-component">Categories</div>
+                <div class="list"></div>
+              </div>
             </div>
           </div>
         </div>

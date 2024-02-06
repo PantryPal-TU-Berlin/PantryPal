@@ -1,0 +1,50 @@
+@use "../../base/scss/global" as global;
+@use "../../utilities/scss/variables" as variables;
+
+.ingredient-comp {
+  font-family: "Jost";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 250px;
+  height: 20px;
+  * {
+    color: white;
+  }
+
+  background-color: variables.$main-green;
+  border-radius: 10px;
+
+  .ingredient-with-amount {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+    * {
+      margin: 0 5px;
+    }
+  }
+
+  button {
+    border: none;
+    background-color: transparent;
+  }
+
+  input {
+    width: 30px;
+    height: 15px;
+    background-color: transparent;
+    border: none;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
