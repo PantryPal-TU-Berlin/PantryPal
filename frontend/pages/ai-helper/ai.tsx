@@ -1,7 +1,13 @@
 import { NavBar } from "frontend/components/navbar/navbar.tsx";
 import { Footer } from "frontend/components/footer/footer.tsx";
-import { IngredientAI } from "frontend/components/ingredient-ai/ingredient-ai.tsx";
+import {
+  IngredientAI,
+  PropsIngredient,
+} from "frontend/components/ingredient-ai/ingredient-ai.tsx";
+import { CategoryAI } from "../../components/category-dropdown/category-dropdown.tsx";
 import { exampleRecipePost } from "../../../backend/data/eternal/recipePosts.ts";
+
+const ingredients: PropsIngredient[] = $$([{ ingredient: "test", unit: "G" }]);
 
 const Ai = template(() => (
   <div>
@@ -22,15 +28,24 @@ const Ai = template(() => (
             </div>
           </div>
           <div class="col-12 col-lg-6 column justify-content-center">
-            <div class="main-content"></div>
+            <div class="main-content">
+              <CategoryAI
+                categoryName="test"
+                ingredients={["test1", "test2", "test3", "test4", "test5"]}
+              />
+            </div>
           </div>
           <div class="col-12 col-lg-3 column">
             <div class="right-sidebar">
               <div class="ingredients">
                 <div class="header-side-component">Ingredients</div>
                 <div class="list">
-                  <IngredientAI ingredient="Hallo" unit="Gr" />
-                  <IngredientAI ingredient="anderes" />
+                  {ingredients.$.map((ingredient: PropsIngredient) => (
+                    <IngredientAI
+                      ingredient={ingredient.ingredient}
+                      unit={ingredient.unit}
+                    />
+                  ))}
                 </div>
               </div>
               <div class="categories">

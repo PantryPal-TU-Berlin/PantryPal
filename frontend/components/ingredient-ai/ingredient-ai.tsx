@@ -1,20 +1,21 @@
 import { Component } from "uix/components/Component.ts";
 
-interface PropsIngredient {
+export interface PropsIngredient {
   ingredient: string;
+  amount: number;
   unit: string;
 }
 
-@template<PropsIngredient>((PropsIngredient) => (
+@template<PropsIngredient>((props) => (
   <div class="ingredient-row">
     <div class="ingredient-comp">
       <button>
         <i class="fab fa-plus"></i>
       </button>
       <div class="ingredient-with-amount">
-        <div class="ingredient-text">{PropsIngredient.ingredient}</div>
-        <input type="number" value="1" />
-        {PropsIngredient.unit}
+        <div class="ingredient-text">{props.ingredient}</div>
+        <input type="number" value={props.amount} />
+        {props.unit}
       </div>
       <button>
         <i class="fa-solid fa-minus"></i>
