@@ -19,11 +19,11 @@
 .ingredient-comp {
   font-family: "Jost";
   display: flex;
-
+  min-width: auto;
   align-items: center;
   width: 80%;
   min-width: 225px;
-  max-width: 400px;
+  max-width: 600px;
   height: 20px;
   padding: 0 10px;
   * {

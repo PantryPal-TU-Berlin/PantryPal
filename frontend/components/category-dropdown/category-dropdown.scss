@@ -2,33 +2,44 @@
 @use "../../utilities/scss/variables" as variables;
 
 .dropdown {
-  width: 40%;
+  width: 300px;
   max-width: 200px;
+  position: relative;
 }
 
 .dropdown-box {
   border-radius: 20px;
+  transition: 0.3s;
   width: 100%;
-  height: 100px;
-  background-color: variables.$main-grey-light;
+  height: 50px;
+  background-color: variables.$main-green;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+
+.dropdown-box:hover {
+  background-color: red;
 }
 
 .dropdown-content {
   margin-top: 10px;
   border-radius: 20px;
+  transition: 0.5s;
   background-color: variables.$main-grey-light;
-  pointer-events: none;
-  opacity: 1;
   max-height: 100px;
   overflow-y: auto;
+  position: absolute;
+  width: 100%;
+  z-index: 3;
+  opacity: 0;
+  pointer-events: none;
+
   & > * {
     margin: 0;
   }
   .dropdown-selection {
-    z-index: 10;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -36,12 +47,25 @@
 
   .dropdown-selection:hover {
     cursor: pointer;
-    background-color: aqua;
-    width: 50%;
+    background-color: variables.$main-green;
   }
 }
 
-.dropdown-content .visible {
-  opacity: 1;
+.dropdown-content.visible {
   pointer-events: initial;
+  opacity: 1;
+  display: initial;
+}
+
+.dropdown-content::-webkit-scrollbar {
+  background: transparent;
+  width: 3px;
+  border-radius: 2px;
+  margin-right: 10px;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+  background: variables.$main-green;
+  border-radius: 2px;
+  height: 30px;
 }
