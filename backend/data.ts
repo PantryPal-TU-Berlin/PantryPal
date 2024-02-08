@@ -14,8 +14,14 @@ interface Recipe {
     tags: string[],
     time: number,
     servings: number,
-    ingredients: string[],
-    steps: string[],
+    ingredients: PropsIngredient[],
+    steps: string,
+}
+
+export interface PropsIngredient {
+    ingredient: string,
+    amount: number,
+    unit: string
 }
 
 export function createRecipesArray() {
@@ -23,5 +29,5 @@ export function createRecipesArray() {
 }
 
 export const recipes = $$([
-    {title: "Napoleon", tags: ['cake', 'dessert'], time: 180, servings: 5, ingredients: ['sour cream', "sugar"], steps: ["make cream", "bake"]}
+    {title: "Napoleon", tags: ['cake', 'dessert'], time: 180, servings: 5, ingredients: [{ingredient: "sour cream", amount: 200, unit: "ml"}], steps: "Make cream and bake"}
 ]);

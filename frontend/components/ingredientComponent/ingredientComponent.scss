@@ -1,0 +1,42 @@
+@use "../../base/scss/global" as global;
+@use "../../utilities/scss/variables" as variables;
+
+    .ingredient-row {
+
+        .ingredient-comp {
+            display: flex;
+
+            .ingredient-with-amount {
+                justify-content:center;
+
+                input {
+                    margin: 1%;
+                }
+
+                .ingredient-text {
+                    width: 60%;
+                }
+        
+                .ingredient-amount, .ingredient-unit {
+                    width: 15%;
+                }
+            }
+    
+            button {
+                width: 2em;
+                height: 2em;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0.5em;
+
+                i {
+                    
+                }
+            }
+        }
+
+        
+    }
+
+    
