@@ -9,28 +9,42 @@ export interface PropsIngredient {
 @template<PropsIngredient>((props) => {
   const incDecAmount = props.unit == "ml" || props.unit == "gr" ? 100 : 1;
   const amount = $$(incDecAmount);
-
   return (
-    <div class="ingredient-row">
+    <div class="ingredient-comp">
       <div
-        class="ingredient-comp"
+        class="plus-button"
         onclick={() => (amount.val = amount.val + incDecAmount)}
       >
-        <div>
-          <i class="fab fa-plus"></i>
-        </div>
-        <div class="ingredient-with-amount">
-          <div class="ingredient-text">{props.ingredient}</div>
-          <input type="number" value={amount} />
-          {props.unit}
-        </div>
-        <div onclick={() => (amount.val = amount.val + incDecAmount)}>
-          <i class="fa-solid fa-minus"></i>
-        </div>
+        <i class="fab fa-plus"></i>
       </div>
-      <button>
+      <div class="ingredient-with-amount">
+        <div class="ingredient-text">{props.ingredient}</div>
+        <input
+          type="number"
+          value={amount}
+          onchange={() =>
+            (amount.val =
+              parseInt((event!.target as HTMLInputElement).value) > 0
+                ? parseInt((event!.target as HTMLInputElement).value)
+                : amount.val)
+          }
+        />
+        {props.unit}
+      </div>
+      <div
+        class="minus-button"
+        onclick={() =>
+          (amount.val =
+            amount.val - incDecAmount > 0
+              ? amount.val - incDecAmount
+              : amount.val)
+        }
+      >
+        <i class="fa-solid fa-minus"></i>
+      </div>
+      <div class="trash-button">
         <i class="fa-solid fa-trash"></i>
-      </button>
+      </div>
     </div>
   );
 })

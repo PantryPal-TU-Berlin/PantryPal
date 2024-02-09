@@ -1,5 +1,5 @@
 // import ../../utiilities/ingredient.json
-import { ingredientsDict } from "frontend/utilities/ingredientsDict.ts";
+import { ingredientsDict } from "../../utilities/ingredientsStructures.ts";
 
 import { NavBar } from "frontend/components/navbar/navbar.tsx";
 import { Footer } from "frontend/components/footer/footer.tsx";
@@ -8,14 +8,18 @@ import {
   IngredientAI,
   PropsIngredient,
 } from "frontend/components/ingredient-ai/ingredient-ai.tsx";
-
+import { SearchBar } from "frontend/components/search-bar/search-bar.tsx";
 import { CategoryAI } from "../../components/category-dropdown/category-dropdown.tsx";
 import { exampleRecipePost } from "../../../backend/data/eternal/recipePosts.ts";
 
 const Ai = template(() => {
-  const ingredients = $$([]);
+  const ingredients = $$([{ ingredient: "Afiajfodijfaoüdfs", unit: "gr" }]);
 
-  const ingredientsDictAsArray: string[] = Object.keys(ingredientsDict);
+  const ingredientsDictKeysAsArray: string[] = Object.keys(ingredientsDict);
+
+  const ingredientsList: string[] = ingredientsDictKeysAsArray
+    .map((category) => Object.keys(ingredientsDict[category]))
+    .flat();
 
   function addIngredient(categoryName: string, ingredient: string) {
     ingredients.push({
@@ -44,19 +48,20 @@ const Ai = template(() => {
             </div>
             <div class="col-12 col-lg-6 column justify-content-center">
               <div class="main-content">
+                <SearchBar class="search-component" />
                 <div class="category-listing">
-                  {ingredientsDictAsArray.map((_, index) =>
+                  {ingredientsDictKeysAsArray.map((_, index) =>
                     index % 2 === 0 ? (
                       <div class="row row-of-category">
                         <div class="col-6">
                           <CategoryAI
-                            categoryName={ingredientsDictAsArray[index]}
+                            categoryName={ingredientsDictKeysAsArray[index]}
                             ingredients={Object.keys(
-                              ingredientsDict[ingredientsDictAsArray[index]]
+                              ingredientsDict[ingredientsDictKeysAsArray[index]]
                             )}
                             onadd={(ingredient: string) =>
                               addIngredient(
-                                ingredientsDictAsArray[index],
+                                ingredientsDictKeysAsArray[index],
                                 ingredient
                               )
                             }
@@ -64,13 +69,15 @@ const Ai = template(() => {
                         </div>
                         <div class="col-6">
                           <CategoryAI
-                            categoryName={ingredientsDictAsArray[index + 1]}
+                            categoryName={ingredientsDictKeysAsArray[index + 1]}
                             ingredients={Object.keys(
-                              ingredientsDict[ingredientsDictAsArray[index + 1]]
+                              ingredientsDict[
+                                ingredientsDictKeysAsArray[index + 1]
+                              ]
                             )}
                             onadd={(ingredient: string) =>
                               addIngredient(
-                                ingredientsDictAsArray[index + 1],
+                                ingredientsDictKeysAsArray[index + 1],
                                 ingredient
                               )
                             }
@@ -80,6 +87,7 @@ const Ai = template(() => {
                     ) : null
                   )}
                 </div>
+                <div>Generate</div>
               </div>
             </div>
             <div class="col-12 col-lg-3 column">
