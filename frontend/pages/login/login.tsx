@@ -1,5 +1,7 @@
 import { NavBar } from "../../components/navbar/navbar.tsx";
 import { Footer } from "../../components/footer/footer.tsx";
+import { AuthButton } from "auth/AuthButton.tsx";
+
 import { AuthIcon } from "auth";
 
 const Login = template(() => (
@@ -21,9 +23,11 @@ const Login = template(() => (
         <section class="LoginContainer">
           <div class="LoginDiv">
           <h2>Sign In</h2>
-            <AuthIcon />
+            <AuthIcon  />
+            <AuthButton/>
             <div class="HeaderContainer">
               <h2>Welcome to PantryPal</h2>
+              
             </div>
 
           </div>
