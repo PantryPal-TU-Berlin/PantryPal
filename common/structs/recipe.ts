@@ -1,13 +1,13 @@
-type Ingredient = {
-  name: string;
-  quantity: number;
+export interface Ingredient {
+  ingredient: string;
   unit: string;
-};
+  amount: number;
+}
 
-export type Recipe = {
+export interface Recipe {
   id: number;
   name: string;
   descripiton: string;
   ingredients: Ingredient[];
   instruction: string;
-};
+}

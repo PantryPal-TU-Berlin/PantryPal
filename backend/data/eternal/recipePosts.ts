@@ -1,5 +1,5 @@
-import { recipePost } from "../../structs/recipePost.ts";
-import { Recipe } from "../../structs/recipe.ts";
+import { recipePost } from "../../../common/structs/recipePost.ts";
+import { Recipe } from "../../../common/structs/recipe.ts";
 
 export const recipePosts =
   eternalVar("recipePosts") ?? $$(new Set<recipePost>());
@@ -12,8 +12,8 @@ const exampleRecipe: Recipe = {
   descripiton: "This is an example recipe.",
   ingredients: [
     {
-      name: "Example Ingredient",
-      quantity: 1,
+      ingredient: "Example Ingredient",
+      amount: 1,
       unit: "unit",
     },
   ],
@@ -21,13 +21,14 @@ const exampleRecipe: Recipe = {
 };
 
 export const exampleRecipePost: recipePost = {
+  id: 1,
   user: {
     id: 1,
     username: "exampleUser",
     profilePicture: "../data/images/example-dish.jpeg",
   },
   recipe: exampleRecipe,
-  date: String(today.getDate()),
+  date: today,
 };
 
 recipePosts.add(exampleRecipePost);

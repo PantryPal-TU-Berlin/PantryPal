@@ -1,30 +1,46 @@
-// import ../../utiilities/ingredient.json
+import { ObjectRef } from "unyt_core/runtime/pointers.ts";
+
 import { ingredientsDict } from "../../utilities/ingredientsStructures.ts";
+
+//structs
+import { Ingredient } from "common/structs/recipe.ts";
 
 import { NavBar } from "frontend/components/navbar/navbar.tsx";
 import { Footer } from "frontend/components/footer/footer.tsx";
 
-import {
-  IngredientAI,
-  PropsIngredient,
-} from "frontend/components/ingredient-ai/ingredient-ai.tsx";
+import { IngredientAI } from "frontend/components/ingredient-ai/ingredient-ai.tsx";
 import { SearchBar } from "frontend/components/search-bar/search-bar.tsx";
 import { CategoryAI } from "../../components/category-dropdown/category-dropdown.tsx";
-import { exampleRecipePost } from "../../../backend/data/eternal/recipePosts.ts";
 
 const Ai = template(() => {
-  const ingredients = $$([{ ingredient: "Afiajfodijfaoüdfs", unit: "gr" }]);
+  const ingredients: ObjectRef<Ingredient[]> = $$([
+    { ingredient: "Afiajfodijfaoüdfs", unit: "gr", amount: 1 },
+  ]);
 
   const ingredientsDictKeysAsArray: string[] = Object.keys(ingredientsDict);
 
-  const ingredientsList: string[] = ingredientsDictKeysAsArray
-    .map((category) => Object.keys(ingredientsDict[category]))
-    .flat();
+  const allIngredients: Ingredient[] = Object.values(ingredientsDict).flat();
 
-  function addIngredient(categoryName: string, ingredient: string) {
-    ingredients.push({
-      ingredient: ingredient,
-      unit: ingredientsDict[categoryName][ingredient],
+  function addIngredient(ingredient: Ingredient) {
+    let alreadyExists = false;
+
+    ingredients.forEach((element) => {
+      if (element.ingredient === ingredient.ingredient) {
+        alreadyExists = true;
+        return;
+      }
+    });
+
+    if (alreadyExists) return;
+
+    ingredients.push(ingredient);
+  }
+
+  function deleteIngredient(ingredient: Ingredient) {
+    ingredients.forEach((ing, index) => {
+      if (ing.ingredient === ingredient.ingredient) {
+        ingredients.splice(index, 1);
+      }
     });
   }
 
@@ -48,7 +64,11 @@ const Ai = template(() => {
             </div>
             <div class="col-12 col-lg-6 column justify-content-center">
               <div class="main-content">
-                <SearchBar class="search-component" />
+                <SearchBar
+                  class="search-component"
+                  searchSpace={allIngredients}
+                  onadd={(ingredient: Ingredient) => addIngredient(ingredient)}
+                />
                 <div class="category-listing">
                   {ingredientsDictKeysAsArray.map((_, index) =>
                     index % 2 === 0 ? (
@@ -56,30 +76,22 @@ const Ai = template(() => {
                         <div class="col-6">
                           <CategoryAI
                             categoryName={ingredientsDictKeysAsArray[index]}
-                            ingredients={Object.keys(
+                            ingredients={
                               ingredientsDict[ingredientsDictKeysAsArray[index]]
-                            )}
-                            onadd={(ingredient: string) =>
-                              addIngredient(
-                                ingredientsDictKeysAsArray[index],
-                                ingredient
-                              )
+                            }
+                            onadd={(ingredient: Ingredient) =>
+                              addIngredient(ingredient)
                             }
                           />
                         </div>
                         <div class="col-6">
                           <CategoryAI
                             categoryName={ingredientsDictKeysAsArray[index + 1]}
-                            ingredients={Object.keys(
-                              ingredientsDict[
-                                ingredientsDictKeysAsArray[index + 1]
-                              ]
-                            )}
-                            onadd={(ingredient: string) =>
-                              addIngredient(
-                                ingredientsDictKeysAsArray[index + 1],
-                                ingredient
-                              )
+                            ingredients={
+                              ingredientsDict[ingredientsDictKeysAsArray[index]]
+                            }
+                            onadd={(ingredient: Ingredient) =>
+                              addIngredient(ingredient)
                             }
                           />
                         </div>
@@ -95,10 +107,12 @@ const Ai = template(() => {
                 <div class="ingredients">
                   <div class="header-side-component">Ingredients</div>
                   <div class="list">
-                    {ingredients.$.map((ingredient) => (
+                    {ingredients.$.map((ingredient: Ingredient) => (
                       <IngredientAI
-                        ingredient={ingredient.ingredient}
-                        unit={ingredient.unit}
+                        ingredient={ingredient}
+                        ondelete={(ingredient: Ingredient) =>
+                          deleteIngredient(ingredient)
+                        }
                       />
                     ))}
                   </div>
@@ -118,19 +132,15 @@ const Ai = template(() => {
 });
 
 export default (
-  <html>
-    <head>
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css"
-      />
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      />
-    </head>
-    <body>
-      <Ai />
-    </body>
-  </html>
+  <div>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <Ai />
+  </div>
 );

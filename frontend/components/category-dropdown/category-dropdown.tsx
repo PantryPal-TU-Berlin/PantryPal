@@ -1,10 +1,11 @@
 import { Component } from "uix/components/Component.ts";
 import { ObjectRef } from "unyt_core/runtime/pointers.ts";
+import { Ingredient } from "common/structs/recipe.ts";
 
 interface PropsCategory {
   categoryName: string;
-  ingredients: ObjectRef<string[]>;
-  onadd: (ingredient: string) => void;
+  ingredients: ObjectRef<Ingredient[]>;
+  onadd: (ingredient: Ingredient) => void;
 }
 
 @template<PropsCategory>((_, props) => {
@@ -33,12 +34,12 @@ interface PropsCategory {
           "dropdown-content": true,
         }}
       >
-        {props.ingredients.$.map((ingredient: string) => (
+        {props.ingredients.$.map((ingredient: Ingredient) => (
           <div
             class="dropdown-selection"
             onclick={() => props.onadd(ingredient)}
           >
-            {ingredient}
+            {ingredient.ingredient}
           </div>
         ))}
       </div>

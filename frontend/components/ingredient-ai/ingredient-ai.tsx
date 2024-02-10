@@ -1,48 +1,54 @@
 import { Component } from "uix/components/Component.ts";
+import { ObjectRef } from "unyt_core/runtime/pointers.ts";
+import { Ingredient } from "common/structs/recipe.ts";
 
-export interface PropsIngredient {
-  ingredient: string;
-  unit: string;
-  amount: number;
+interface IngredientAIProps {
+  ingredient: Ingredient;
+  ondelete: (ingredient: Ingredient) => void;
 }
 
-@template<PropsIngredient>((props) => {
-  const incDecAmount = props.unit == "ml" || props.unit == "gr" ? 100 : 1;
+@template<IngredientAIProps>((_, props) => {
+  const incDecAmount: number = props.ingredient.amount;
   const amount = $$(incDecAmount);
+  const _amount = $$(incDecAmount);
+
+  function inc() {
+    amount.val = amount.val + incDecAmount;
+    _amount.val = amount.val;
+  }
+
+  function dec() {
+    if (amount.val - incDecAmount > 0) {
+      amount.val = amount.val - incDecAmount;
+      _amount.val = amount.val;
+    }
+  }
+
   return (
     <div class="ingredient-comp">
-      <div
-        class="plus-button"
-        onclick={() => (amount.val = amount.val + incDecAmount)}
-      >
+      <div class="plus-button" onclick={inc}>
         <i class="fab fa-plus"></i>
       </div>
       <div class="ingredient-with-amount">
-        <div class="ingredient-text">{props.ingredient}</div>
+        <div class="ingredient-text">{props.ingredient.ingredient}</div>
         <input
           type="number"
           value={amount}
           onchange={() =>
-            (amount.val =
-              parseInt((event!.target as HTMLInputElement).value) > 0
-                ? parseInt((event!.target as HTMLInputElement).value)
-                : amount.val)
+            amount.val > 0
+              ? (_amount.val = amount.val)
+              : (amount.val = _amount.val)
           }
         />
-        {props.unit}
+        {props.ingredient.unit}
       </div>
-      <div
-        class="minus-button"
-        onclick={() =>
-          (amount.val =
-            amount.val - incDecAmount > 0
-              ? amount.val - incDecAmount
-              : amount.val)
-        }
-      >
+      <div class="minus-button" onclick={dec}>
         <i class="fa-solid fa-minus"></i>
       </div>
-      <div class="trash-button">
+      <div
+        class="trash-button"
+        onclick={() => props.ondelete(props.ingredient)}
+      >
         <i class="fa-solid fa-trash"></i>
       </div>
     </div>
