@@ -1,0 +1,149 @@
+@use "../../base/scss/global" as global;
+@use "../../utilities/scss/variables" as variables;
+
+#footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  margin-bottom: 10px;
+
+  font-family: "Jost";
+  .footer-content {
+    font-size: 1.2rem;
+    width: 95%;
+    height: 15vh;
+    //max-height: 200px;
+
+    background-color: variables.$main-grey;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: 10px;
+
+    margin: 0;
+    padding: 0;
+
+    > * {
+      height: 90%;
+      width: 20%;
+    }
+
+    .news-letter {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin: 0 50px;
+
+      h2 {
+        width: 100%;
+        font-size: 0.8em;
+        margin: 0 0 5px 0;
+        height: auto;
+      }
+
+      input {
+        border-radius: 20px;
+        border: 1px solid black;
+        max-width: 200px;
+        width: 70%;
+        height: 1.5vh;
+        font-size: 0.6vw;
+        padding: 0 10px;
+      }
+    }
+
+    .footer-navigation {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 30%;
+
+      ul {
+        margin: 0;
+        padding: 0;
+
+        display: flex;
+        justify-content: center;
+
+        list-style: none;
+        width: 100%;
+
+        height: auto;
+
+        li {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          cursor: pointer;
+          margin: 0 10px;
+
+          font-size: 0.6em;
+          flex: 0 0 auto;
+          width: auto;
+        }
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 2.5em;
+        height: auto;
+        width: auto;
+      }
+    }
+
+    .social-media-links {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.8em;
+
+      a {
+        text-decoration: none;
+        color: black;
+      }
+      .social-media-title {
+        height: auto;
+        width: auto;
+      }
+
+      .social-media-icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        text-align: center;
+        cursor: pointer;
+        * {
+          width: auto;
+          margin: 0 5px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  #footer {
+    margin-top: 20px;
+    position: relative;
+  }
+
+  #footer .footer-content {
+    flex-direction: column;
+    max-height: unset;
+    height: 600px;
+
+    * {
+      width: 100%;
+    }
+  }
+}

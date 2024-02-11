@@ -1,3 +1,3 @@
 import { UIX } from "uix";
 
-export default {}
+export default {};

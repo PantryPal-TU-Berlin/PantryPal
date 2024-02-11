@@ -1,0 +1,61 @@
+@use "../../base/scss/global" as global;
+@use "../../utilities/scss/variables" as variables;
+
+.search-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  position: relative;
+
+  .search-box {
+    width: 100%;
+    min-width: auto;
+    max-width: 600px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    .search-input {
+      border: none;
+      width: 90%;
+      height: 20px;
+    }
+
+    .search-button {
+      cursor: pointer;
+      margin-left: 10px;
+    }
+  }
+
+  .search-recommendations {
+    opacity: 0;
+    width: 100%;
+    max-width: 600px;
+    min-width: auto;
+    position: absolute;
+    z-index: -1;
+    margin-top: 25px;
+    padding-top: 25px;
+    background-color: white;
+    border-radius: 0 0 10px 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    .search-selection {
+      padding-left: 20px;
+      display: flex;
+      align-items: center;
+      height: 35px;
+    }
+
+    .search-selection:hover {
+      background-color: variables.$main-grey;
+    }
+  }
+
+  .search-recommendations.visible {
+    opacity: 1;
+  }
+}

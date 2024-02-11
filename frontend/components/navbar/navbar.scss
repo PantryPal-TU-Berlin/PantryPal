@@ -1,54 +1,54 @@
 @use "../../base/scss/global" as global;
 @use "../../utilities/scss/variables" as variables;
 
-*{
-	box-sizing: border-box;
-	margin:0;
-	padding: 0;
-}
-
 #navbar {
-	height: 75px;
-	color: variables.$main-text-color;
-	font-family: 'Jost';
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  height: 10vh;
+  max-height: 100px;
+  color: variables.$main-text-color;
+  font-family: "Jost";
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-	background-color: variables.$main-green;
-	h1{
-		margin-left: 60px;
-		cursor: pointer;
-	}
+  background-color: variables.$main-green;
+  h1 {
+    margin-left: 60px;
+    font-size: 2.5em;
+    cursor: pointer;
+  }
 
-	.nav-links{
-		display: flex;;
-		list-style: none;
-		margin-right: 60px;
-		align-items: center;
-		
-		*{
-			cursor: pointer;
-		}
+  .nav-links {
+    height: 100%;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    margin-right: 50px;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    * {
+      cursor: pointer;
+    }
 
-		li{
-			display: inline-block;
-			padding: 0px 10px;
-			a{
-				transition: all	0.3s ease 0s;
-			}
-		}
+    li {
+      display: inline-block;
+      padding: 0px 10px;
+      margin: 0px 10px;
+      a {
+        transition: all 0.3s ease 0s;
+      }
+    }
 
-		li:hover{
-			color: variables.$main-text-color-hover;
-		}
+    li:hover {
+      color: variables.$main-text-color-hover;
+    }
 
-		.profile-picture{
-			margin-left: 30px;
-			width: 35px;
-			height: 35px;
-			border-radius: 50%;
-		}
-	}
-
+    .profile-picture {
+      margin-left: 30px;
+      width: 75%;
+      height: 75%;
+      border-radius: 50%;
+    }
+  }
 }
