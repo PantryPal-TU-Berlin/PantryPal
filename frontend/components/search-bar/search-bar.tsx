@@ -16,6 +16,7 @@ interface PropsSearchBar {
 
   function searchEngine(limited = true) {
     displaySearchRecommendations.val = searchInput.val != "";
+    searchRecommendations.length = 0;
 
     let tempResults: Ingredient[];
     if (limited) {

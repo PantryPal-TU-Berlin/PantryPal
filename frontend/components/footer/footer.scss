@@ -3,13 +3,11 @@
 
 #footer {
   width: 100%;
-  position: absolute;
-  bottom: 10px;
-
   display: flex;
   align-items: center;
   justify-content: center;
   height: auto;
+  margin-bottom: 10px;
 
   font-family: "Jost";
   .footer-content {

@@ -1,6 +1,9 @@
 import { ObjectRef } from "unyt_core/runtime/pointers.ts";
 
-import { ingredientsDict } from "../../utilities/ingredientsStructures.ts";
+import {
+  ingredientsDict,
+  categoriesFood,
+} from "../../utilities/ingredientsStructures.ts";
 
 //structs
 import { Ingredient } from "common/structs/recipe.ts";
@@ -13,9 +16,7 @@ import { SearchBar } from "frontend/components/search-bar/search-bar.tsx";
 import { CategoryAI } from "../../components/category-dropdown/category-dropdown.tsx";
 
 const Ai = template(() => {
-  const ingredients: ObjectRef<Ingredient[]> = $$([
-    { ingredient: "Afiajfodijfaoüdfs", unit: "gr", amount: 1 },
-  ]);
+  const ingredients: ObjectRef<Ingredient[]> = $$([]);
 
   const ingredientsDictKeysAsArray: string[] = Object.keys(ingredientsDict);
 
@@ -62,7 +63,7 @@ const Ai = template(() => {
                 </div>
               </div>
             </div>
-            <div class="col-12 col-lg-6 column justify-content-center">
+            <div class="col-12 col-lg-6 column">
               <div class="main-content">
                 <SearchBar
                   class="search-component"
@@ -119,7 +120,11 @@ const Ai = template(() => {
                 </div>
                 <div class="categories">
                   <div class="header-side-component">Categories</div>
-                  <div class="list"></div>
+                  <div class="list">
+                    {categoriesFood.map((category) => (
+                      <div class="category">{category}</div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
