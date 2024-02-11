@@ -11,6 +11,7 @@ const beschreibung = $$(profilDaten.beschreibung)
 
 const name = await Datex.Runtime.endpoint.main.getAlias() ?? "benutzername"
 
+
 const followBool = $$(false);
 const followString: Datex.Ref<string> = always(() =>{ 
 	if(!followBool.val)return "Follow";
@@ -39,7 +40,6 @@ const rezepte = $$("--Rezepte--");
 const favoriten = $$("--Favoriten--");
 
 const navTabs = $$(false);
-
 const classrezepte: Datex.Ref<string> = always(() =>{ 
 	if(!navTabs.val)return "nav-item nav-link active";
 	else return "nav-item nav-link"
