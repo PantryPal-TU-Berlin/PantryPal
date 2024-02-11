@@ -1,7 +1,7 @@
 import { recipePost } from "./recipePost.ts";
 
 export type User = {
-  id: number;
+  endpoint: string;
   username: string;
   profilePicture: string;
   profilDaten: ProfilDaten;
