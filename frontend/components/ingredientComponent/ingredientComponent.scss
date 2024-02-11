@@ -1,0 +1,89 @@
+@use "../../base/scss/global" as global;
+@use "../../utilities/scss/variables" as variables;
+
+.ingredient-comp {
+  font-family: "Jost";
+  display: flex;
+  align-items: center;
+  width: auto;
+  min-width: auto;
+  max-width: 600px;
+  height: 40px;
+  position: relative;
+  margin-top:0.5em;
+  border: solid;
+  border-width: 1px;
+  border-color: grey;
+  border-radius: 8px;
+  padding: 8px;
+  background-color: variables.$input-light-grey;
+
+  .trash-button {
+    //background-color: variables.$main-red;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 100%;
+    position: absolute; 
+    right: 0;
+    margin-left: 1em;
+  }
+
+  .trash-button:hover {
+    transition: 0.3s;
+    background-color: darkgrey;
+    cursor: pointer;
+  }
+
+  //background-color: variables.$main-green;
+  border-radius: 10px;
+
+  .ingredient-with-amount {
+    display: flex;
+    align-items: center;
+    position: relative;
+    
+    /* * {
+      margin: 0 5px;
+    } */
+
+    div {
+        margin-right: 0.5em;
+    }
+
+    .ingredient-text {
+      width: 9em;
+      overflow-x: auto;
+    }
+
+    /* .ingredient-unit {
+        position: absolute; 
+        right: 0;
+    } */
+  }
+
+  input {
+    width: 40%;
+    background-color: transparent;
+    border: none;
+    margin-bottom: 10px;
+    margin-right:0.5em;
+    padding: 8px;
+    border-color: variables.$main-green;
+    border-style: solid;
+    border-width: 1px;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
