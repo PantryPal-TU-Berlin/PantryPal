@@ -56,7 +56,6 @@ function uploadImage() {
         const file = files[0];
         const fileUrl = URL.createObjectURL(file);
         image.val = fileUrl;
-        title.val = image.val;
       }
     }
 };
