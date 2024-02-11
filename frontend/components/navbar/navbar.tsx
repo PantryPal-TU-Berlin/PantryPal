@@ -1,23 +1,31 @@
 import { Component } from "uix/components/Component.ts";
-//import { showAddRecipeModal } from "frontend/components/modals/addRecipeModal/addRecipeModal.tsx";
+import { AddRecipeModal, modalVisible } from "frontend/components/modals/addRecipeModal/addRecipeModal.tsx";
 
-@template(
-	<header id="navbar">
-		<h1>PantryPal</h1>
-		<nav>
-			<ul class="nav-links">
-				<li><a>Pal</a></li>
-				<li><a>Create</a></li>
-				<li><a>Notifications</a></li>
-				<li><i class="fa-solid fa-plus"></i></li>
-				<img
-					src="../../utilities/images/profile-picture.jpg"
-					alt="profile picture"
-					class="profile-picture"
-				/>
-			</ul>
-		</nav>
-	</header>
-)
+function openAddRecipeModal() {
+	modalVisible.val = !modalVisible.val;
+}
+
+@template(() => (
+	<div>
+		<header id="navbar">
+			<h1>PantryPal</h1>
+			<nav>
+				<ul class="nav-links">
+					<li><a>Pal</a></li>
+					<li><a onclick={openAddRecipeModal}>Create</a></li>
+					<li><a>Notifications</a></li>
+					<li><i class="fa-solid fa-plus"></i></li>
+					<img
+						src="../../utilities/images/profile-picture.jpg"
+						alt="profile picture"
+						class="profile-picture"
+					/>
+				</ul>
+			</nav>
+		</header>
+		<AddRecipeModal />
+	</div>
+	
+))
 
 export class NavBar extends Component{}

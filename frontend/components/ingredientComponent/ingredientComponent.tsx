@@ -1,29 +1,28 @@
 import { Component } from "uix/components/Component.ts";
 import { PropsIngredient } from "backend/data.ts";
+import { ingredients } from "frontend/components/modals/addRecipeModal/addRecipeModal.tsx";
 
-/* @template(
-  <div id="ingredient-container">
-    <input id="ingredient" type="text" placeholder="Ingredient" />
-    <button id="delete">&times;</button>
-  </div>
-) */
+function removeIngredient(ingredient:string, amount: number, unit: string) {
+    const ingredientToRemove: PropsIngredient = {ingredient, amount, unit}
+    const index = ingredients.findIndex(element => element.ingredient == ingredientToRemove.ingredient && element.amount == ingredientToRemove.amount && element.unit == ingredientToRemove.unit);
+    ingredients.splice(index, 1);
+}
 
-@template<PropsIngredient>((props) => (
-    <div class="ingredient-row">
-      <label for="ingredient-comp">Ingredients</label>
-      <div class="ingredient-comp" id="ingredient-comp">
-        <div class="ingredient-with-amount">
-          <input id={props.ingredient} class="ingredient-text" value={props.ingredient}>{props.ingredient}</input>
-          <input class="ingredient-amount" type="number" value={props.amount} />
-          <input class="ingredient-unit" type="text" value={props.unit}>
-            {props.unit}
-          </input>
+@template<PropsIngredient>((props) => {
+  return (
+    <div class="ingredient-comp">
+        <i class="fa-solid fa-utensils"></i>
+      <div class="ingredient-with-amount">
+        
+        <div class="ingredient-text">{props.ingredient}</div>
+        <div class="ingredient-amount">
+            {props.amount} {props.unit}
         </div>
-        <button>
-          <i class="fa-solid fa-trash fa-xs"></i>
-        </button>
       </div>
+      <button onclick={() => removeIngredient(props.ingredient.valueOf()!, props.amount.valueOf()!, props.unit.valueOf()!)} class="trash-button">
+        <i class="fa-solid fa-trash"></i>
+      </button>
     </div>
-  ))
-
-export class IngredientComponent extends Component<PropsIngredient> {}
+  );
+})
+export class IngredientComponent extends Component {}
