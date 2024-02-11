@@ -1,6 +1,5 @@
 import { Datex } from "datex-core-legacy/datex.ts";
 
-// optional: Datex.Runtime.OPTIONS.PROTECT_POINTERS = true;
 
 interface ProfilDaten {
 	anzahlRezepte: number,
@@ -8,7 +7,6 @@ interface ProfilDaten {
 	bewertung: number,
 	follower: number,
 	land: string,
-	aktivität: boolean,
 	beschreibung: string,
 }
 
@@ -25,7 +23,6 @@ export function createProfil() {
 				bewertung: 0,
 				follower: 0,
 				land: "-",
-				aktivität: false,
 				beschreibung: "Ich bin neu hier"} as ProfilDaten
 		);
 	}
