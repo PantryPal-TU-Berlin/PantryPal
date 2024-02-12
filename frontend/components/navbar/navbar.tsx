@@ -2,11 +2,13 @@ import { Component } from "uix/components/Component.ts";
 
 @template(
   <header id="navbar">
-    <h1>PantryPal</h1>
+    <a href="/login">
+      <h1>PantryPal</h1>
+    </a>
 
     <ul class="nav-links">
       <li>
-        <a>
+        <a href="/ai-helper">
           <i class="fa-solid fa-bowl-food"></i>
         </a>
       </li>
@@ -16,11 +18,14 @@ import { Component } from "uix/components/Component.ts";
       <li>
         <i class="fa-solid fa-plus"></i>
       </li>
-      <img
-        src="../../utilities/images/profile-picture.jpg"
-        alt="profile picture"
-        class="profile-picture"
-      />
+
+      <a href="/profil">
+        <img
+          src="../../utilities/images/profile-picture.jpg"
+          alt="profile picture"
+          class="profile-picture"
+        />
+      </a>
     </ul>
   </header>
 )
