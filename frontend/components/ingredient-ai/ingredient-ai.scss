@@ -65,6 +65,7 @@
     width: 40%;
 
     .ingredient-text {
+      white-space: nowrap;
       width: 500px;
       overflow-x: auto;
       margin-left: 0px;

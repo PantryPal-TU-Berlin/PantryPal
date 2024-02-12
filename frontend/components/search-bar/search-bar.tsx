@@ -12,14 +12,14 @@ interface PropsSearchBar {
 
   const searchRecommendations: ObjectRef<Ingredient[]> = $$([]);
 
-  const displaySearchRecommendations = $$(false);
+  const displaySearchRecommendations = $$(searchInput.val != "");
 
   function searchEngine(limited = true) {
     displaySearchRecommendations.val = searchInput.val != "";
     searchRecommendations.length = 0;
 
-    let tempResults: Ingredient[];
-    if (limited) {
+    let tempResults: Ingredient[] = $$([]);
+    if (limited && searchInput.val.length > 0) {
       tempResults = props.searchSpace
         .filter((element: Ingredient) =>
           element.ingredient
@@ -27,7 +27,7 @@ interface PropsSearchBar {
             .includes(searchInput.val.toLowerCase())
         )
         .slice(0, 5);
-    } else {
+    } else if (searchInput.val.length > 0) {
       tempResults = props.searchSpace.filter((element: Ingredient) =>
         element.ingredient.toLowerCase().includes(searchInput.val.toLowerCase())
       );

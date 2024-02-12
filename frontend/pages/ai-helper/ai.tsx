@@ -33,12 +33,10 @@ const Ai = template(() => {
   const selectedDropdown = $$("");
 
   function generateRequest() {
-    console.log("generate request");
     const request: recipeRequest = {
       ingredients: ingredientsForRequest,
       categories: categoriesForRequest,
     };
-    console.log(request);
     sendRecipeRequest(request);
   }
 
