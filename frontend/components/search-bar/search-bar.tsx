@@ -33,9 +33,7 @@ interface PropsSearchBar {
       );
     }
 
-    tempResults.forEach((element) => {
-      searchRecommendations.push(element);
-    });
+    searchRecommendations.push(...tempResults);
   }
 
   return (
@@ -62,7 +60,10 @@ interface PropsSearchBar {
         }}
       >
         {searchRecommendations.$.map((ingredient: Ingredient) => (
-          <div class="search-selection" onclick={() => props.onadd(ingredient)}>
+          <div
+            class="search-selection"
+            onmousedown={() => props.onadd(ingredient)}
+          >
             {ingredient.ingredient}
           </div>
         ))}

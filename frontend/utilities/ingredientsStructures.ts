@@ -1,16 +1,14 @@
 import { Ingredient } from "common/structs/recipe.ts";
 
 export const categoriesFood: string[] = [
-  "Vegan",
-  "Vegetarisch",
-  "Halal",
-  "Koscher",
-  "Glutenfrei",
   "Süß",
+  "Bitter",
   "Scharf",
-  "Paleo",
-  "Low-Carb",
-  "Rohkost",
+  "Salzig",
+  "Sauer",
+  "Umami",
+  "Astringent",
+  "Fettig",
 ];
 
 export const ingredientsDict: { [key: string]: Ingredient[] } = {

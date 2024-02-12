@@ -1,0 +1,15 @@
+{
+  "ingredients": [
+    { "ingredient": "Hähnchenbrust", "amount": 100, "unit": "gr" },
+    { "ingredient": "Brokkoli", "amount": 100, "unit": "gr" },
+    { "ingredient": "Quark", "amount": 50, "unit": "gr" },
+    { "ingredient": "Wasser", "amount": 500, "unit": "ml" },
+    { "ingredient": "Salz", "amount": 1, "unit": "Prise" },
+    { "ingredient": "Pfeffer", "amount": 1, "unit": "Prise" }
+  ],
+  "instruction": "Das Hähnchenbrustfilet wird in kleine Stücke geschnitten und in einer Pfanne mit einem Tropfen Öl (optional, wenn Pfanne nicht antihaftbeschichtet ist) angebraten, bis das Fleisch durchgegart ist. Würze das Hähnchen mit einer Prise Salz und Pfeffer nach Geschmack. Der Brokkoli wird in kleine Röschen geteilt und in leicht gesalzenem Wasser für etwa 5 Minuten gekocht, bis er weich, aber noch bissfest ist. Vermische in einer Schüssel den Quark mit einer Prise Salz und Pfeffer, um eine einfache Beilage herzustellen. Serviere das Hähnchen mit dem Brokkoli und einem Löffel Quark auf einem Teller. Optional kannst du frische Kräuter über den Quark streuen, um den Geschmack weiter zu verbessern.",
+  "timeInMinutes": 30,
+  "servings": 2,
+  "category": "Meat",
+  "tags": ["Gesund", "Schnelles Essen", "Proteinreich"]
+}

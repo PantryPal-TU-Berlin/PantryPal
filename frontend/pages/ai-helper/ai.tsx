@@ -1,4 +1,4 @@
-import { ObjectRef } from "unyt_core/runtime/pointers.ts";
+import { ObjectRef, Ref } from "unyt_core/runtime/pointers.ts";
 
 import {
   ingredientsDict,
@@ -7,26 +7,62 @@ import {
 
 //structs
 import { Ingredient } from "common/structs/recipe.ts";
+import { recipeRequest } from "../../../common/structs/recipeForApi.ts";
 
+//frontend components
 import { NavBar } from "frontend/components/navbar/navbar.tsx";
 import { Footer } from "frontend/components/footer/footer.tsx";
 
 import { IngredientAI } from "frontend/components/ingredient-ai/ingredient-ai.tsx";
 import { SearchBar } from "frontend/components/search-bar/search-bar.tsx";
-import { CategoryAI } from "../../components/category-dropdown/category-dropdown.tsx";
+import { CategoryAI } from "frontend/components/category-dropdown/category-dropdown.tsx";
+import { CategoryFood } from "frontend/components/category-food/category-food.tsx";
+
+//backend components
+import { sendRecipeRequest } from "backend/pages/ai-helper.ts";
 
 const Ai = template(() => {
-  const ingredients: ObjectRef<Ingredient[]> = $$([]);
-
   const ingredientsDictKeysAsArray: string[] = Object.keys(ingredientsDict);
 
   const allIngredients: Ingredient[] = Object.values(ingredientsDict).flat();
 
-  function addIngredient(ingredient: Ingredient) {
-    let alreadyExists = false;
+  const ingredientsForRequest: ObjectRef<Ingredient>[] = $$([]);
 
-    ingredients.forEach((element) => {
-      if (element.ingredient === ingredient.ingredient) {
+  const categoriesForRequest: string[] = $$([]);
+
+  const selectedDropdown = $$("");
+
+  function generateRequest() {
+    console.log("generate request");
+    const request: recipeRequest = {
+      ingredients: ingredientsForRequest,
+      categories: categoriesForRequest,
+    };
+    console.log(request);
+    sendRecipeRequest(request);
+  }
+
+  function addCategory(category: string) {
+    if (categoriesForRequest.includes(category)) return;
+    categoriesForRequest.push(category);
+  }
+
+  function deleteCategory(category: string) {
+    categoriesForRequest.forEach((cat, index) => {
+      if (cat == category) {
+        categoriesForRequest.splice(index, 1);
+      }
+    });
+  }
+
+  function addIngredient(ingredient: Ingredient) {
+    if (ingredientsForRequest.length >= 15) {
+      alert("You can only select 15 ingredients at a time.");
+      return;
+    }
+    let alreadyExists = false;
+    ingredientsForRequest.forEach((element) => {
+      if (element.$.ingredient == ingredient.ingredient) {
         alreadyExists = true;
         return;
       }
@@ -34,13 +70,19 @@ const Ai = template(() => {
 
     if (alreadyExists) return;
 
-    ingredients.push(ingredient);
+    ingredientsForRequest.push(
+      $$({
+        ingredient: ingredient.ingredient,
+        amount: ingredient.amount,
+        unit: ingredient.unit,
+      })
+    );
   }
 
   function deleteIngredient(ingredient: Ingredient) {
-    ingredients.forEach((ing, index) => {
-      if (ing.ingredient === ingredient.ingredient) {
-        ingredients.splice(index, 1);
+    ingredientsForRequest.forEach((ing, index) => {
+      if (ing.$.ingredient == ingredient.ingredient) {
+        ingredientsForRequest.splice(index, 1);
       }
     });
   }
@@ -80,6 +122,7 @@ const Ai = template(() => {
                             ingredients={
                               ingredientsDict[ingredientsDictKeysAsArray[index]]
                             }
+                            selectedDropdown={selectedDropdown}
                             onadd={(ingredient: Ingredient) =>
                               addIngredient(ingredient)
                             }
@@ -89,8 +132,11 @@ const Ai = template(() => {
                           <CategoryAI
                             categoryName={ingredientsDictKeysAsArray[index + 1]}
                             ingredients={
-                              ingredientsDict[ingredientsDictKeysAsArray[index]]
+                              ingredientsDict[
+                                ingredientsDictKeysAsArray[index + 1]
+                              ]
                             }
+                            selectedDropdown={selectedDropdown}
                             onadd={(ingredient: Ingredient) =>
                               addIngredient(ingredient)
                             }
@@ -100,7 +146,9 @@ const Ai = template(() => {
                     ) : null
                   )}
                 </div>
-                <div>Generate</div>
+                <div class="generate-button" onclick={generateRequest}>
+                  Generate
+                </div>
               </div>
             </div>
             <div class="col-12 col-lg-3 column">
@@ -108,21 +156,27 @@ const Ai = template(() => {
                 <div class="ingredients">
                   <div class="header-side-component">Ingredients</div>
                   <div class="list">
-                    {ingredients.$.map((ingredient: Ingredient) => (
-                      <IngredientAI
-                        ingredient={ingredient}
-                        ondelete={(ingredient: Ingredient) =>
-                          deleteIngredient(ingredient)
-                        }
-                      />
-                    ))}
+                    {ingredientsForRequest.$.map(
+                      (ingredient: Ref<Ingredient>) => (
+                        <IngredientAI
+                          ingredient={ingredient}
+                          ondelete={(ingredient: Ingredient) =>
+                            deleteIngredient(ingredient)
+                          }
+                        />
+                      )
+                    )}
                   </div>
                 </div>
                 <div class="categories">
                   <div class="header-side-component">Categories</div>
                   <div class="list">
                     {categoriesFood.map((category) => (
-                      <div class="category">{category}</div>
+                      <CategoryFood
+                        categoryFoodName={category}
+                        onadd={() => addCategory(category)}
+                        ondelete={() => deleteCategory(category)}
+                      />
                     ))}
                   </div>
                 </div>

@@ -1,20 +1,21 @@
 import { Component } from "uix/components/Component.ts";
-import { ObjectRef } from "unyt_core/runtime/pointers.ts";
+import { ObjectRef, Ref } from "unyt_core/runtime/pointers.ts";
 import { Ingredient } from "common/structs/recipe.ts";
 
 interface IngredientAIProps {
-  ingredient: Ingredient;
+  ingredient: ObjectRef<Ingredient>;
   ondelete: (ingredient: Ingredient) => void;
 }
 
-@template<IngredientAIProps>((_, props) => {
-  const incDecAmount: number = props.ingredient.amount;
+@template<IngredientAIProps>((props) => {
+  const incDecAmount: number = val(props.ingredient.$.amount);
   const amount = $$(incDecAmount);
   const _amount = $$(incDecAmount);
 
   function inc() {
     amount.val = amount.val + incDecAmount;
     _amount.val = amount.val;
+    props.ingredient.$.amount.val = amount.val;
   }
 
   function dec() {
@@ -30,7 +31,7 @@ interface IngredientAIProps {
         <i class="fab fa-plus"></i>
       </div>
       <div class="ingredient-with-amount">
-        <div class="ingredient-text">{props.ingredient.ingredient}</div>
+        <div class="ingredient-text">{props.ingredient.$.ingredient}</div>
         <input
           type="number"
           value={amount}
@@ -40,14 +41,14 @@ interface IngredientAIProps {
               : (amount.val = _amount.val)
           }
         />
-        {props.ingredient.unit}
+        {props.ingredient.$.unit}
       </div>
       <div class="minus-button" onclick={dec}>
         <i class="fa-solid fa-minus"></i>
       </div>
       <div
         class="trash-button"
-        onclick={() => props.ondelete(props.ingredient)}
+        onclick={() => props.ondelete(props.$.ingredient.val)}
       >
         <i class="fa-solid fa-trash"></i>
       </div>
