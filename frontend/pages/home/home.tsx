@@ -30,11 +30,9 @@ const currentSelectedRecipe: ObjectRef<RecipePost> = $$({
 });
 
 function showRecipePost(recipePost: RecipePost) {
-  console.log(currentSelectedRecipe);
   const ptr = Datex.Pointer.getByValue(currentSelectedRecipe);
   ptr.val = recipePost;
   modalVisible.val = true;
-  console.log(currentSelectedRecipe);
 }
 
 console.log(currentSelectedRecipe);

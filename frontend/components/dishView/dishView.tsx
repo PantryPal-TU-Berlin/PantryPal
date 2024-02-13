@@ -8,13 +8,17 @@ interface RecipePostView {
 }
 
 @template<RecipePostView>((props) => {
-  console.log(props);
+  const recipe = props.recipePost.$$.recipe;
+  const recipeName = always(() => recipe.val.name);
+  const recipeTime = always(() => recipe.val.timeInMinutes);
+  const recipeServings = always(() => recipe.val.servings);
+  const recipeInstruction = always(() => recipe.val.instruction);
   return (
     <div id="dish-view">
       <div class="containerTop">
         <div class="nameContainer">
           <div class="profile">Profil</div>
-          <div class="name"> {props.recipePost.$$.recipe.$.name}</div>
+          <div class="name"> {recipeName}</div>
           <div class="extraInfo">
             <div class="time-container">
               <img
@@ -22,7 +26,7 @@ interface RecipePostView {
                 alt="time dish"
                 class="time-dish"
               />
-              {props.recipePost.$$.recipe.$.timeInMinutes} min
+              {recipeTime} min
             </div>
             <div class="servings-container">
               <img
@@ -30,7 +34,7 @@ interface RecipePostView {
                 alt="serving dish"
                 class="serving-dish"
               />
-              {props.recipePost.$$.recipe.$.servings}x
+              {recipeServings}x
             </div>
           </div>
         </div>
