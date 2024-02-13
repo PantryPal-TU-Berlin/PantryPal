@@ -17,11 +17,11 @@ const allRecipePosts: RecipePost[] = await getAllRecipePosts();
 const currentSelectedRecipe: ObjectRef<RecipePost> = $$({
   user: "",
   recipe: {
-    name: "hhjkh",
-    category: "dfaf",
+    name: "",
+    category: "",
     timeInMinutes: 0,
     servings: 0,
-    instruction: "adfasfafe",
+    instruction: "",
     tags: [],
     ingredients: [],
     image: "",
