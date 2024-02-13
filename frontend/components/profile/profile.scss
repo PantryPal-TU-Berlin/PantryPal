@@ -7,90 +7,172 @@
 }
 
 #buttons {
-  color: black;
-  font-family: "Jost";
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  justify-items: center;
-  text-align: center;
-
-  button {
-    transition: all 0.3s ease 0s;
-    background-color: #e7e7e7;
-    border: none;
-    border-radius: 24px;
-    width: 200px;
-    padding: 5px;
-    margin-top: 5px;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  }
-
-  button:hover {
-    color: variables.$main-text-color;
-  }
-
-  .profile-picture {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-  }
-}
-
-#daten_container {
-  color: black;
-  font-family: "Jost";
-  padding: 10px;
-  border-radius: 24px;
-  margin-top: 5px;
-  height: 285px;
-  background: linear-gradient(
-    to top,
-    variables.$main-green-light 0%,
-    variables.$main-green-light 83%,
-    #8cc4a1 83%,
-    #8cc4a1 100%
-  );
-}
-
-#daten {
-  color: black;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
-.card {
-  padding-top: 25px;
-  padding-bottom: 0px;
-  align-content: space-around;
-  height: 290px;
-}
-
-.inhalt {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+	color: black;
+	font-family: 'Jost';
+  	display: grid;
+  	align-items: center;
+  	justify-content: center;
+	justify-items: center;
+	text-align: center;
+		
+	button{
+		transition: all	0.3s ease 0s;
+		background-color: #EFEDED;
+		border: none;
+		border-radius: 24px;
+		width: 200px;
+		height: 35px;
+		padding: 5px;
+		margin-top: 5px;
+		font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+	}
+	
+	button:hover{
+		color: variables.$main-text-color;
+	}
+	
+	.profile-picture{
+		width: 150px;
+		height: 150px;
+		border-radius: 50%;
+	}
 }
 
 #nav-tab {
-  color: black;
-  font-family: "Jost";
-  background: #8cc4a1;
-  border-top-left-radius: 24px;
-  border-top-right-radius: 24px;
-  margin-left: 30px;
-  margin-right: 30px;
-  margin-top: 30px;
-  justify-content: center;
-  align-content: space-around;
+	color: black;
+	font-family: "Jost";
+	background: #8cc4a1;
+	border-top-left-radius: 24px;
+	border-top-right-radius: 24px;
+	margin-left: 30px;
+	margin-right: 30px;
+	margin-top: 30px;
+	justify-content: center;
+	align-content: space-around;
+  }
+
+#nav-rezepte-tab{
+	color: black;
+	font-family: 'Jost';
+	background: #8cc4a1;
+}
+
+#nav-favoriten-tab{
+	color: black;
+	font-family: 'Jost';
+	background: #8cc4a1;
 }
 
 #nav-tabContent {
-  margin-left: 30px;
-  margin-right: 30px;
-  padding: 20px;
-  background: variables.$main-green-light;
-  border-bottom-left-radius: 24px;
-  border-bottom-right-radius: 24px;
-  justify-self: stretch;
+	margin-left: 30px;
+	margin-right: 30px;
+	padding: 20px;
+	background: variables.$main-green-light;
+	border-bottom-left-radius: 24px;
+	border-bottom-right-radius: 24px;
+	justify-self: stretch;
+  }
+
+
+#profil-bearbeiten-modal {
+    transform: translate(-50%, -50%);
+    transition: opacity .3s;
+
+    opacity: 1;
+    pointer-events: initial;
+
+    text-align: center;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+	background-color: #EFEDED;
+	border-radius: 24px;
+	padding: 20px;
+	font-family: 'Jost';
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    z-index: 9999;
+    flex-direction: column;
+
+
+	.modal-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 20px;
+  
+		h1 {
+		  flex-grow: 1;
+		  text-align: center;
+		  color: variables.$main-green;
+		}
+
+		.close-button {
+			background: none;
+			border: none;
+			cursor: pointer;
+			font-size: 1.5em;
+			color: #333;
+			transition: color 0.3s;
+		  }
+	
+		  .close-button:hover {
+			color: variables.$main-green;
+		  }
+		}
+
+		
+	.primary-button{
+		transition: all	0.3s ease 0s;
+		background-color: variables.$main-green;
+		border: none;
+		border-radius: 24px;
+		padding: 5px;
+		margin: 5px;
+		width: 200px;
+		font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+		color: white;
+	}
+
+	.primary-button:hover{
+		color: #EFEDED;
+	}
+
+	#profilePictureInput{
+		transition: all	0.3s ease 0s;
+		background-color: variables.$main-green;
+		border: none;
+		border-radius: 24px;
+		padding: 10px;
+		margin: 5px;
+		font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+		color: white;
+	}
+
+	#land{
+		margin: 10px;
+		border: none;
+		border-radius: 24px;
+		width: 200px;
+		padding: 5px;
+	}
+
+	#beschreibung{
+		margin: 10px;
+		border: none;
+		border-radius: 24px;
+		padding: 5px;
+		width: 300px;
+		height: 100px;
+	}
+
+
 }
+
+#profil-bearbeiten-modal.visible {
+    opacity: 0;
+    pointer-events: none;
+}
+

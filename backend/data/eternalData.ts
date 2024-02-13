@@ -6,3 +6,8 @@ export const recipePosts: Map<number, recipePost> =
 
 export const users: Map<string, User> =
   eternalVar("users") ?? $$(new Map<string, User>());
+
+
+export function getUser(id:string) {
+  return users.get(id);
+}
