@@ -1,6 +1,5 @@
 import { NavBar } from "../../components/navbar/navbar.tsx";
 import { Footer } from "../../components/footer/footer.tsx";
-import { AuthButton } from "auth/AuthButton.tsx";
 
 import { AuthIcon } from "auth";
 
@@ -8,50 +7,43 @@ const Login = template(() => (
   <div>
     <link rel="stylesheet" href="./login.scss" />
 
-    
-      <div class="pantryHeading">
-        <h1>PantryPal</h1>
+    <div class="pantryHeading">
+      <h1>PantryPal</h1>
+    </div>
+    <div class="VerticalDevider">
+      <div class="columnL">
+        <h2>Zutaten, aber keine Idee? Eine Zutat - Tausend Möglichkeiten</h2>
+        <h3>
+          Melde dich an und entedecke tausende köstliche Rezepte und Features!
+        </h3>
       </div>
-      <div class="VerticalDevider">
-        <div class="columnL">
-          <h2>Zutaten, aber keine Idee? Eine Zutat - Tausend Möglichkeiten</h2>
-          <h3>
-            Melde dich an und entedecke tausende köstliche Rezepte und Features!
-          </h3>
-        </div>
 
-        <section class="LoginContainer">
-          <div class="LoginDiv">
+      <section class="LoginContainer">
+        <div class="LoginDiv">
           <h2>Sign In</h2>
-            <AuthIcon  />
-            <AuthButton/>
-            <div class="HeaderContainer">
-              <h2>Welcome to PantryPal</h2>
-              
-            </div>
-
+          <AuthIcon />
+          <div class="HeaderContainer">
+            <h2>Welcome to PantryPal</h2>
           </div>
-        </section>
-
-        <div class="columnR">
-          <img
-            style="max-width: 300px; height: 300px; object-fit: contain"
-            src="../../utilities/images/LoginFood.jpg"
-            alt="login food"
-            class="LoginFood"
-          />
         </div>
-      </div>
+      </section>
 
-      <div class="backgroundImage">
-        <div class="overlay">
-        </div>
+      <div class="columnR">
+        <img
+          style="max-width: 300px; height: 300px; object-fit: contain"
+          src="../../utilities/images/LoginFood.jpg"
+          alt="login food"
+          class="LoginFood"
+        />
       </div>
-    
+    </div>
+
+    <div class="backgroundImage">
+      <div class="overlay"></div>
+    </div>
+
     <Footer />
   </div>
 ));
 
-export default (
-  <Login />
-);
+export default <Login />;
