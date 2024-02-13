@@ -10,6 +10,8 @@ interface RecipePostView {
 @template<RecipePostView>((props) => {
   const recipe = props.recipePost.$$.recipe;
   const recipeName = always(() => recipe.val.name);
+  const recipeTags = always(() => [...recipe.val.ingredients]);
+  const recipeIngredients = always(() => [...recipe.val.tags]);
   const recipeTime = always(() => recipe.val.timeInMinutes);
   const recipeServings = always(() => recipe.val.servings);
   const recipeInstruction = always(() => recipe.val.instruction);
@@ -20,6 +22,9 @@ interface RecipePostView {
           <div class="profile">Profil</div>
           <div class="name"> {recipeName}</div>
           <div class="extraInfo">
+            {recipeTags.$.map((tag: string) => (
+              <div>{tag}</div>
+            ))}
             <div class="time-container">
               <img
                 src="../../utilities/images/time-dish.png"

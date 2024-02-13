@@ -27,7 +27,7 @@ function addRecipePost() {
     alert("Necessary information is missing: time");
     return;
   }
-  if (servings.val<1) {
+  if (servings.val < 1) {
     alert("Necessary information is missing: servings");
     return;
   }
@@ -173,9 +173,7 @@ const image = $$("../../utilities/images/default_food.jpg");
               <div>
                 <i class="fa-solid fa-user fa-xl"></i>
                 <select id="servings" value={servings}>
-                  <option value="0">
-                    Servings
-                  </option>
+                  <option value="0">Servings</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>

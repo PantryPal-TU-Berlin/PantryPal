@@ -17,11 +17,11 @@ const allRecipePosts: RecipePost[] = await getAllRecipePosts();
 const currentSelectedRecipe: ObjectRef<RecipePost> = $$({
   user: "",
   recipe: {
-    name: "hhjkh",
-    category: "dfaf",
+    name: "",
+    category: "",
     timeInMinutes: 0,
     servings: 0,
-    instruction: "adfasfafe",
+    instruction: "",
     tags: [],
     ingredients: [],
     image: "",
@@ -123,7 +123,7 @@ const Home = template(() => (
           </div>
         </div>
         <div class="vertical-scroller">
-          {allRecipePosts.map((recipePost: RecipePost) => (
+          {allRecipePosts.$.map((recipePost: RecipePost) => (
             <DishEntry
               recipePost={recipePost}
               onshow={() => showRecipePost(recipePost)}
