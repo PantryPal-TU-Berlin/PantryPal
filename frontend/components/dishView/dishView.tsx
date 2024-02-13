@@ -19,10 +19,7 @@ interface RecipePostView {
   const recipeInstruction = always(() => recipe.val.instruction);
   return (
     <div id="dish-view">
-      <button
-        class="close-button"
-        onclick={() => console.log("ingredients", recipeIngredients)}
-      >
+      <button class="close-button" onclick={props.onclose}>
         &times;
       </button>
       <div class="containerTop">
