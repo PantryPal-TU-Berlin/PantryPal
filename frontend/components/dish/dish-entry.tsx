@@ -1,66 +1,53 @@
 import { Component } from "uix/components/Component.ts";
-import { Dish } from "../../../backend/data.ts";
-import { showDishView } from "../../pages/home/home.tsx";
+import { recipePost } from "common/structs/recipePost.ts";
 
-
-
-interface DishData {
-    title: string;
-    time: number;
-    servings: number;
-    country: string;
-    image: string;
-    categorie: string;
+interface recipePostComponent {
+  recipePost: recipePost;
 }
 
+@template<recipePostComponent>((_, props) => (
+  <header id="dish-block">
+    <img
+      src="../../utilities/images/dish-pic.png"
+      alt="dish image"
+      class="dish-image"
+    />
 
-
-
-@template<DishData>((dish) =>
-<header id="dish-block" onclick={() => showDishView(dish)}>
-
-            <img
-                src="../../utilities/images/dish-pic.png"
-                alt="dish image"
-                class="dish-image"
-            />
-
-        <div class="dish-information">
-            <div class="dish-information-top">
-                <div class="dish-title"> {dish.title} </div>
-                <div class="dish-country">  {dish.country} </div>
-            </div>
-            <div class="dish-information-bottom">
-                <div class="time-container">
-                    <img
-                        src="../../utilities/images/time-dish.png"
-                        alt="time dish"
-                        class="time-dish"
-                    />
-                    {dish.time} min
-                </div>
-                <div class="servings-container">
-                    <img
-                        src="../../utilities/images/profile-dish.png"
-                        alt="serving dish"
-                        class="serving-dish"
-                    />
-                    {dish.servings}x
-                </div>
-
-                    <img
-                        src={`../../utilities/images/CategoryFood/${dish.categorie}.png`}
-                        alt="categorie picture"
-                        class="categorie-picture"
-                    />
-
-                
-            </div>
-
-
-            
+    <div class="dish-information">
+      <div class="dish-information-top">
+        <div class="dish-title"> {props.recipePost.recipe.name} </div>
+        <div class="dish-country">
+          {" "}
+          {props.recipePost.recipe.tags.map((tag: string) => (
+            <div>{tag}</div>
+          ))}{" "}
         </div>
-    </header>
-)
+      </div>
+      <div class="dish-information-bottom">
+        <div class="time-container">
+          <img
+            src="../../utilities/images/time-dish.png"
+            alt="time dish"
+            class="time-dish"
+          />
+          {props.recipePost.recipe.timeInMinutes} min
+        </div>
+        <div class="servings-container">
+          <img
+            src="../../utilities/images/profile-dish.png"
+            alt="serving dish"
+            class="serving-dish"
+          />
+          {props.recipePost.recipe.servings}x
+        </div>
 
-export class DishEntry extends Component<DishData> { }
+        <img
+          src={`../../utilities/images/CategoryFood/${props.recipePost.recipe.category}.png`}
+          alt="categorie picture"
+          class="categorie-picture"
+        />
+      </div>
+    </div>
+  </header>
+))
+export class DishEntry extends Component<DishData> {}
