@@ -17,6 +17,7 @@ interface RecipePostView {
   const recipeTime = always(() => recipe.val.timeInMinutes);
   const recipeServings = always(() => recipe.val.servings);
   const recipeInstruction = always(() => recipe.val.instruction);
+  const recipeImage = always(() => recipe.val.image);
   return (
     <div id="dish-view">
       <button class="close-button" onclick={props.onclose}>
@@ -50,11 +51,7 @@ interface RecipePostView {
         </div>
 
         <div class="imageContainer">
-          <img
-            src="../../utilities/images/dish-pic.png"
-            alt="dish image"
-            class="dish-image"
-          />
+          <img src={recipeImage} alt="dish image" class="dish-image" />
         </div>
       </div>
       <div class="containerBottom">

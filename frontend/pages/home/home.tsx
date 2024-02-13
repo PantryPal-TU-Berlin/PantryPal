@@ -30,13 +30,13 @@ const currentSelectedRecipe: ObjectRef<RecipePost> = $$({
 });
 
 function showRecipePost(recipePost: RecipePost) {
+  console.log("exetcuted showRecipePost");
   const ptr = Datex.Pointer.getByValue(currentSelectedRecipe);
   ptr.val = recipePost;
   modalVisible.val = true;
 }
 
 export function hideDishView() {
-  console.log("hideDishView executed");
   modalVisible.val = false;
 }
 
