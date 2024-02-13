@@ -6,10 +6,11 @@ interface RecipePostComponent {
   onshow: (recipePost: RecipePost) => void;
 }
 
-@template<RecipePostComponent>((_, props) => (
+@template<RecipePostComponent>((_, props) => {
+  return(
   <header id="dish-block" onclick={() => props.onshow(props.recipePost)}>
     <img
-      src="../../utilities/images/dish-pic.png"
+      src={props.recipePost.recipe.image}
       alt="dish image"
       class="dish-image"
     />
@@ -49,6 +50,6 @@ interface RecipePostComponent {
         />
       </div>
     </div>
-  </header>
-))
-export class DishEntry extends Component<RecipePostComponent> {}
+  </header>)
+})
+export class DishEntry extends Component {}
