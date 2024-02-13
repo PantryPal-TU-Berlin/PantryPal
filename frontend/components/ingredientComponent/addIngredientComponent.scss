@@ -1,0 +1,65 @@
+@use "../../base/scss/global" as global;
+@use "../../utilities/scss/variables" as variables;
+
+.add-ingredient-comp {
+    font-family: "Jost";
+    display: flex;
+    align-items: center;
+    width: auto;
+    min-width: auto;
+    max-width: 600px;
+    height: 40px;
+    position: relative;
+    margin-top:0.5em;
+    border: solid;
+    border-width: 1px;
+    border-color: variables.$main-green;
+    border-radius: 8px;
+    padding: 8px;
+    background-color: variables.$input-light-grey;
+
+  .add-button:hover {
+    transition: 0.3s;
+    background-color: darkgray;
+    cursor: pointer;
+  }
+
+  .add-ingredient-with-amount {
+    display: flex;
+    align-items: center;
+
+    .ingredient-text {
+        width: 6.5em;
+        overflow-x: auto;
+        margin-left: 1.5em;
+    }
+
+    .ingredient-amount {
+        width: 3em;
+        overflow-x: auto;
+    }
+
+    .ingredient-unit {
+        width: 3em;
+        overflow-x: auto;
+    }
+  }
+
+  input {
+    background-color: transparent;
+    border: none;
+    margin-right:0.5em;
+    padding: 8px;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
