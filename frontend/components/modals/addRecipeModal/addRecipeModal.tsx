@@ -19,15 +19,20 @@ import { Ingredient } from "common/structs/recipe.ts";
 export const modalVisible = $$(false);
 
 async function addRecipePost() {
-  if (
-    title.val.length < 1 ||
-    time.val < 1 ||
-    servings.val < 1 ||
-    ingredients.length < 1
-  ) {
-    alert(
-      "Not all necessary information was provided. Necessary information includes: title, time, servings, ingredients."
-    );
+  if (title.val.length < 1) {
+    alert("Necessary information is missing: title");
+    return;
+  }
+  if (time.val < 1) {
+    alert("Necessary information is missing: time");
+    return;
+  }
+  if (servings.val) {
+    alert("Necessary information is missing: servings");
+    return;
+  }
+  if (ingredients.length < 1) {
+    alert("Necessary information is missing: ingredients");
     return;
   }
 

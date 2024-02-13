@@ -12,14 +12,28 @@ const modalVisible = $$(false);
 
 const allRecipePosts: recipePost[] = await getAllRecipePosts();
 
-const currentSelectedRecipe: recipePost = $$(null);
+const currentSelectedRecipe: recipePost = $$({
+  user: "",
+  recipe: {
+    name: "hhjkh",
+    category: "",
+    timeInMinutes: 0,
+    servings: 0,
+    instruction: "",
+    tags: [],
+    ingredients: [],
+    image: "",
+  },
+  date: new Date(),
+});
 
 function showRecipePost(recipePost: recipePost) {
   console.log("clicked on recipe post!");
   currentSelectedRecipe.val = recipePost;
   modalVisible.val = true;
-  console.log(currentSelectedRecipe.val);
 }
+
+console.log(currentSelectedRecipe);
 
 const Home = template(() => (
   <div>
