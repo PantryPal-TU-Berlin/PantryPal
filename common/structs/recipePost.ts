@@ -1,8 +1,7 @@
 import { Recipe } from "./recipe.ts";
-import { User } from "./user.ts";
 
 export interface recipePost {
-  user: User;
+  user: string;
   recipe: Recipe;
   date: Date;
 }

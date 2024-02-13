@@ -3,10 +3,11 @@ import { recipePost } from "common/structs/recipePost.ts";
 
 interface recipePostComponent {
   recipePost: recipePost;
+  onshow: (recipePost: recipePost) => void;
 }
 
 @template<recipePostComponent>((_, props) => (
-  <header id="dish-block">
+  <header id="dish-block" onclick={() => props.onshow(props.recipePost)}>
     <img
       src="../../utilities/images/dish-pic.png"
       alt="dish image"
@@ -50,4 +51,4 @@ interface recipePostComponent {
     </div>
   </header>
 ))
-export class DishEntry extends Component<DishData> {}
+export class DishEntry extends Component {}

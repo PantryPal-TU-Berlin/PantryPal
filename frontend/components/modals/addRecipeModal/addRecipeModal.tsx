@@ -1,5 +1,9 @@
 //backend imports
-import { createNewRecipePost } from "backend/components/recipePostModal.ts";
+import { createNewRecipePost } from "backend/functions/recipePostFunctions.ts";
+import {
+  createUserOrGet,
+  getCurrentUserId,
+} from "backend/functions/usersFunctions.ts";
 
 //structs imports
 import { recipePost } from "common/structs/recipePost.ts";
@@ -14,37 +18,36 @@ import { Ingredient } from "common/structs/recipe.ts";
 
 export const modalVisible = $$(false);
 
-function addRecipePost() {
+async function addRecipePost() {
+  if (
+    title.val.length < 1 ||
+    time.val < 1 ||
+    servings.val < 1 ||
+    ingredients.length < 1
+  ) {
+    alert(
+      "Not all necessary information was provided. Necessary information includes: title, time, servings, ingredients."
+    );
+    return;
+  }
+
   console.log("addRecipePost executed");
-  const exampleRecipePost: recipePost = {
-    user: {
-      endpoint: "test",
-      username: "test",
-      profilePicture: "test",
-      profilDaten: {
-        anzahlRezepte: 1,
-        topRezept: "test",
-        bewertung: 1,
-        follower: 1,
-        land: "test",
-        beschreibung: "test",
-      },
-      rezepte: [1],
-    },
+  const newRecipePost: recipePost = {
+    user: getCurrentUserId(),
     recipe: {
-      name: "Test",
-      category: "Diary",
-      timeInMinutes: 30,
-      servings: 4,
-      instruction: "test",
-      tags: ["test", "test2"],
-      ingredients: [{ ingredient: "test", unit: "test", amount: 1 }],
-      image: "test",
+      name: title.val,
+      category: category.val,
+      timeInMinutes: time.val,
+      servings: servings.val,
+      instruction: steps.val,
+      tags: tags.val.replace(/\s+/g, "").split(","),
+      ingredients: ingredients,
+      image: image.val,
     },
     date: new Date(),
   };
 
-  createNewRecipePost(exampleRecipePost);
+  await createNewRecipePost(newRecipePost);
   resetData();
 }
 
@@ -54,8 +57,8 @@ function resetData() {
   servings.val = 0;
   tags.val = "";
   steps.val = "Type cooking steps here...";
-  category.val = "salad-category";
-  image.val = $$("../../utilities/images/default_food.jpg");
+  category.val = "dairy";
+  image.val = "../../utilities/images/default_food.jpg";
   modalVisible.val = false;
 
   const stepsInput = document.getElementById("steps-input");
@@ -72,6 +75,30 @@ function resetIngredients() {
   }
 }
 
+type Base64Callback = (base64String: string) => void;
+
+function fileToBase64(file: File, callback: Base64Callback) {
+  const reader = new FileReader();
+
+  reader.onload = () => {
+    if (typeof reader.result === "string") {
+      callback(reader.result);
+    } else {
+      console.error("Error: FileReader result is not a string");
+    }
+  };
+
+  reader.onerror = (error) => {
+    console.error("Error converting file to base64:", error);
+  };
+
+  reader.readAsDataURL(file);
+}
+
+function myCallback(base64String: string) {
+  image.val = base64String;
+}
+
 function uploadImage() {
   const fileInput = document.getElementById("imageInput");
   if (
@@ -82,8 +109,7 @@ function uploadImage() {
 
     if (files.length > 0) {
       const file = files[0];
-      const fileUrl = URL.createObjectURL(file);
-      image.val = fileUrl;
+      fileToBase64(file, myCallback);
     }
   }
 }
@@ -94,7 +120,7 @@ const time = $$(0);
 export const ingredients: Ingredient[] = $$([]);
 const tags = $$("");
 const steps = $$("Type cooking steps here...");
-const category = $$("salad-category");
+const category = $$("dairy");
 const image = $$("../../utilities/images/default_food.jpg");
 
 @template(() => (
@@ -109,7 +135,13 @@ const image = $$("../../utilities/images/default_food.jpg");
       <div>
         <div class="static-section">
           <div class="title-section column">
-            <input id="title" type="text" placeholder="Title" value={title} />
+            <input
+              id="title"
+              type="text"
+              placeholder="Title"
+              value={title}
+              required
+            />
             <input
               id="tags"
               type="text"
@@ -122,12 +154,10 @@ const image = $$("../../utilities/images/default_food.jpg");
             <div id="category-selector">
               <i class="fa-solid fa-layer-group fa-xl"></i>
               <select id="category" value={category}>
-                {/* <option value="salad-category">Salad</option> */}
                 <option value="meat">Meat</option>
                 <option value="fish">Fish</option>
                 <option value="vegan">Vegan</option>
                 <option value="dairy">Dairy</option>
-                {/* <option value="dessert-category">Dessert</option> */}
               </select>
             </div>
             <div class="meta-data-wrapper">

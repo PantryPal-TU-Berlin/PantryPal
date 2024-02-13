@@ -1,15 +1,25 @@
 import { NavBar } from "frontend/components/navbar/navbar.tsx";
-import { Footer } from "frontend/components/footer/footer.tsx";
 import { DishEntry } from "frontend/components/dish/dish-entry.tsx";
-import { getAllRecipePosts } from "backend/pages/home.ts";
-import { createNewRecipePost } from "backend/components/recipePostModal.ts";
+import {
+  getAllRecipePosts,
+  createNewRecipePost,
+} from "backend/functions/recipePostFunctions.ts";
 import { Datex } from "unyt_core/datex.ts";
-import { recipePostView } from "frontend/components/dishView/dishView.tsx";
+import { RecipePostView } from "frontend/components/dishView/dishView.tsx";
 import { recipePost } from "common/structs/recipePost.ts";
 
 const modalVisible = $$(false);
 
 const allRecipePosts: recipePost[] = await getAllRecipePosts();
+
+const currentSelectedRecipe: recipePost = $$(null);
+
+function showRecipePost(recipePost: recipePost) {
+  console.log("clicked on recipe post!");
+  currentSelectedRecipe.val = recipePost;
+  modalVisible.val = true;
+  console.log(currentSelectedRecipe.val);
+}
 
 const Home = template(() => (
   <div>
@@ -98,11 +108,19 @@ const Home = template(() => (
         </div>
         <div class="vertical-scroller">
           {allRecipePosts.map((recipePost: recipePost) => (
-            <DishEntry recipePost={recipePost}></DishEntry>
+            <DishEntry
+              recipePost={recipePost}
+              onshow={() => showRecipePost(recipePost)}
+            />
           ))}
         </div>
       </div>
     </div>
+    {toggle(
+      modalVisible,
+      <RecipePostView recipePost={currentSelectedRecipe} />,
+      <div></div>
+    )}
   </div>
 ));
 
@@ -113,6 +131,5 @@ export default (
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <Home />
-    <recipePostView />
   </body>
 );
