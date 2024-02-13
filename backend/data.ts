@@ -1,11 +1,12 @@
 import { Datex } from "datex-core-legacy/datex.ts";
 import { UIX } from "uix";
 
+
 /**
  * Version information on the backend
  */
 
-interface Dish {
+export interface Dish {
     title: string,
     time: number,
     servings: number,

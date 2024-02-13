@@ -3,8 +3,8 @@ import { Footer } from "frontend/components/footer/footer.tsx";
 import { DishEntry } from "frontend/components/dish/dish-entry.tsx";
 import { useDish } from "backend/data.ts";
 import { Datex } from "unyt_core/datex.ts";
-
-
+import { DishView } from "frontend/components/dishView/dishView.tsx";
+import { Dish } from "../../../backend/data.ts";
 
 const modalVisible = $$(false);
 
@@ -28,14 +28,30 @@ const country = $$("");
 const categorie = $$("dairy");
 const image = $$("../../utilities/images/dish-pic.png");
 
+
+
+
 const dishes = await useDish();
+
+var dishview: DishView;
+
+export function showDishView(dishInfo: Dish) {
+    alert(dishInfo.title);
+    dishview = new DishView(dishInfo);
+    return new DishView(dishInfo);
+}
+
+
 
 const Home = template(() => (
 
     <div>
         <link rel="stylesheet" href="./home.scss" />
 
-        <NavBar />
+        <NavBar />  
+
+        {dishview !== null && dishview}
+
         <div class="main-container">
             <div class="horizontal-container">
                 <div class="top-div"> {/*Text + Kategorie */}
@@ -137,6 +153,7 @@ const Home = template(() => (
 
         </div>
 
+
     </div>
 ));
 
@@ -145,7 +162,9 @@ export default (
     <html>
         <body>
             <Home />
+            <DishView />
 
+            
         </body>
     </html>
 );

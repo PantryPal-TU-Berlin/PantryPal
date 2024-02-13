@@ -1,4 +1,7 @@
 import { Component } from "uix/components/Component.ts";
+import { Dish } from "../../../backend/data.ts";
+import { showDishView } from "../../pages/home/home.tsx";
+
 
 
 interface DishData {
@@ -10,8 +13,11 @@ interface DishData {
     categorie: string;
 }
 
+
+
+
 @template<DishData>((dish) =>
-<header id="dish-block">
+<header id="dish-block" onclick={() => showDishView(dish)}>
 
             <img
                 src="../../utilities/images/dish-pic.png"

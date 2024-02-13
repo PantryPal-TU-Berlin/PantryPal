@@ -1,0 +1,128 @@
+@use "../../base/scss/global" as global;
+@use "../../utilities/scss/variables" as variables;
+
+
+
+#dish-view {
+
+	z-index: 5;
+	/* Or any high value that works for your design */
+	/* Ensures z-index applies correctly */
+
+	padding: 20px;
+	font-family: 'Jost';
+	height: 500px;
+	width: 800px;
+	background-color: rgb(231, 231, 231);
+	border-radius: 25px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	margin-bottom: 20px;
+	margin-left: 40px;
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+	.containerTop {
+		display: flex;
+		flex-direction: row;
+		margin-top: 0;
+		margin-left: 0;
+		margin-right: 0;
+		height: 50%;
+		width: 100%;
+
+		.imageContainer {
+			display: flex;
+			align-items: center;
+			margin-left: 20%;
+
+			.dish-image {
+				border-radius: 50%;
+				width: 200px;
+				height: 200px;
+				object-fit: cover;
+				background-size: cover;
+			}
+		}
+
+		.nameContainer {
+			display: flex;
+			flex-direction: column;
+
+			.profile {
+				font-size: 22px;
+				font-weight: 400;
+			}
+
+			.name {
+				font-size: 40px;
+				font-weight: 400;
+			}
+
+			.extraInfo {
+				display: flex;
+				flex-direction: row;
+				padding-top: 10px;
+                gap: 20px;
+                font-size: 12px;
+
+				.time-dish{
+					width: 20px; 
+					height: 20px;
+					object-fit: cover;
+					background-size: cover;	
+				}
+
+				.servings-container{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    
+                    .serving-dish{
+                        width: 20px; 
+                        height: 20px;
+                        object-fit: cover;
+                        background-size: cover;	
+                    }
+                }
+
+				.tag {
+                    background-color: yellow;
+					border-radius: 20;
+					border-radius: 10px;
+                    height: 40px;
+                    width: 120px;
+                }
+
+			}
+
+		}
+
+	}
+
+	.containerBottom {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 0;
+		margin-left: 0;
+		margin-right: 0;
+		height: 50%;
+		width: 100%;
+
+		.zutaten {
+
+		}
+
+		.zubereitung {
+
+		}
+	}
+
+
+
+
+
+
+}
