@@ -1,39 +1,70 @@
 import { Component } from "uix/components/Component.ts";
 import { Datex } from "unyt_core/datex.ts";
 
-import { createProfil } from "backend/data.ts";
+import { ProfilDaten, createProfil } from "backend/data.ts";
+import { ProfileComponent } from "frontend/components/profile/profileComponent.tsx";
+import { FollowComponent } from "frontend/components/profile/followComponent.tsx";
 
+//import { getUser } from "backend/data/eternalData.ts";
 
-const profilDaten = await createProfil()
+//const loggedUser = getUser( datex.meta.sender.main.toString())
+//const user: ProfilDaten = await createProfil(loggedUser!)
+//const profilDaten: ProfilDaten = $$(user)
 
-const land = $$(profilDaten.land)
-const beschreibung = $$(profilDaten.beschreibung)
+const profilDaten = await createProfil();
 
-const name = await Datex.Runtime.endpoint.main.getAlias() ?? "benutzername"
+//-----------------------------------------------------------------------------------------------------------
 
+const followBool = $$(profilDaten.followBool)
+const followString = $$(profilDaten.followString)
+const follower = $$(profilDaten.follower)
 
-const followBool = $$(false);
-const followString: Datex.Ref<string> = always(() =>{ 
-	if(!followBool.val)return "Follow";
-	else return "Unfollow"
-})
+function followUpdate() {
+	followBool.val = !followBool.val;
+	profilDaten.followBool = followBool.val;
+	if(!followBool.val){
+		followString.val = "Follow";
+		follower.val = 0;
+		profilDaten.followString = followString.val;
+		profilDaten.follower = follower.val;
+	} else {
+		followString.val = "Unfollow";
+		follower.val = 1;
+		profilDaten.followString = followString.val;
+		profilDaten.follower = follower.val;
+	}
+}
 
-const nutzerOnline = await Datex.Runtime.endpoint.main.online ?? false
-const activity: Datex.Ref<string> = always(() =>{ 
-	if(!nutzerOnline.val)return "offline";
-	else return "online"
-})
-
+//-----------------------------------------------------------------------------------------------------------
 
 const modalVisible = $$(true);
+const land = $$(profilDaten.land)
+const beschreibung = $$(profilDaten.beschreibung)
+const image = $$(profilDaten.profilBild);
+
+
+function uploadImage() {
+	const fileInput = document.getElementById('profilePictureInput') as HTMLInputElement;
+	if (fileInput instanceof HTMLInputElement && (fileInput as any).files !== null) {
+		const files = (fileInput as any).files;
+  
+		if (files.length > 0) {
+		  const file = files[0];
+		  const fileUrl = URL.createObjectURL(file);
+		  image.val = fileUrl;
+		}
+	  }
+  };
+
 
 function profilUpdate() {
-
+	uploadImage();
 	profilDaten.land = land.val;
 	profilDaten.beschreibung = beschreibung.val;
-
-	modalVisible.val = false;
+	modalVisible.val = !modalVisible.val;
 }
+
+//-----------------------------------------------------------------------------------------------------------
 
 
 const rezepte = $$("--Rezepte--");
@@ -70,6 +101,8 @@ const tabfavs: Datex.Ref<string> = always(() =>{
 	else return "tab-pane fade show active"
 })
 
+//-----------------------------------------------------------------------------------------------------------
+
 
 @template( () => (
 	
@@ -80,12 +113,22 @@ const tabfavs: Datex.Ref<string> = always(() =>{
 			<div class="card border-white">
 
 				<div id="buttons" class="container">
-  					<img src={"../../utilities/images/profile-picture.jpg"} alt="profile picture" class="profile-picture"/>
+  					<img src={image} alt="profile picture" class="profile-picture"/>
 					<div id="buttons-inhalt">
-						<h4>{ name }</h4>
+						<h4>{ Datex.Runtime.endpoint.main.getAlias() ?? "benutzername" }</h4>
     					<button onclick={ () => modalVisible.val = !modalVisible.val }>Profil bearbeiten</button>
 						<br></br>
-						<button onclick={ () => followBool.val = !followBool.val }>{followString.val}</button>
+						<button onclick={ followUpdate }>
+							<FollowComponent anzahlRezepte = {profilDaten.anzahlRezepte}
+									topRezept = {profilDaten.topRezept}
+									bewertung = {profilDaten.bewertung}
+									follower = {profilDaten.$.follower}
+									land = {profilDaten.$.land}
+									beschreibung = {profilDaten.$.beschreibung}
+									followBool = {profilDaten.$.followBool}
+									followString = {profilDaten.$.followString}
+									profilBild={profilDaten.profilBild} />
+						</button>
   					</div>
 				</div>
 
@@ -94,46 +137,16 @@ const tabfavs: Datex.Ref<string> = always(() =>{
 
 		<div class="col-sm-12 col-md-9">
 			<div id="daten_card" class="card border-white pr-lg-5 pr-md-3">
+				<ProfileComponent anzahlRezepte = {profilDaten.anzahlRezepte}
+									topRezept = {profilDaten.topRezept}
+									bewertung = {profilDaten.bewertung}
+									follower = {profilDaten.$.follower}
+									land = {profilDaten.$.land}
+									beschreibung = {profilDaten.$.beschreibung}
+									followBool = {profilDaten.$.followBool}
+									followString = {profilDaten.$.followString}
+									profilBild={profilDaten.profilBild} />
 
-				<div id="daten_container" class="container">
-        			<h4 id="head">Persönliche Informationen</h4>
-					<div id="daten" class="wrapper">
-						<div class="kategorie">
-							Eigene Rezepte
-							<br></br>
-							<p class="inhalt">{profilDaten.anzahlRezepte}</p>
-						</div>
-        				<div class="kategorie">
-							Top Rezept
-							<br></br>
-							<p class="inhalt">{profilDaten.topRezept}</p>
-						</div>
-        				<div class="kategorie">
-							Bewertung
-							<br></br>
-							<p class="inhalt">{profilDaten.bewertung}</p>
-						</div>
-						<div class="kategorie">
-							Follower
-							<br></br>
-							<p class="inhalt">{profilDaten.follower}</p>
-						</div>
-        				<div class="kategorie">
-							Land
-							<br></br>
-							<p class="inhalt">{profilDaten.land}</p>
-						</div>
-        				<div class="kategorie">
-							Aktivität
-							<br></br>
-							<p class="inhalt">{activity.val}</p>
-						</div>
-					</div>
-        			<div>
-						Beschreibung 
-					<p class="inhalt">{profilDaten.beschreibung}</p>
-					</div>
-    			</div>
 			</div>
 		</div>
 	</div>
@@ -152,12 +165,12 @@ const tabfavs: Datex.Ref<string> = always(() =>{
   				<div class="form-group">
     				<label for="profilePictureInput">Profilbild</label>
 					<br />
-    				<input type="file" class="form-control-file" id="profilePictureInput"/>
+    				<input onchange={uploadImage} type="file" accept="image/*" id="profilePictureInput"/>
   				</div>
 			</form>
 			<label>Land</label>
 			<br />
-		  	<select id="land" value={land.val}>
+		  	<select id="land" value={land}>
 				<option>-</option>
 				<option>Deutschland</option>
 				<option>Österreich</option>
@@ -166,7 +179,7 @@ const tabfavs: Datex.Ref<string> = always(() =>{
 			<br />
 			<label>Beschreibung</label>
 			<br />
-			<input type="text" maxlength="100" id="beschreibung" value={beschreibung.val}/>
+			<input type="text" maxlength="100" id="beschreibung" value={beschreibung}/>
           </div>
           <div class="modal-footer">
             <button

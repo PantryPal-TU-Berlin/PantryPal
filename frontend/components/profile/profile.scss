@@ -21,6 +21,7 @@
 		border: none;
 		border-radius: 24px;
 		width: 200px;
+		height: 35px;
 		padding: 5px;
 		margin-top: 5px;
 		font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -35,64 +36,7 @@
 		height: 150px;
 		border-radius: 50%;
 	}
-
-  button {
-    transition: all 0.3s ease 0s;
-    background-color: #e7e7e7;
-    border: none;
-    border-radius: 24px;
-    width: 200px;
-    padding: 5px;
-    margin-top: 5px;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  }
-
-  button:hover {
-    color: variables.$main-text-color;
-  }
-
-  .profile-picture {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-  }
 }
-
-#daten_container {
-  color: black;
-  font-family: "Jost";
-  padding: 10px;
-  border-radius: 24px;
-  margin-top: 5px;
-  height: 285px;
-  background: linear-gradient(
-    to top,
-    variables.$main-green-light 0%,
-    variables.$main-green-light 83%,
-    #8cc4a1 83%,
-    #8cc4a1 100%
-  );
-}
-
-#daten {
-  color: black;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
-.card {
-  padding-top: 25px;
-  padding-bottom: 0px;
-  align-content: space-around;
-  height: 290px;
-}
-
-.inhalt {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-}
-
 
 #nav-tab {
 	color: black;
@@ -110,11 +54,13 @@
 #nav-rezepte-tab{
 	color: black;
 	font-family: 'Jost';
+	background: #8cc4a1;
 }
 
 #nav-favoriten-tab{
 	color: black;
 	font-family: 'Jost';
+	background: #8cc4a1;
 }
 
 #nav-tabContent {
