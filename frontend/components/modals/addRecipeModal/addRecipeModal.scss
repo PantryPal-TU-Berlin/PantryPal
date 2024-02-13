@@ -5,201 +5,102 @@
 $primary-font-family: "Times New Roman", Times, serif;
 
 #add-recipe-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
-    height: 85%;
-    max-width: 650px;
-    max-height: 700px;
-    background-color: white;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 1.5em;
-    border-style: solid;
-    border-width: 1px;
-    border-color: variables.$main-text-color-hover;
-    border-radius: 8px;
-    background-color: variables.$main-grey;
-    display: flex;
-    flex-direction: column;
-    z-index: 9999;
-    flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 85%;
+  max-width: 650px;
+  max-height: 700px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5em;
+  border-style: solid;
+  border-width: 1px;
+  border-color: variables.$main-text-color-hover;
+  border-radius: 24px;
+  background-color: variables.$main-grey;
+  display: flex;
+  flex-direction: column;
+  z-index: 9999;
+  flex-direction: column;
 
-    label {
-      font-size: larger;
+  label {
+    font-size: larger;
+    color: variables.$main-green;
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 !important;
+
+    h1 {
+      flex-grow: 1;
+      text-align: center;
+      color: variables.$main-green;
+      margin-left: 1em;
+    }
+
+    .close-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5em;
+      color: #333;
+      transition: color 0.3s;
+    }
+
+    .close-button:hover {
       color: variables.$main-green;
     }
+  }
 
-    .modal-header {
+  .modal-body {
+    flex-grow: 1;
+
+    .static-section {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 !important;
 
-      h1 {
-        flex-grow: 1;
-        text-align: center;
-        color: variables.$main-green;
-        margin-left: 1em;
-      }
+      .title-section {
+        flex: 0 0 55%;
 
-      .close-button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 1.5em;
-        color: #333;
-        transition: color 0.3s;
-      }
-
-      .close-button:hover {
-        color: variables.$main-green;
-      }
-    }
-
-    .modal-body {
-      flex-grow: 1;
-
-      .static-section {
-        display: flex;
-
-        .title-section {
-            flex: 0 0 55%;
-
-            input {
-              border: none;
-              margin-bottom: 10px;
-              margin-right:0.5em;
-              padding: 8px;
-              border-color: variables.$main-green;
-              border-style: solid;
-              border-width: 1px;
-            }
-        }
-
-        .meta-data-section {
-            flex: 1;
-            width: 35%;
-
-            .meta-data-wrapper {
-              div {
-                width: 50%;
-              }
-            }
-
-            div {
-              display: flex;
-              flex-direction: row;
-              align-items: center;
-
-            }
-
-            #category {
-              width:100%;
-            }
-
-            input,
-            select {
-              margin-bottom: 10px;
-              padding: 8px;
-              border-color: variables.$main-green;
-              border-style: solid;
-              border-width: 1px;
-              width: 100%;
-            }
-
-            p {
-              margin-left: 0.5em;
-            }
-        }
-      }
-
-      .dynamic-section {
-        display: flex;
-        align-items: flex-start;
-        height:15em;
-
-        #ingredients {
-          justify-content: flex-start;
-          display: flex;
-          flex-direction: column;
-          margin-top: 1em;
-          margin-right: 2em;
-          width:50%;
-          position: relative;
-          height:75%;
-          overflow: auto;
-
-          button {
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 15%;
-            height: 100%;
-            position: absolute; 
-            right: 0;
-            margin-left: 1em;
-          }
-        } 
-
-        #steps-container {
-          justify-content: space-between;
-          display: flex;
-          flex-direction: column;
-          margin-top: 1em;
-          width:45%;
-          position: relative;
-          height:100%;
-
-          .large-input {
-            width: 100%;
-            height: 100%;
-            //max-height: 200px;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid variables.$main-green;
-            border-radius: 5px;
-            overflow-y: auto;
-            margin-top: 0.5em;
-        }
-
-         
-
-          #steps {
-            border-radius:8px;
-            border-color: variables.$main-green;
-            border-style: solid;
-            border-width: 1px;
-            height: 100%;
-            max-height: 100%;
-          }
-
-          .input-container {
-            height: 80%;
-            input {
-              width: 100%;
-            }
-  
-            #delete {
-              background: none;
-              border: none;
-              cursor: pointer;
-              font-size: 1em;
-              color: #333;
-              transition: color 0.3s;
-              padding:10px;
-              position: absolute;
-              right: 0;
-            }
-          }
-        }
-      }
-
-      #image-container {
         input {
+          border: none;
+          margin-bottom: 10px;
+          margin-right: 0.5em;
+          padding: 8px;
+          border-color: variables.$main-green;
+          border-style: solid;
+          border-width: 1px;
+        }
+      }
+
+      .meta-data-section {
+        flex: 1;
+        width: 35%;
+
+        .meta-data-wrapper {
+          div {
+            width: 50%;
+          }
+        }
+
+        div {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+
+        #category {
+          width: 100%;
+        }
+
+        input,
+        select {
           margin-bottom: 10px;
           padding: 8px;
           border-color: variables.$main-green;
@@ -208,93 +109,190 @@ $primary-font-family: "Times New Roman", Times, serif;
           width: 100%;
         }
 
+        p {
+          margin-left: 0.5em;
+        }
+      }
+    }
+
+    .dynamic-section {
+      display: flex;
+      align-items: flex-start;
+      height: 15em;
+
+      #ingredients {
+        justify-content: flex-start;
+        display: flex;
+        flex-direction: column;
+        margin-top: 1em;
+        margin-right: 2em;
+        width: 50%;
+        position: relative;
+        height: 75%;
+        overflow: auto;
+
         button {
-          background-color: variables.$main-green;
-          color: white;
-          border-radius: 0px 8px 8px 0px;
-          height: 3em;
+          border-radius: 8px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 15%;
+          height: 100%;
+          position: absolute;
+          right: 0;
+          margin-left: 1em;
         }
       }
 
-      .column {
+      #steps-container {
+        justify-content: space-between;
         display: flex;
         flex-direction: column;
+        margin-top: 1em;
+        width: 45%;
+        position: relative;
+        height: 100%;
+
+        .large-input {
+          width: 100%;
+          height: 100%;
+          //max-height: 200px;
+          padding: 10px;
+          font-size: 16px;
+          border: 1px solid variables.$main-green;
+          border-radius: 5px;
+          overflow-y: auto;
+          margin-top: 0.5em;
+        }
+
+        #steps {
+          border-radius: 8px;
+          border-color: variables.$main-green;
+          border-style: solid;
+          border-width: 1px;
+          height: 100%;
+          max-height: 100%;
+        }
+
+        .input-container {
+          height: 80%;
+          input {
+            width: 100%;
+          }
+
+          #delete {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            color: #333;
+            transition: color 0.3s;
+            padding: 10px;
+            position: absolute;
+            right: 0;
+          }
+        }
       }
     }
 
-    .modal-footer {
+    #image-container {
+      input {
+        margin-bottom: 10px;
+        padding: 8px;
+        border-color: variables.$main-green;
+        border-style: solid;
+        border-width: 1px;
+        width: 100%;
+      }
+
+      button {
+        background-color: variables.$main-green;
+        color: white;
+        border-radius: 0px 8px 8px 0px;
+        height: 3em;
+      }
+    }
+
+    .column {
       display: flex;
-      justify-content: space-between;
-      margin-top: auto;
-    }
-
-    .modal-footer button {
-      padding: 10px;
-      cursor: pointer;
-      border-style: solid;
-      border-width: 1px;
-      border-color: rgb(211, 211, 211);
-      border-radius: 8px;
-      font-size: larger;
-      padding: 0.5em 2em;
-    }
-
-    .primary-button {
-      background-color: variables.$main-green;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    .primary-button:hover {
-      background-color: white;
-      color: variables.$main-green;
-    }
-
-    .secondary-button:hover {
-      background-color: white;
-      color: gray;
-    }
-
-    #image {
-      margin-top: 1em;
-      width: 100%;
-      height: 1;
+      flex-direction: column;
     }
   }
 
-  #add-recipe-modal.visible {
-    pointer-events: initial;
-    opacity: 1;
+  .modal-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
   }
 
-  #add-recipe-modal {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  button {
+  .modal-footer button {
+    padding: 10px;
     cursor: pointer;
     border-style: solid;
     border-width: 1px;
     border-color: rgb(211, 211, 211);
     border-radius: 8px;
-    padding: 0.5em;
+    font-size: larger;
+    padding: 0.5em 2em;
   }
 
-  i {
+  .primary-button {
+    background-color: variables.$main-green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .primary-button:hover {
+    background-color: white;
     color: variables.$main-green;
-    margin: 0.25em;
-    width: 1em;
   }
 
-  input:focus, .large-input {
-    outline:none;
-    background-color:  variables.$input-light-grey;
+  .secondary-button:hover {
+    background-color: white;
+    color: gray;
   }
+
+  #image {
+    margin-top: 1em;
+    width: 100%;
+    height: 1;
+  }
+}
+
+#add-recipe-modal.visible {
+  pointer-events: initial;
+  opacity: 1;
+}
+
+#add-recipe-modal {
+  opacity: 0;
+  pointer-events: none;
+}
+
+button {
+  cursor: pointer;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(211, 211, 211);
+  border-radius: 8px;
+  padding: 0.5em;
+}
+
+i {
+  color: variables.$main-green;
+  margin: 0.25em;
+  width: 1em;
+}
+
+input:focus,
+.large-input {
+  outline: none;
+  background-color: variables.$input-light-grey;
+}

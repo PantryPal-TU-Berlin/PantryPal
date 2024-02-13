@@ -10,6 +10,7 @@ interface RecipePostView {
 @template<RecipePostView>((props) => {
   const recipe = props.recipePost.$$.recipe;
   const recipeName = always(() => recipe.val.name);
+  const recipeTags = always(() => recipe.val.tags);
   const recipeTime = always(() => recipe.val.timeInMinutes);
   const recipeServings = always(() => recipe.val.servings);
   const recipeInstruction = always(() => recipe.val.instruction);
