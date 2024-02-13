@@ -6,7 +6,7 @@ import {
 } from "../../utilities/ingredientsStructures.ts";
 
 //structs
-import { Ingredient } from "common/structs/recipe.ts";
+import { Ingredient, Recipe } from "common/structs/recipe.ts";
 import { recipeRequest } from "../../../common/structs/recipeForApi.ts";
 
 //frontend components
@@ -32,12 +32,13 @@ const Ai = template(() => {
 
   const selectedDropdown = $$("");
 
-  function generateRequest() {
+  async function generateRequest(): Promise<Recipe> {
     const request: recipeRequest = {
       ingredients: ingredientsForRequest,
       categories: categoriesForRequest,
     };
-    sendRecipeRequest(request);
+    const responseRecipe: Recipe = await sendRecipeRequest(request);
+    return responseRecipe;
   }
 
   function addCategory(category: string) {
