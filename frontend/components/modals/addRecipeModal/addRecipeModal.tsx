@@ -1,7 +1,6 @@
 //backend imports
 import { createNewRecipePost } from "backend/functions/recipePostFunctions.ts";
 import {
-  createUserOrGet,
   getCurrentUserId,
 } from "backend/functions/usersFunctions.ts";
 
@@ -37,6 +36,7 @@ function addRecipePost() {
   }
 
   console.log("addRecipePost executed");
+  const stepsInput = document.getElementById("steps-input")?.textContent;
   const newRecipePost: RecipePost = {
     user: getCurrentUserId(),
     recipe: {
@@ -44,7 +44,7 @@ function addRecipePost() {
       category: category.val,
       timeInMinutes: time.val,
       servings: servings.val,
-      instruction: steps.val,
+      instruction: stepsInput ? stepsInput : "",
       tags: tags.val.split(","),
       ingredients: Datex.Pointer.getByValue(ingredients)!.val,
       image: image.val,
