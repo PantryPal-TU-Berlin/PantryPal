@@ -1,4 +1,4 @@
-import { recipePost } from "./recipePost.ts";
+import { RecipePost } from "./recipePost.ts";
 
 export type User = {
   endpoint: string;

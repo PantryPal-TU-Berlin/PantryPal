@@ -1,32 +1,28 @@
 import { Component } from "uix/components/Component.ts";
 import { ObjectRef } from "unyt_core/datex_all.ts";
 
-import { recipePost } from "common/structs/recipePost.ts";
+import { RecipePost } from "common/structs/recipePost.ts";
 
-interface recipePostView {
-  recipePost: ObjectRef<recipePost>;
+interface RecipePostView {
+  recipePost: ObjectRef<RecipePost>;
 }
 
-@template<recipePostView>((props) => {
-  console.log("recipePostView");
-  console.log(props.recipePost);
+@template<RecipePostView>((props) => {
+  console.log(props);
   return (
     <div id="dish-view">
       <div class="containerTop">
         <div class="nameContainer">
           <div class="profile">Profil</div>
-          <div class="name"> {props.$.recipePost.recipe.name}</div>
+          <div class="name"> {props.recipePost.$$.recipe.$.name}</div>
           <div class="extraInfo">
-            {props.$.recipePost.recipe.tags.map((tag: string) => (
-              <button class="tag">{tag}</button>
-            ))}
             <div class="time-container">
               <img
                 src="../../utilities/images/time-dish.png"
                 alt="time dish"
                 class="time-dish"
               />
-              {props.$.recipePost.recipe.timeInMinutes} min
+              {props.recipePost.$$.recipe.$.timeInMinutes} min
             </div>
             <div class="servings-container">
               <img
@@ -34,7 +30,7 @@ interface recipePostView {
                 alt="serving dish"
                 class="serving-dish"
               />
-              {props.$.recipePost.recipe.servings}x
+              {props.recipePost.$$.recipe.$.servings}x
             </div>
           </div>
         </div>
@@ -59,4 +55,4 @@ interface recipePostView {
     </div>
   );
 })
-export class RecipePostView extends Component<recipePostView> {}
+export class RecipePostViewComponent extends Component<RecipePostView> {}

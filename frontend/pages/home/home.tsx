@@ -1,25 +1,27 @@
 import { NavBar } from "frontend/components/navbar/navbar.tsx";
 import { DishEntry } from "frontend/components/dish/dish-entry.tsx";
+import { ObjectRef } from "unyt_core/datex_all.ts";
+
 import {
   getAllRecipePosts,
   createNewRecipePost,
 } from "backend/functions/recipePostFunctions.ts";
 import { Datex } from "unyt_core/datex.ts";
-import { RecipePostView } from "frontend/components/dishView/dishView.tsx";
-import { recipePost } from "common/structs/recipePost.ts";
+import { RecipePostViewComponent } from "frontend/components/dishView/dishView.tsx";
+import { RecipePost } from "common/structs/recipePost.ts";
 
 const modalVisible = $$(false);
 
-const allRecipePosts: recipePost[] = await getAllRecipePosts();
+const allRecipePosts: RecipePost[] = await getAllRecipePosts();
 
-const currentSelectedRecipe: recipePost = $$({
+const currentSelectedRecipe: ObjectRef<RecipePost> = $$({
   user: "",
   recipe: {
     name: "hhjkh",
-    category: "",
+    category: "dfaf",
     timeInMinutes: 0,
     servings: 0,
-    instruction: "",
+    instruction: "adfasfafe",
     tags: [],
     ingredients: [],
     image: "",
@@ -27,10 +29,12 @@ const currentSelectedRecipe: recipePost = $$({
   date: new Date(),
 });
 
-function showRecipePost(recipePost: recipePost) {
-  console.log("clicked on recipe post!");
-  currentSelectedRecipe.val = recipePost;
+function showRecipePost(recipePost: RecipePost) {
+  console.log(currentSelectedRecipe);
+  const ptr = Datex.Pointer.getByValue(currentSelectedRecipe);
+  ptr.val = recipePost;
   modalVisible.val = true;
+  console.log(currentSelectedRecipe);
 }
 
 console.log(currentSelectedRecipe);
@@ -121,7 +125,7 @@ const Home = template(() => (
           </div>
         </div>
         <div class="vertical-scroller">
-          {allRecipePosts.map((recipePost: recipePost) => (
+          {allRecipePosts.map((recipePost: RecipePost) => (
             <DishEntry
               recipePost={recipePost}
               onshow={() => showRecipePost(recipePost)}
@@ -132,7 +136,10 @@ const Home = template(() => (
     </div>
     {toggle(
       modalVisible,
-      <RecipePostView recipePost={currentSelectedRecipe} />,
+      <RecipePostViewComponent
+        class="recipe-view-component"
+        recipePost={currentSelectedRecipe}
+      />,
       <div></div>
     )}
   </div>

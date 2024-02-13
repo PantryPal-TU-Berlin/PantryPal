@@ -1,12 +1,12 @@
 import { Component } from "uix/components/Component.ts";
-import { recipePost } from "common/structs/recipePost.ts";
+import { RecipePost } from "common/structs/recipePost.ts";
 
-interface recipePostComponent {
-  recipePost: recipePost;
-  onshow: (recipePost: recipePost) => void;
+interface RecipePostComponent {
+  recipePost: RecipePost;
+  onshow: (recipePost: RecipePost) => void;
 }
 
-@template<recipePostComponent>((_, props) => (
+@template<RecipePostComponent>((_, props) => (
   <header id="dish-block" onclick={() => props.onshow(props.recipePost)}>
     <img
       src="../../utilities/images/dish-pic.png"
@@ -51,4 +51,4 @@ interface recipePostComponent {
     </div>
   </header>
 ))
-export class DishEntry extends Component<recipePostComponent> {}
+export class DishEntry extends Component<RecipePostComponent> {}

@@ -6,7 +6,7 @@ import {
 } from "backend/functions/usersFunctions.ts";
 
 //structs imports
-import { recipePost } from "common/structs/recipePost.ts";
+import { RecipePost } from "common/structs/recipePost.ts";
 
 import { Component } from "uix/components/Component.ts";
 import { IngredientComponent } from "frontend/components/ingredientComponent/ingredientComponent.tsx";
@@ -37,7 +37,7 @@ async function addRecipePost() {
   }
 
   console.log("addRecipePost executed");
-  const newRecipePost: recipePost = {
+  const newRecipePost: RecipePost = {
     user: getCurrentUserId(),
     recipe: {
       name: title.val,

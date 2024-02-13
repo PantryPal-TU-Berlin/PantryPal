@@ -3,9 +3,9 @@ import {
   currentRecipePostId,
   users,
 } from "backend/data/eternalData.ts";
-import { recipePost } from "common/structs/recipePost.ts";
+import { RecipePost } from "common/structs/recipePost.ts";
 
-export function createNewRecipePost(recipePost: recipePost) {
+export function createNewRecipePost(recipePost: RecipePost) {
   console.log("ausgeführt");
   currentRecipePostId.val = currentRecipePostId.val + 1;
   recipePosts.set(currentRecipePostId.val, recipePost);

@@ -4,7 +4,7 @@ import { ObjectRef } from "unyt_core/runtime/pointers.ts";
 import { recipePosts, users } from "backend/data/eternalData.ts";
 
 import { User, ProfilDaten } from "../../common/structs/user.ts";
-import { recipePost } from "../../common/structs/recipePost.ts";
+import { RecipePost } from "../../common/structs/recipePost.ts";
 
 export function getAllRecipePosts() {
   console.log("getAllRecipePosts");
