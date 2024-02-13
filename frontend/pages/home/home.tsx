@@ -40,6 +40,8 @@ export function hideDishView() {
   modalVisible.val = false;
 }
 
+
+
 const Home = template(() => (
   <div>
     <link rel="stylesheet" href="./home.scss" />
