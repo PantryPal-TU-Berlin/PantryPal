@@ -1,7 +1,7 @@
 import { Component } from "uix/components/Component.ts";
 import { Datex } from "unyt_core/datex.ts";
 
-import { ProfilDaten, createProfil } from "backend/data.ts";
+import { ProfilDaten, createProfil } from "backend/pages/profilData.ts";
 import { ProfileComponent } from "frontend/components/profile/profileComponent.tsx";
 import { FollowComponent } from "frontend/components/profile/followComponent.tsx";
 
