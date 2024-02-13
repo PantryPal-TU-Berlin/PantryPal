@@ -4,25 +4,27 @@ import { ObjectRef } from "unyt_core/datex_all.ts";
 import { RecipePost } from "common/structs/recipePost.ts";
 import { Ingredient } from "common/structs/recipe.ts";
 
-
 interface RecipePostView {
   recipePost: ObjectRef<RecipePost>;
-  onclose: ()=>void;
+  onclose: () => void;
 }
 
 @template<RecipePostView>((props) => {
   const recipe = props.recipePost.$$.recipe;
   const recipeName = always(() => recipe.val.name);
-  const recipeTags = always(() => [...recipe.val.ingredients]);
-  const recipeIngredients = always(() => [...recipe.val.tags]);
+  const recipeTags = always(() => [...recipe.val.tags]);
+  const recipeIngredients = always(() => [...recipe.val.ingredients]);
   const recipeTime = always(() => recipe.val.timeInMinutes);
   const recipeServings = always(() => recipe.val.servings);
   const recipeInstruction = always(() => recipe.val.instruction);
   return (
     <div id="dish-view">
-        <button class="close-button" onclick={props.onclose}>
+      <button
+        class="close-button"
+        onclick={() => console.log("ingredients", recipeIngredients)}
+      >
         &times;
-        </button>
+      </button>
       <div class="containerTop">
         <div class="nameContainer">
           <div class="profile">Profil</div>
@@ -61,13 +63,11 @@ interface RecipePostView {
       <div class="containerBottom">
         <div>Zutaten</div>
         {recipeIngredients.$.map((ingredient: Ingredient) => (
-              <div>{ingredient.ingredient}<div>
-          ))}
+          <div>{ingredient.ingredient}</div>
+        ))}
         <li class="zutaten"></li>
         <div class="zubereitung">
-          <div>
-            {recipeInstruction}
-          </div>
+          <div>{recipeInstruction}</div>
         </div>
       </div>
     </div>

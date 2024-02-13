@@ -35,11 +35,10 @@ function showRecipePost(recipePost: RecipePost) {
   modalVisible.val = true;
 }
 
-export function hideDishView () {
+export function hideDishView() {
+  console.log("hideDishView executed");
   modalVisible.val = false;
 }
-
-console.log(currentSelectedRecipe);
 
 const Home = template(() => (
   <div>
@@ -141,10 +140,9 @@ const Home = template(() => (
       <RecipePostViewComponent
         class="recipe-view-component"
         recipePost={currentSelectedRecipe}
-        
+        onclose={() => hideDishView()}
       />,
-      <div>
-      </div>
+      <div></div>
     )}
   </div>
 ));

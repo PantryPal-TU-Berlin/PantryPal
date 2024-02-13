@@ -45,18 +45,8 @@ function addRecipePost() {
       timeInMinutes: time.val,
       servings: servings.val,
       instruction: steps.val,
-<<<<<<< HEAD
-<<<<<<< HEAD
-      tags: tags.val.replace(/\s+/g, "").split(","),
+      tags: tags.val.split(","),
       ingredients: Datex.Pointer.getByValue(ingredients)!.val,
-=======
-      tags: tags.val.replace(/\s+/g, " ").split("*"),
-      
-=======
-      tags: tags.val.replace(/\s+/g, "").split(","),
->>>>>>> 877e106 (bug)
-      ingredients: ingredients,
->>>>>>> 3b6abe5 (local scss changes)
       image: image.val,
     },
     date: new Date(),
@@ -135,7 +125,10 @@ const image = $$("../../utilities/images/default_food.jpg");
   <div id="add-recipe-modal" class={{ visible: modalVisible }}>
     <div class="modal-header">
       <h1>Post a Dish</h1>
-      <button class="close-button" onclick={() => (modalVisible.val = !modalVisible.val)}>
+      <button
+        class="close-button"
+        onclick={() => (modalVisible.val = !modalVisible.val)}
+      >
         &times;
       </button>
     </div>
@@ -239,7 +232,10 @@ const image = $$("../../utilities/images/default_food.jpg");
       </div>
     </div>
     <div class="modal-footer">
-      <button class="secondary-button" onclick={() => modalVisible.val = !modalVisible.val}>
+      <button
+        class="secondary-button"
+        onclick={() => (modalVisible.val = !modalVisible.val)}
+      >
         Cancel
       </button>
       <button class="primary-button" onclick={addRecipePost}>
