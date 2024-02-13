@@ -2,6 +2,8 @@ import { Component } from "uix/components/Component.ts";
 import { ObjectRef } from "unyt_core/datex_all.ts";
 
 import { RecipePost } from "common/structs/recipePost.ts";
+import { hideDishView } from "frontend/pages/home/home.tsx";
+
 
 interface RecipePostView {
   recipePost: ObjectRef<RecipePost>;
@@ -17,6 +19,9 @@ interface RecipePostView {
   const recipeInstruction = always(() => recipe.val.instruction);
   return (
     <div id="dish-view">
+        <button class="close-button" onclick={hideDishView}>
+        &times;
+        </button>
       <div class="containerTop">
         <div class="nameContainer">
           <div class="profile">Profil</div>
@@ -57,7 +62,7 @@ interface RecipePostView {
         <li class="zutaten"></li>
         <div class="zubereitung">
           <div>
-            Schritt 1 <br></br>Schritt 2
+            {recipeInstruction}
           </div>
         </div>
       </div>
