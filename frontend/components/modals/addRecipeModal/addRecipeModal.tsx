@@ -15,10 +15,10 @@ import {
   resetNewIngredient,
 } from "frontend/components/ingredientComponent/addIngredientComponent.tsx";
 import { Ingredient } from "common/structs/recipe.ts";
+import { Datex } from "unyt_core/datex.ts";
 
 export const modalVisible = $$(false);
-
-async function addRecipePost() {
+function addRecipePost() {
   if (title.val.length < 1) {
     alert("Necessary information is missing: title");
     return;
@@ -27,7 +27,7 @@ async function addRecipePost() {
     alert("Necessary information is missing: time");
     return;
   }
-  if (servings.val) {
+  if (servings.val<1) {
     alert("Necessary information is missing: servings");
     return;
   }
@@ -46,17 +46,17 @@ async function addRecipePost() {
       servings: servings.val,
       instruction: steps.val,
       tags: tags.val.replace(/\s+/g, "").split(","),
-      ingredients: ingredients,
+      ingredients: Datex.Pointer.getByValue(ingredients)!.val,
       image: image.val,
     },
     date: new Date(),
   };
 
-  await createNewRecipePost(newRecipePost);
-  resetData();
+  createNewRecipePost(newRecipePost);
+  modalVisible.val = !modalVisible.val;
 }
 
-function resetData() {
+export function resetData() {
   title.val = "";
   time.val = 0;
   servings.val = 0;
@@ -65,19 +65,12 @@ function resetData() {
   category.val = "dairy";
   image.val = "../../utilities/images/default_food.jpg";
   modalVisible.val = false;
+  Datex.Pointer.getByValue(ingredients)!.val = [];
 
   const stepsInput = document.getElementById("steps-input");
   stepsInput!.textContent = "Type cooking steps here...";
-  resetIngredients();
   resetNewIngredient();
-}
-
-function resetIngredients() {
-  let quantity = ingredients.length;
-  while (quantity > 0) {
-    ingredients.splice(0, 1);
-    quantity--;
-  }
+  modalVisible.val = !modalVisible.val;
 }
 
 type Base64Callback = (base64String: string) => void;
@@ -132,7 +125,7 @@ const image = $$("../../utilities/images/default_food.jpg");
   <div id="add-recipe-modal" class={{ visible: modalVisible }}>
     <div class="modal-header">
       <h1>Post a Dish</h1>
-      <button class="close-button" onclick={resetData}>
+      <button class="close-button" onclick={() => (modalVisible.val = !modalVisible.val)}>
         &times;
       </button>
     </div>
@@ -179,8 +172,8 @@ const image = $$("../../utilities/images/default_food.jpg");
 
               <div>
                 <i class="fa-solid fa-user fa-xl"></i>
-                <select id="servings" value={servings.val}>
-                  <option selected value="0">
+                <select id="servings" value={servings}>
+                  <option value="0">
                     Servings
                   </option>
                   <option value="1">1</option>
@@ -238,7 +231,7 @@ const image = $$("../../utilities/images/default_food.jpg");
       </div>
     </div>
     <div class="modal-footer">
-      <button class="secondary-button" onclick={resetData}>
+      <button class="secondary-button" onclick={() => modalVisible.val = !modalVisible.val}>
         Cancel
       </button>
       <button class="primary-button" onclick={addRecipePost}>
