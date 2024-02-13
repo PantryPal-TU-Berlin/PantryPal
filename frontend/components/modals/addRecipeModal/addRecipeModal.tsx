@@ -46,11 +46,15 @@ function addRecipePost() {
       servings: servings.val,
       instruction: steps.val,
 <<<<<<< HEAD
+<<<<<<< HEAD
       tags: tags.val.replace(/\s+/g, "").split(","),
       ingredients: Datex.Pointer.getByValue(ingredients)!.val,
 =======
       tags: tags.val.replace(/\s+/g, " ").split("*"),
       
+=======
+      tags: tags.val.replace(/\s+/g, "").split(","),
+>>>>>>> 877e106 (bug)
       ingredients: ingredients,
 >>>>>>> 3b6abe5 (local scss changes)
       image: image.val,

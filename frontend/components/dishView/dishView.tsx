@@ -2,11 +2,12 @@ import { Component } from "uix/components/Component.ts";
 import { ObjectRef } from "unyt_core/datex_all.ts";
 
 import { RecipePost } from "common/structs/recipePost.ts";
-import { hideDishView } from "frontend/pages/home/home.tsx";
+import { Ingredient } from "common/structs/recipe.ts";
 
 
 interface RecipePostView {
   recipePost: ObjectRef<RecipePost>;
+  onclose: ()=>void;
 }
 
 @template<RecipePostView>((props) => {
@@ -19,7 +20,7 @@ interface RecipePostView {
   const recipeInstruction = always(() => recipe.val.instruction);
   return (
     <div id="dish-view">
-        <button class="close-button" onclick={hideDishView}>
+        <button class="close-button" onclick={props.onclose}>
         &times;
         </button>
       <div class="containerTop">
@@ -59,6 +60,9 @@ interface RecipePostView {
       </div>
       <div class="containerBottom">
         <div>Zutaten</div>
+        {recipeIngredients.$.map((ingredient: Ingredient) => (
+              <div>{ingredient.ingredient}<div>
+          ))}
         <li class="zutaten"></li>
         <div class="zubereitung">
           <div>
@@ -69,4 +73,4 @@ interface RecipePostView {
     </div>
   );
 })
-export class RecipePostViewComponent extends Component<RecipePostView> {}
+export class RecipePostViewComponent extends Component {}
