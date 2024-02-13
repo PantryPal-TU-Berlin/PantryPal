@@ -123,7 +123,7 @@ const Home = template(() => (
           </div>
         </div>
         <div class="vertical-scroller">
-          {allRecipePosts.map((recipePost: RecipePost) => (
+          {allRecipePosts.$.map((recipePost: RecipePost) => (
             <DishEntry
               recipePost={recipePost}
               onshow={() => showRecipePost(recipePost)}

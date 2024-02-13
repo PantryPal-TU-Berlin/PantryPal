@@ -19,5 +19,5 @@ export function createNewRecipePost(recipePost: RecipePost) {
 export function getAllRecipePosts() {
   console.log("getAllRecipePosts");
   console.log(recipePosts.values());
-  return Array.from(recipePosts.values());
+  return always(() => Array.from(recipePosts.values()));
 }
