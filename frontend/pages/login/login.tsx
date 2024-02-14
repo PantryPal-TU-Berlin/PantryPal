@@ -40,8 +40,6 @@ const Login = template(() => (
     <div class="backgroundImage">
       <div class="overlay"></div>
     </div>
-
-    <Footer />
   </div>
 ));
 

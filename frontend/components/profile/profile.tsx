@@ -111,7 +111,11 @@ const tabfavs: Datex.Ref<string> = always(() => {
       <div class="col-sm-12 col-md-3">
         <div class="card border-white">
           <div id="buttons" class="container">
-            <img src={image} alt="profile picture" class="profile-picture" />
+            <img
+              src="../../utilities/images/profile-picture.jpg"
+              alt="profile picture"
+              class="profile-picture"
+            />
             <div id="buttons-inhalt">
               <h4>
                 {Datex.Runtime.endpoint.main.getAlias() ?? "benutzername"}

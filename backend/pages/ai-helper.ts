@@ -68,10 +68,8 @@ export class RecipeAiBackend {
     const resultImg = Base64.fromFile(path).toStringWithMime();
 
     recipeResponse.image = resultImg;
-    console.log("image", recipeResponse.image);
 
     writeJson("./test.json", recipeResponse);
-    //writeJson("./test2.json", resultImg);
     return recipeResponse;
   }
 }
