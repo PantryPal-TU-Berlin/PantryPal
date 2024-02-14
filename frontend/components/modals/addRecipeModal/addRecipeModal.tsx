@@ -45,7 +45,7 @@ function addRecipePost() {
       timeInMinutes: time.val,
       servings: servings.val,
       instruction: stepsInput ? stepsInput : "",
-      tags: tags.val.split(","),
+      tags: tags.val.replace(/\s+/g, '').split(","),
       ingredients: Datex.Pointer.getByValue(ingredients)!.val,
       image: image.val,
     },
@@ -63,7 +63,7 @@ export function resetData() {
   tags.val = "";
   steps.val = "Type cooking steps here...";
   category.val = "dairy";
-  image.val = "../../utilities/images/default_food.jpg";
+  image.val = "../../utilities/images/default_food.png";
   modalVisible.val = false;
   Datex.Pointer.getByValue(ingredients)!.val = [];
 
@@ -119,7 +119,7 @@ export const ingredients: Ingredient[] = $$([]);
 const tags = $$("");
 const steps = $$("Type cooking steps here...");
 const category = $$("dairy");
-const image = $$("../../utilities/images/default_food.jpg");
+const image = $$("../../utilities/images/default_food.png");
 
 @template(() => (
   <div id="add-recipe-modal" class={{ visible: modalVisible }}>
@@ -142,12 +142,14 @@ const image = $$("../../utilities/images/default_food.jpg");
               placeholder="Title"
               value={title}
               required
+              maxlength="50"
             />
             <input
               id="tags"
               type="text"
               value={tags}
               placeholder="Tags: separate tags with a comma"
+              maxlength="50"
             />
           </div>
 

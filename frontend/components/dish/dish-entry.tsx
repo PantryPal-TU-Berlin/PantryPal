@@ -21,7 +21,7 @@ interface RecipePostComponent {
         <div class="dish-country">
           {" "}
           {props.recipePost.recipe.tags.map((tag: string) => (
-            <div>{tag}</div>
+            <div class="tag">{'#'+tag}</div>
           ))}{" "}
         </div>
       </div>
