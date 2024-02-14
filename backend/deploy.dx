@@ -1,0 +1,2 @@
+endpoint: @+my_app,
+location: @+app-host-eu2

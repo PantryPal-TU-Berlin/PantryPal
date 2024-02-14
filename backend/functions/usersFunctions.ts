@@ -15,7 +15,7 @@ export function createUserOrGet() {
     console.log(`Creating entry for ${user}`);
     const newUser: User = {
       endpoint: user,
-      profilePicture: "test",
+      profilePicture: "../../utilities/images/profile-picture.jpg",
 
       anzahlRezepte: 0,
       topRezept: "-",
