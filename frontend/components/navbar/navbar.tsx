@@ -7,7 +7,7 @@ function openAddRecipeModal() {
 @template(() => (
 	<div>
 		<header id="navbar">
-		<h1>PantryPal</h1>
+		<h1><a href="/home">PantryPal</a></h1>
 
 		<ul class="nav-links">
 			<li>
@@ -21,11 +21,11 @@ function openAddRecipeModal() {
 			<li>
 				<i onclick={openAddRecipeModal} class="fa-solid fa-plus"></i>
 			</li>
-			<img
+			<a href="/profil"><img
 				src="../../utilities/images/profile-picture.jpg"
 				alt="profile picture"
 				class="profile-picture"
-			/>
+			/></a>
 		</ul>
 	</header>
 	<AddRecipeModal />
