@@ -23,46 +23,52 @@ interface RecipePostView {
       <button class="close-button" onclick={props.onclose}>
         &times;
       </button>
-      <div class="containerTop">
-        <div class="nameContainer">
-          <div class="profile">Profil</div>
-          <div class="name"> {recipeName}</div>
-          <div class="extraInfo">
-            {recipeTags.$.map((tag: string) => (
-              <div>{tag}</div>
-            ))}
-            <div class="time-container">
-              <img
-                src="../../utilities/images/time-dish.png"
-                alt="time dish"
-                class="time-dish"
-              />
-              {recipeTime} min
-            </div>
-            <div class="servings-container">
-              <img
-                src="../../utilities/images/profile-dish.png"
-                alt="serving dish"
-                class="serving-dish"
-              />
-              {recipeServings}x
-            </div>
+      <div id="title-row">
+					<div class="main-data">
+						<h1 style="color:black" class="title">{recipeName}</h1>
+						<div class="meta-data">
+              <div class="wrapper">
+                <div class="tags meta-data-section">
+                  {recipeTags.$.map((tag: string) => (
+                    <div class="tag">{tag}</div>
+                  ))}
+                </div>
+              </div>
+							
+							<div class="icons meta-data-section">
+								<div class="icon" id="clock-icon">
+									<i class="fa-regular fa-clock fa-2xl"></i>
+									<label for="clock-icon">{recipeTime} min</label>
+								</div>
+								<div class="icon" id="person-icon">
+                  <i class="fa-solid fa-user fa-2xl"></i>
+									<label for="person-icon">{recipeServings}x</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="imageContainer"> 
+						<img src={recipeImage} alt="Dish photo" class="dish-image"></img>
+					</div>
+				</div>
+        <div class="containerBottom">
+          <div id="ingredients">
+            <label for="ingredients-list">Ingredients</label>
+            
+              <ul id="ingredients-list">
+                  {recipeIngredients.$.map((ingredient: Ingredient) => (
+                    <li class="ingredient-item">
+                      <div>{ingredient.ingredient}</div>
+                      <div class="amount">{ingredient.amount} {ingredient.unit}</div>
+                    </li>
+                    ))}
+              </ul>
           </div>
-        </div>
-
-        <div class="imageContainer">
-          <img src={recipeImage} alt="dish image" class="dish-image" />
-        </div>
-      </div>
-      <div class="containerBottom">
-        <div>Zutaten</div>
-        {recipeIngredients.$.map((ingredient: Ingredient) => (
-          <div>{ingredient.ingredient}</div>
-        ))}
-        <li class="zutaten"></li>
-        <div class="zubereitung">
-          <div>{recipeInstruction}</div>
-        </div>
+          <div id="description-section">
+            <label for="description">Instructions</label>
+            <div id="description">{recipeInstruction}</div>
+            
+          </div>
       </div>
     </div>
   );

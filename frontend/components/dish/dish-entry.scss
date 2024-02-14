@@ -46,6 +46,13 @@
 					flex-direction: row;
 					font-size: 16px;
 					font-weight: 300;
+					overflow: auto;
+					max-width: 250px;
+
+					.tag {
+						flex: 0 0 auto;
+						margin-right:2%;
+					}
 				}
 			}
 			.dish-information-bottom{

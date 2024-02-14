@@ -1,10 +1,6 @@
-import { Datex } from "datex-core-legacy/datex.ts";
-import { ObjectRef } from "unyt_core/runtime/pointers.ts";
-
 import { recipePosts, users } from "backend/data/eternalData.ts";
 
-import { User, ProfilDaten } from "../../common/structs/user.ts";
-import { RecipePost } from "../../common/structs/recipePost.ts";
+import { User } from "../../common/structs/user.ts";
 
 export function getAllRecipePosts() {
   console.log("getAllRecipePosts");

@@ -1,10 +1,9 @@
 @use "../../base/scss/global" as global;
 @use "../../utilities/scss/variables" as variables;
+$primary-font-family: 'Times New Roman', Times, serif;
 
 #dish-view {
   z-index: 5;
-  /* Or any high value that works for your design */
-  /* Ensures z-index applies correctly */
 
   padding: 30px;
   font-family: "Jost";
@@ -15,100 +14,187 @@
 
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 15px;
   margin-bottom: 0px;
-  margin-left: 40px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  padding:2em;
 
-  .containerTop {
-    display: flex;
-    flex-direction: row;
-    margin-top: 0;
-    margin-left: 0;
-    margin-right: 0;
-    height: 50%;
+  .close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 2em;
+    color: #333;
+    transition: color 0.3s;
+    position: absolute;
+    width:10%;
+    right:0;
+    top:0;
+    margin-top:0.4em;
+  }
+
+  .close-button:hover{
+    color: variables.$main-green-dark;
+  }
+
+  #title-row {
+    margin-top: 2%;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
+    display: flex;
+
+    .main-data {
+      width: 0 0 70%;
+      .title {
+        margin-top: 0px !important;
+        margin-bottom: 1rem;
+        float: left;
+        font-family: $primary-font-family;
+      }
+  
+      .meta-data {
+        display: table;
+        justify-content: space-between;
+        clear: left;
+        float: left;
+        width:100%;
+
+        .wrapper {
+          display: table-cell;
+          max-width: 320px;
+          overflow: auto;
+          margin-right: 1em;
+
+          .tags {
+            display: flex;
+            margin: 1.5rem;
+            margin-left: 0;
+  
+            .tag {
+              flex: 1;
+              margin-right: 0.5rem;
+              background-color: variables.$main-green;
+              color: white;
+              padding: 0.25em 0.5em;
+              border-radius: 30%;
+              vertical-align: middle;
+              font-weight: 100;
+              width: min-content;
+            }
+        }
+      
+
+        
+        }
+
+        .icons {
+          display: inline-flex !important;
+          padding-left:15px;
+
+          .icon {
+            display: inline-block;
+            width: min-content;
+            margin-right:1.5em;
+            text-align: center;
+            
+            i {
+              margin-left: auto;
+              margin-right: auto;
+              color: variables.$main-green;
+            }
+
+            label {
+              display: inline-flex;
+              white-space: nowrap;
+              text-align: center;
+              color: variables.$main-green;
+            }
+          }
+        }
+      
+        .meta-data-section {
+          display: table-cell;
+          vertical-align: middle;
+          width:50%;
+        }
+      }
+    }
+
+    /* .imageContainer {
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+
+      .dish-image {
+        width: 100%;
+        height: auto;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+  } */
+  
+  
 
     .imageContainer {
-      display: flex;
+      flex: 1;
       align-items: center;
       margin-left: 10%;
 
       .dish-image {
+        /* max-height: 10em;
+        height: auto;
+        width: 100%;
+        clip-path: circle(); */
         border-radius: 50%;
-        width: 200px;
-        height: 200px;
-        object-fit: cover;
-        background-size: cover;
-        margin-left: auto;
-      }
-    }
-
-    .nameContainer {
-      display: flex;
-      flex-direction: column;
-
-      .profile {
-        font-size: 22px;
-        font-weight: 400;
-      }
-
-      .name {
-        font-size: 50px;
-        font-weight: 400;
-      }
-
-      .extraInfo {
-        display: flex;
-        flex-direction: row;
-        padding-top: 10px;
-        gap: 20px;
-        font-size: 12px;
-
-        .time-dish {
-          width: 20px;
-          height: 20px;
-          object-fit: cover;
-          background-size: cover;
-        }
-
-        .servings-container {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-
-          .serving-dish {
-            width: 20px;
-            height: 20px;
-            object-fit: cover;
-            background-size: cover;
-          }
-        }
-
-        .tag {
-          background-color: yellow;
-          border-radius: 20;
-          border-radius: 10px;
-          height: 40px;
-          width: 120px;
-        }
+  			width: 200px; 
+  			height: 200px;
+  			object-fit: cover;
+			  background-size: cover;	
+        float:right;
       }
     }
   }
 
   .containerBottom {
     display: flex;
-    flex-direction: column;
-    margin-bottom: 0;
+    margin-bottom: 2em;
     margin-left: 0;
     margin-right: 0;
     height: 50%;
     width: 100%;
 
-    .zutaten {
+    label {
+      font-weight: 300;
+      font-size: larger;
     }
 
-    .zubereitung {
+    #ingredients {
+      flex: 0 0 40%;
+      overflow: auto;
+
+      .ingredient-item {
+        position: relative;
+        font-weight: 300;
+
+        div {
+          position: absolute;
+        }
+
+        .amount {
+          right:2em;
+        }
+      }
+    }
+
+    #description-section {
+      flex:1;
+      overflow: auto;
+      font-weight: 300;
     }
   }
 }
