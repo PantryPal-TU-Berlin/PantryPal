@@ -12,7 +12,6 @@ export function createUserOrGet() {
   const user = getCurrentUserId();
 
   if (!(user in users.keys())) {
-    console.log(`Creating entry for ${user}`);
     const newUser: User = {
       endpoint: user,
       profilePicture: "test",

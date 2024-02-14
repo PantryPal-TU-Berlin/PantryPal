@@ -29,7 +29,10 @@ interface PropsCategory {
           class={{ notDown: dropdownVisible, "arrow-down": true }}
         >
           <path d="m0 0h24v24h-24z" fill="none" />
-          <path d="m12 13.172 4.95-4.95 1.414 1.414-6.364 6.364-6.364-6.364 1.414-1.414z" />
+          <path
+            d="m12 13.172 4.95-4.95 1.414 1.414-6.364 6.364-6.364-6.364 1.414-1.414z"
+            class="text-arrow"
+          />
         </svg>
       </div>
 

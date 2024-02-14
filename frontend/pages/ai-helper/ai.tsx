@@ -7,7 +7,8 @@ import {
 
 //structs
 import { Ingredient, Recipe } from "common/structs/recipe.ts";
-import { recipeRequest } from "../../../common/structs/recipeForApi.ts";
+import { RecipePost } from "common/structs/recipePost.ts";
+import { recipeRequest } from "/common/structs/recipeForApi.ts";
 
 //frontend components
 import { NavBar } from "frontend/components/navbar/navbar.tsx";
@@ -17,11 +18,41 @@ import { IngredientAI } from "frontend/components/ingredient-ai/ingredient-ai.ts
 import { SearchBar } from "frontend/components/search-bar/search-bar.tsx";
 import { CategoryAI } from "frontend/components/category-dropdown/category-dropdown.tsx";
 import { CategoryFood } from "frontend/components/category-food/category-food.tsx";
+import { RecipePostViewComponent } from "frontend/components/dishView/dishView.tsx";
 
 //backend components
-import { sendRecipeRequest } from "backend/pages/ai-helper.ts";
+import { RecipeAiBackend } from "backend/pages/ai-helper.ts";
 
 const Ai = template(() => {
+  const currentSelectedRecipe: ObjectRef<RecipePost> = $$({
+    user: "",
+    recipe: {
+      name: "",
+      category: "",
+      timeInMinutes: 0,
+      servings: 0,
+      instruction: "",
+      tags: [],
+      ingredients: [],
+      image: "",
+    },
+    date: new Date(),
+  });
+
+  const showGenerated = $$(false);
+  const loadingRequest = $$(false);
+
+  function showRecipePost(recipePost: RecipePost) {
+    console.log("exetcuted showRecipePost");
+    const ptr = Datex.Pointer.getByValue(currentSelectedRecipe);
+    ptr.val = recipePost;
+    showGenerated.val = true;
+  }
+
+  function hideDishView() {
+    showGenerated.val = false;
+  }
+
   const ingredientsDictKeysAsArray: string[] = Object.keys(ingredientsDict);
 
   const allIngredients: Ingredient[] = Object.values(ingredientsDict).flat();
@@ -32,13 +63,26 @@ const Ai = template(() => {
 
   const selectedDropdown = $$("");
 
-  async function generateRequest(): Promise<Recipe> {
+  async function generateRequest() {
+    loadingRequest.val = true;
+    if (ingredientsForRequest.length < 2) {
+      alert("Please select at least two ingredients.");
+      return;
+    }
     const request: recipeRequest = {
       ingredients: ingredientsForRequest,
       categories: categoriesForRequest,
     };
-    const responseRecipe: Recipe = await sendRecipeRequest(request);
-    return responseRecipe;
+    const responseRecipe: Recipe = await RecipeAiBackend.sendRecipeRequest(
+      request
+    );
+    const responseRecipePost: RecipePost = {
+      user: "AI",
+      recipe: responseRecipe,
+      date: new Date(),
+    };
+    loadingRequest.val = false;
+    showRecipePost(responseRecipePost);
   }
 
   function addCategory(category: string) {
@@ -97,7 +141,7 @@ const Ai = template(() => {
             <div class="col-12 col-lg-3 column">
               <div class="left-sidebar">
                 <div class="recommended-recipe">
-                  <div class="header-side-component">Recipe of the Day!</div>
+                  <div class="header-side-component">Newest Recipes!</div>
                 </div>
                 <div class="recommended-recipe">
                   <div class="header-side-component">Random Recipe!</div>
@@ -184,6 +228,15 @@ const Ai = template(() => {
           </div>
         </div>
         <Footer />
+        {toggle(
+          showGenerated,
+          <RecipePostViewComponent
+            class="recipe-view-component"
+            recipePost={currentSelectedRecipe}
+            onclose={() => hideDishView()}
+          />,
+          <div></div>
+        )}
       </div>
     </div>
   );

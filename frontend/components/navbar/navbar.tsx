@@ -10,7 +10,9 @@ function openAddRecipeModal() {
 @template(() => (
   <div>
     <header id="navbar">
-      <h1>PantryPal</h1>
+      <a href="/">
+        <h1>PantryPal</h1>
+      </a>
 
       <ul class="nav-links">
         <li>

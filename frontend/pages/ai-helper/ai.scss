@@ -10,6 +10,15 @@
     justify-content: space-between;
     font-family: "Jost";
 
+    .recipe-view-component {
+      position: absolute;
+      z-index: 100;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
     .container-fluid {
       padding: 15px;
       flex-grow: 1;
@@ -80,7 +89,7 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        z-index: 100;
+        z-index: 10;
         position: relative;
         margin-bottom: 20px;
       }
@@ -116,12 +125,13 @@
         min-height: 50px;
         border-radius: 20px;
         background-color: variables.$main-green;
+        color: white;
       }
 
       .generate-button:hover {
         cursor: pointer;
-        background-color: variables.$main-green-dark;
-        color: white;
+        background-color: white;
+        color: variables.$main-green;
       }
     }
 

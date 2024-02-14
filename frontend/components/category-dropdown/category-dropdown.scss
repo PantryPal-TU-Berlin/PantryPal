@@ -17,11 +17,15 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  color: white;
   .arrow-down {
     height: 20px;
     width: 20px;
     margin-left: 5px;
     transition: 0.3s;
+    .text-arrow {
+      fill: white;
+    }
   }
 
   .arrow-down.notDown {
@@ -32,9 +36,12 @@
 }
 
 .dropdown-box:hover {
-  background-color: variables.$main-green-dark;
-  color: white;
+  background-color: white;
+  color: variables.$main-green;
   cursor: pointer;
+  .text-arrow {
+    fill: variables.$main-green;
+  }
 }
 
 .dropdown-content {
