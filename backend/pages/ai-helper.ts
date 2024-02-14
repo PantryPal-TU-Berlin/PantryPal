@@ -4,6 +4,7 @@ import { OpenAI } from "openai";
 import { recipeRequest } from "../../common/structs/recipeForApi.ts";
 import { Recipe } from "common/structs/recipe.ts";
 import { timeout } from "unyt_core/datex_all.ts";
+import { ImagesResponse } from "openai/resources/mod.ts";
 
 await Datex.Supranet.connect();
 
@@ -45,21 +46,27 @@ export class RecipeAiBackend {
     // creating Image
     const responseInstruction = recipeResponse.instruction;
     const promptForImage = `Ein bild welches ein mögliches Endresultat dieses Rezeptes anhand dieser Beschreibung darstellt: ${responseInstruction}`;
-    const resultImg = await client.images.generate({
+    const resultUrl = await client.images.generate({
       prompt: promptForImage,
       size: "256x256",
       quality: "standard",
       n: 1,
-      response_format: "b64_json",
+      response_format: "url",
     });
-    console.log("resultUrl: ", resultImg);
-    recipeResponse.image = resultImg.data[0].b64_json!;
+    console.log("resultUrl: ", resultUrl);
+    //recipeResponse.image = resultImg.data[0].b64_json!;
 
     //downloading image
+    const responseImage = await fetch(resultUrl.data[0].url!);
+    const blob = await responseImage.blob();
+    await Deno.writeFile(
+      "./test2.png",
+      new Uint8Array(await blob.arrayBuffer())
+    );
 
     console.log("GPT-4 response: ", recipeResponse);
     writeJson("./test.json", recipeResponse);
-    writeJson("./test2.json", resultImg);
+    //writeJson("./test2.json", resultImg);
     return recipeResponse;
   }
 }
