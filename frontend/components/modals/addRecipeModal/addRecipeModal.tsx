@@ -135,7 +135,7 @@ const image = $$("../../utilities/images/default_food.png");
     <div class="modal-body">
       <div>
         <div class="static-section">
-          <div class="title-section column">
+          <div class="title-section column-orient">
             <input
               id="title"
               type="text"
@@ -153,7 +153,7 @@ const image = $$("../../utilities/images/default_food.png");
             />
           </div>
 
-          <div class="meta-data-section column">
+          <div class="meta-data-section column-orient">
             <div id="category-selector">
               <i class="fa-solid fa-layer-group fa-xl"></i>
               <select id="category" value={category}>
