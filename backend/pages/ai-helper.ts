@@ -48,7 +48,7 @@ export class RecipeAiBackend {
     const promptForImage = `Ein bild welches ein mögliches Endresultat dieses Rezeptes anhand dieser Beschreibung darstellt: ${responseInstruction}`;
     const resultUrl = await client.images.generate({
       prompt: promptForImage,
-      size: "256x256",
+      size: "512x512",
       quality: "standard",
       n: 1,
       response_format: "url",
@@ -60,7 +60,7 @@ export class RecipeAiBackend {
     const responseImage = await fetch(resultUrl.data[0].url!);
     const blob = await responseImage.blob();
     await Deno.writeFile(
-      "./test2.png",
+      `./backend/data/images/${Date.now()}.png`,
       new Uint8Array(await blob.arrayBuffer())
     );
 
