@@ -1,10 +1,9 @@
 import { Component } from "uix/components/Component.ts";
-import { AddRecipeModal, modalVisible } from "frontend/components/modals/addRecipeModal/addRecipeModal.tsx";
+import { AddRecipeModal, resetData } from "frontend/components/modals/addRecipeModal/addRecipeModal.tsx";
 
 function openAddRecipeModal() {
-	modalVisible.val = !modalVisible.val;
+	resetData();
 }
-
 @template(() => (
 	<div>
 		<header id="navbar">
