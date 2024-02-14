@@ -1,9 +1,6 @@
 //backend imports
 import { createNewRecipePost } from "backend/functions/recipePostFunctions.ts";
-import {
-  createUserOrGet,
-  getCurrentUserId,
-} from "backend/functions/usersFunctions.ts";
+import { getCurrentUserId } from "backend/functions/usersFunctions.ts";
 
 //structs imports
 import { RecipePost } from "common/structs/recipePost.ts";
@@ -18,8 +15,7 @@ import { Ingredient } from "common/structs/recipe.ts";
 import { Datex } from "unyt_core/datex.ts";
 
 export const modalVisible = $$(false);
-
-async function addRecipePost() {
+function addRecipePost() {
   if (title.val.length < 1) {
     alert("Necessary information is missing: title");
     return;
@@ -38,6 +34,8 @@ async function addRecipePost() {
   }
 
   console.log("addRecipePost executed");
+
+  const stepsInput = document.getElementById("steps-input")?.textContent;
   const newRecipePost: RecipePost = {
     user: getCurrentUserId(),
     recipe: {
@@ -45,7 +43,7 @@ async function addRecipePost() {
       category: category.val,
       timeInMinutes: time.val,
       servings: servings.val,
-      instruction: steps.val,
+      instruction: stepsInput ? stepsInput : "",
       tags: tags.val.replace(/\s+/g, "").split(","),
       ingredients: Datex.Pointer.getByValue(ingredients)!.val,
       image: image.val,
@@ -53,32 +51,26 @@ async function addRecipePost() {
     date: new Date(),
   };
 
-  await createNewRecipePost(newRecipePost);
-  resetData();
+  createNewRecipePost(newRecipePost);
+  modalVisible.val = !modalVisible.val;
 }
 
-function resetData() {
+export function resetData() {
   title.val = "";
   time.val = 0;
   servings.val = 0;
   tags.val = "";
   steps.val = "Type cooking steps here...";
   category.val = "dairy";
-  image.val = "../../utilities/images/default_food.jpg";
+
+  image.val = "../../utilities/images/default_food.png";
   modalVisible.val = false;
+  Datex.Pointer.getByValue(ingredients)!.val = [];
 
   const stepsInput = document.getElementById("steps-input");
   stepsInput!.textContent = "Type cooking steps here...";
-  resetIngredients();
   resetNewIngredient();
-}
-
-function resetIngredients() {
-  let quantity = ingredients.length;
-  while (quantity > 0) {
-    ingredients.splice(0, 1);
-    quantity--;
-  }
+  modalVisible.val = !modalVisible.val;
 }
 
 type Base64Callback = (base64String: string) => void;
@@ -127,36 +119,41 @@ export const ingredients: Ingredient[] = $$([]);
 const tags = $$("");
 const steps = $$("Type cooking steps here...");
 const category = $$("dairy");
-const image = $$("../../utilities/images/default_food.jpg");
+const image = $$("../../utilities/images/default_food.png");
 
 @template(() => (
   <div id="add-recipe-modal" class={{ visible: modalVisible }}>
     <div class="modal-header">
       <h1>Post a Dish</h1>
-      <button class="close-button" onclick={resetData}>
+      <button
+        class="close-button"
+        onclick={() => (modalVisible.val = !modalVisible.val)}
+      >
         &times;
       </button>
     </div>
     <div class="modal-body">
       <div>
         <div class="static-section">
-          <div class="title-section column">
+          <div class="title-section column-orient">
             <input
               id="title"
               type="text"
               placeholder="Title"
               value={title}
               required
+              maxlength="50"
             />
             <input
               id="tags"
               type="text"
               value={tags}
               placeholder="Tags: separate tags with a comma"
+              maxlength="50"
             />
           </div>
 
-          <div class="meta-data-section column">
+          <div class="meta-data-section column-orient">
             <div id="category-selector">
               <i class="fa-solid fa-layer-group fa-xl"></i>
               <select id="category" value={category}>
@@ -237,7 +234,10 @@ const image = $$("../../utilities/images/default_food.jpg");
       </div>
     </div>
     <div class="modal-footer">
-      <button class="secondary-button" onclick={resetData}>
+      <button
+        class="secondary-button"
+        onclick={() => (modalVisible.val = !modalVisible.val)}
+      >
         Cancel
       </button>
       <button class="primary-button" onclick={addRecipePost}>
