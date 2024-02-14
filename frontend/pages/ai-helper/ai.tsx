@@ -8,7 +8,7 @@ import {
 //structs
 import { Ingredient, Recipe } from "common/structs/recipe.ts";
 import { RecipePost } from "common/structs/recipePost.ts";
-import { recipeRequest } from "/common/structs/recipeForApi.ts";
+import { recipeRequest } from "common/structs/recipeForApi.ts";
 
 //frontend components
 import { NavBar } from "frontend/components/navbar/navbar.tsx";
@@ -67,6 +67,7 @@ const Ai = template(() => {
       alert("Please select at least two ingredients.");
       return;
     }
+    console.log("generation started...");
     loadingRequest.val = true;
     const request: recipeRequest = {
       ingredients: ingredientsForRequest,
@@ -81,6 +82,7 @@ const Ai = template(() => {
       date: new Date(),
     };
     loadingRequest.val = false;
+    console.log(responseRecipePost.recipe.image);
     showRecipePost(responseRecipePost);
   }
 

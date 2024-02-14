@@ -1,4 +1,5 @@
 import { OpenAI } from "openai";
+import { Base64 } from "base64";
 
 //structs
 import { recipeRequest } from "../../common/structs/recipeForApi.ts";
@@ -18,6 +19,7 @@ export class RecipeAiBackend {
   @timeout(10_000_000)
   @property
   static async sendRecipeRequest(req: recipeRequest): Promise<Recipe> {
+    console.log("GPT-4 request: ", req);
     const chatComplete = await client.chat.completions.create({
       messages: [
         {
@@ -59,12 +61,15 @@ export class RecipeAiBackend {
     //downloading image
     const responseImage = await fetch(resultUrl.data[0].url!);
     const blob = await responseImage.blob();
-    await Deno.writeFile(
-      `./backend/data/images/${Date.now()}.png`,
-      new Uint8Array(await blob.arrayBuffer())
-    );
+    const path = `./backend/data/images/${Date.now()}.png`;
+    await Deno.writeFile(path, new Uint8Array(await blob.arrayBuffer()));
 
-    console.log("GPT-4 response: ", recipeResponse);
+    //convert path to base64
+    const resultImg = Base64.fromFile(path).toStringWithMime();
+
+    recipeResponse.image = resultImg;
+    console.log("image", recipeResponse.image);
+
     writeJson("./test.json", recipeResponse);
     //writeJson("./test2.json", resultImg);
     return recipeResponse;
@@ -72,11 +77,9 @@ export class RecipeAiBackend {
 }
 
 async function writeJson(filePath: string, o: any) {
-  console.log("writing json");
   try {
     await Deno.writeTextFile(filePath, JSON.stringify(o));
   } catch (e) {
     console.log(e);
   }
-  console.log("finished writing json");
 }
