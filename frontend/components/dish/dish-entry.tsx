@@ -52,4 +52,4 @@ interface RecipePostComponent {
     </div>
   </header>)
 })
-export class DishEntry extends Component {}
+export class DishEntry extends Component<RecipePostComponent> {}
