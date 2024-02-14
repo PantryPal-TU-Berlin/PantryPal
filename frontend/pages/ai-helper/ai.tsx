@@ -43,7 +43,6 @@ const Ai = template(() => {
   const loadingRequest = $$(false);
 
   function showRecipePost(recipePost: RecipePost) {
-    console.log("exetcuted showRecipePost");
     const ptr = Datex.Pointer.getByValue(currentSelectedRecipe);
     ptr.val = recipePost;
     showGenerated.val = true;
@@ -64,11 +63,11 @@ const Ai = template(() => {
   const selectedDropdown = $$("");
 
   async function generateRequest() {
-    loadingRequest.val = true;
     if (ingredientsForRequest.length < 2) {
       alert("Please select at least two ingredients.");
       return;
     }
+    loadingRequest.val = true;
     const request: recipeRequest = {
       ingredients: ingredientsForRequest,
       categories: categoriesForRequest,
@@ -191,6 +190,11 @@ const Ai = template(() => {
                 </div>
                 <div class="generate-button" onclick={generateRequest}>
                   Generate
+                  {/*toggle(
+                    loadingRequest,
+                    <div class="loader"></div>,
+                    <div></div>
+                  )*/}
                 </div>
               </div>
             </div>

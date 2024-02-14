@@ -14,7 +14,7 @@ const client = new OpenAI({
 
 @endpoint
 export class RecipeAiBackend {
-  @timeout(30_000)
+  @timeout(10_000_000)
   @property
   static async sendRecipeRequest(req: recipeRequest): Promise<Recipe> {
     const chatComplete = await client.chat.completions.create({
@@ -38,10 +38,28 @@ export class RecipeAiBackend {
       ],
       model: "gpt-4-0125-preview",
     });
+    // Transform the response to a Recipe
     const response = JSON.parse(chatComplete.choices[0].message.content!);
     const recipeResponse: Recipe = response;
-    console.log("GPT-3 response: ", recipeResponse);
+
+    // creating Image
+    const responseInstruction = recipeResponse.instruction;
+    const promptForImage = `Ein bild welches ein mögliches Endresultat dieses Rezeptes anhand dieser Beschreibung darstellt: ${responseInstruction}`;
+    const resultImg = await client.images.generate({
+      prompt: promptForImage,
+      size: "256x256",
+      quality: "standard",
+      n: 1,
+      response_format: "b64_json",
+    });
+    console.log("resultUrl: ", resultImg);
+    recipeResponse.image = resultImg.data[0].b64_json!;
+
+    //downloading image
+
+    console.log("GPT-4 response: ", recipeResponse);
     writeJson("./test.json", recipeResponse);
+    writeJson("./test2.json", resultImg);
     return recipeResponse;
   }
 }
