@@ -22,6 +22,7 @@
       border: none;
       width: 90%;
       height: 20px;
+      background-color: white;
     }
 
     .search-button {
@@ -32,6 +33,7 @@
 
   .search-recommendations {
     opacity: 0;
+    pointer-events: none;
     width: 100%;
     max-width: 600px;
     min-width: auto;
@@ -52,10 +54,12 @@
 
     .search-selection:hover {
       background-color: variables.$main-grey;
+      cursor: pointer;
     }
   }
 
   .search-recommendations.visible {
     opacity: 1;
+    pointer-events: initial;
   }
 }

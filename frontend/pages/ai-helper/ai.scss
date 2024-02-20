@@ -10,9 +10,25 @@
     justify-content: space-between;
     font-family: "Jost";
 
+    .recipe-view-component {
+      position: absolute;
+      z-index: 100;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
     .container-fluid {
       padding: 15px;
       flex-grow: 1;
+
+      .main-content-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
     }
 
     .right-sidebar,
@@ -73,13 +89,14 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        z-index: 100;
+        z-index: 10;
         position: relative;
         margin-bottom: 20px;
       }
 
       .category-listing {
         width: 90%;
+        max-width: 800px;
         height: 50%;
         max-height: 50%;
         overflow-y: auto;
@@ -97,6 +114,39 @@
             align-items: center;
           }
         }
+      }
+
+      .generate-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 125px;
+        height: 50px;
+        min-height: 50px;
+        border-radius: 20px;
+        background-color: variables.$main-green;
+        color: white;
+
+        /*.loader {
+          margin-left: 10px;
+          height: 20px;
+          width: 20px;
+          border: 2px solid variables.$main-green;
+          border-radius: 50%;
+          border-right-color: white;
+          animation: spin 1s ease infinite;
+        }
+
+        @keyframes spin {
+          100% {
+            transform: rotate(360deg);
+        }*/
+      }
+
+      .generate-button:hover {
+        cursor: pointer;
+        background-color: white;
+        color: variables.$main-green;
       }
     }
 
@@ -120,7 +170,7 @@
   }
 
   @media screen and (max-width: 992px) {
-    .main-content-row {
+    .main-container .main-content-row {
       & > div {
         height: 800px;
       }

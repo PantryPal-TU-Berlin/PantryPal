@@ -2,7 +2,6 @@
 @use "../../utilities/scss/variables" as variables;
 
 .ingredient-comp {
-  font-size: 1rem;
   font-family: "Jost";
   display: flex;
   align-items: center;
@@ -11,7 +10,6 @@
   height: 40px;
   * {
     color: white;
-    font-size: 0.75em;
   }
   .trash-button {
     background-color: variables.$main-red;
@@ -49,6 +47,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    max-width: 100px;
     height: 100%;
   }
 
@@ -66,14 +65,15 @@
     width: 40%;
 
     .ingredient-text {
-      width: 100%;
+      white-space: nowrap;
+      width: 500px;
       overflow-x: auto;
       margin-left: 0px;
     }
   }
 
   input {
-    width: 30px;
+    width: 45px;
     height: 15px;
     background-color: transparent;
     border: none;
@@ -86,7 +86,12 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-/* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+@media screen and (max-width: 1300) {
+  .ingredient-with-amount .ingredient-text {
+    font-size: 3px;
+  }
 }

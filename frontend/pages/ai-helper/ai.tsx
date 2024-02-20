@@ -1,4 +1,4 @@
-import { ObjectRef } from "unyt_core/runtime/pointers.ts";
+import { ObjectRef, Ref } from "unyt_core/runtime/pointers.ts";
 
 import {
   ingredientsDict,
@@ -6,27 +6,106 @@ import {
 } from "../../utilities/ingredientsStructures.ts";
 
 //structs
-import { Ingredient } from "common/structs/recipe.ts";
+import { Ingredient, Recipe } from "common/structs/recipe.ts";
+import { RecipePost } from "common/structs/recipePost.ts";
+import { recipeRequest } from "common/structs/recipeForApi.ts";
 
+//frontend components
 import { NavBar } from "frontend/components/navbar/navbar.tsx";
 import { Footer } from "frontend/components/footer/footer.tsx";
 
 import { IngredientAI } from "frontend/components/ingredient-ai/ingredient-ai.tsx";
 import { SearchBar } from "frontend/components/search-bar/search-bar.tsx";
-import { CategoryAI } from "../../components/category-dropdown/category-dropdown.tsx";
+import { CategoryAI } from "frontend/components/category-dropdown/category-dropdown.tsx";
+import { CategoryFood } from "frontend/components/category-food/category-food.tsx";
+import { RecipePostViewComponent } from "frontend/components/dishView/dishView.tsx";
+
+//backend components
+import { RecipeAiBackend } from "backend/pages/ai-helper.ts";
 
 const Ai = template(() => {
-  const ingredients: ObjectRef<Ingredient[]> = $$([]);
+  const currentSelectedRecipe: ObjectRef<RecipePost> = $$({
+    user: "",
+    recipe: {
+      name: "",
+      category: "",
+      timeInMinutes: 0,
+      servings: 0,
+      instruction: "",
+      tags: [],
+      ingredients: [],
+      image: "",
+    },
+    date: new Date(),
+  });
+
+  const showGenerated = $$(false);
+  const loadingRequest = $$(false);
+
+  function showRecipePost(recipePost: RecipePost) {
+    const ptr = Datex.Pointer.getByValue(currentSelectedRecipe);
+    ptr.val = recipePost;
+    showGenerated.val = true;
+  }
+
+  function hideDishView() {
+    showGenerated.val = false;
+  }
 
   const ingredientsDictKeysAsArray: string[] = Object.keys(ingredientsDict);
 
   const allIngredients: Ingredient[] = Object.values(ingredientsDict).flat();
 
-  function addIngredient(ingredient: Ingredient) {
-    let alreadyExists = false;
+  const ingredientsForRequest: ObjectRef<Ingredient>[] = $$([]);
 
-    ingredients.forEach((element) => {
-      if (element.ingredient === ingredient.ingredient) {
+  const categoriesForRequest: string[] = $$([]);
+
+  const selectedDropdown = $$("");
+
+  async function generateRequest() {
+    if (ingredientsForRequest.length < 2) {
+      alert("Please select at least two ingredients.");
+      return;
+    }
+    loadingRequest.val = true;
+    const request: recipeRequest = {
+      ingredients: ingredientsForRequest,
+      categories: categoriesForRequest,
+    };
+    const responseRecipe: Recipe = await RecipeAiBackend.sendRecipeRequest(
+      request
+    );
+    const responseRecipePost: RecipePost = {
+      user: "AI",
+      recipe: responseRecipe,
+      date: new Date(),
+    };
+    loadingRequest.val = false;
+    console.log(responseRecipePost.recipe.image);
+    showRecipePost(responseRecipePost);
+  }
+
+  function addCategory(category: string) {
+    if (categoriesForRequest.includes(category)) return;
+    categoriesForRequest.push(category);
+  }
+
+  function deleteCategory(category: string) {
+    categoriesForRequest.forEach((cat, index) => {
+      if (cat == category) {
+        categoriesForRequest.splice(index, 1);
+      }
+    });
+  }
+
+  function addIngredient(ingredient: Ingredient) {
+    if (ingredientsForRequest.length >= 15) {
+      alert("You can only select 15 ingredients at a time.");
+      return;
+    }
+    let alreadyExists = false;
+    ingredientsForRequest.forEach((element) => {
+      if (element.$.ingredient == ingredient.ingredient) {
         alreadyExists = true;
         return;
       }
@@ -34,13 +113,19 @@ const Ai = template(() => {
 
     if (alreadyExists) return;
 
-    ingredients.push(ingredient);
+    ingredientsForRequest.push(
+      $$({
+        ingredient: ingredient.ingredient,
+        amount: ingredient.amount,
+        unit: ingredient.unit,
+      })
+    );
   }
 
   function deleteIngredient(ingredient: Ingredient) {
-    ingredients.forEach((ing, index) => {
-      if (ing.ingredient === ingredient.ingredient) {
-        ingredients.splice(index, 1);
+    ingredientsForRequest.forEach((ing, index) => {
+      if (ing.$.ingredient == ingredient.ingredient) {
+        ingredientsForRequest.splice(index, 1);
       }
     });
   }
@@ -56,7 +141,7 @@ const Ai = template(() => {
             <div class="col-12 col-lg-3 column">
               <div class="left-sidebar">
                 <div class="recommended-recipe">
-                  <div class="header-side-component">Recipe of the Day!</div>
+                  <div class="header-side-component">Newest Recipes!</div>
                 </div>
                 <div class="recommended-recipe">
                   <div class="header-side-component">Random Recipe!</div>
@@ -80,6 +165,7 @@ const Ai = template(() => {
                             ingredients={
                               ingredientsDict[ingredientsDictKeysAsArray[index]]
                             }
+                            selectedDropdown={selectedDropdown}
                             onadd={(ingredient: Ingredient) =>
                               addIngredient(ingredient)
                             }
@@ -89,8 +175,11 @@ const Ai = template(() => {
                           <CategoryAI
                             categoryName={ingredientsDictKeysAsArray[index + 1]}
                             ingredients={
-                              ingredientsDict[ingredientsDictKeysAsArray[index]]
+                              ingredientsDict[
+                                ingredientsDictKeysAsArray[index + 1]
+                              ]
                             }
+                            selectedDropdown={selectedDropdown}
                             onadd={(ingredient: Ingredient) =>
                               addIngredient(ingredient)
                             }
@@ -100,7 +189,14 @@ const Ai = template(() => {
                     ) : null
                   )}
                 </div>
-                <div>Generate</div>
+                <div class="generate-button" onclick={generateRequest}>
+                  Generate
+                  {/*toggle(
+                    loadingRequest,
+                    <div class="loader"></div>,
+                    <div></div>
+                  )*/}
+                </div>
               </div>
             </div>
             <div class="col-12 col-lg-3 column">
@@ -108,21 +204,27 @@ const Ai = template(() => {
                 <div class="ingredients">
                   <div class="header-side-component">Ingredients</div>
                   <div class="list">
-                    {ingredients.$.map((ingredient: Ingredient) => (
-                      <IngredientAI
-                        ingredient={ingredient}
-                        ondelete={(ingredient: Ingredient) =>
-                          deleteIngredient(ingredient)
-                        }
-                      />
-                    ))}
+                    {ingredientsForRequest.$.map(
+                      (ingredient: Ref<Ingredient>) => (
+                        <IngredientAI
+                          ingredient={ingredient}
+                          ondelete={(ingredient: Ingredient) =>
+                            deleteIngredient(ingredient)
+                          }
+                        />
+                      )
+                    )}
                   </div>
                 </div>
                 <div class="categories">
                   <div class="header-side-component">Categories</div>
                   <div class="list">
                     {categoriesFood.map((category) => (
-                      <div class="category">{category}</div>
+                      <CategoryFood
+                        categoryFoodName={category}
+                        onadd={() => addCategory(category)}
+                        ondelete={() => deleteCategory(category)}
+                      />
                     ))}
                   </div>
                 </div>
@@ -131,6 +233,15 @@ const Ai = template(() => {
           </div>
         </div>
         <Footer />
+        {toggle(
+          showGenerated,
+          <RecipePostViewComponent
+            class="recipe-view-component"
+            recipePost={currentSelectedRecipe}
+            onclose={() => hideDishView()}
+          />,
+          <div></div>
+        )}
       </div>
     </div>
   );

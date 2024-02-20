@@ -1,6 +1,15 @@
 import { Ingredient } from "common/structs/recipe.ts";
 
-export const categoriesFood: string[] = ["Vegan", "Vegetarisch"];
+export const categoriesFood: string[] = [
+  "Süß",
+  "Bitter",
+  "Scharf",
+  "Salzig",
+  "Sauer",
+  "Umami",
+  "Astringent",
+  "Fettig",
+];
 
 export const ingredientsDict: { [key: string]: Ingredient[] } = {
   "Gem\u00fcse": [

@@ -36,11 +36,9 @@ function showRecipePost(recipePost: RecipePost) {
   modalVisible.val = true;
 }
 
-export function hideDishView() {
+function hideDishView() {
   modalVisible.val = false;
 }
-
-
 
 const Home = template(() => (
   <div>

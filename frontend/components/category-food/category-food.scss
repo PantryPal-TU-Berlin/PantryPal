@@ -1,2 +1,25 @@
 @use "../../base/scss/global" as global;
 @use "../../utilities/scss/variables" as variables;
+
+.category-selection {
+  width: 100%;
+  max-width: 600px;
+  background-color: variables.$main-green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  border-radius: 10px;
+  color: white;
+}
+
+.category-selection:hover {
+  background-color: variables.$main-green-dark;
+  color: white;
+  cursor: pointer;
+}
+
+.category-selection.selected {
+  background-color: white;
+  color: variables.$main-green;
+}

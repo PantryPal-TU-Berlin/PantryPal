@@ -1,14 +1,26 @@
 import { Component } from "uix/components/Component.ts";
-import { ObjectRef } from "unyt_core/runtime/pointers.ts";
-import { Ingredient } from "common/structs/recipe.ts";
+import { Ref } from "unyt_core/runtime/pointers.ts";
 
 interface PropsCategoryFood {
   categoryFoodName: string;
-  onadd: (ingredient: Ingredient) => void;
+  onadd: (categoryFood: string) => void;
+  ondelete: (categoryFood: string) => void;
 }
 
 @template<PropsCategoryFood>((_, props) => {
   const selected = $$(false);
-  return <div class="category-food">props.categoryFoodName</div>;
+  return (
+    <div
+      class={{ "category-selection": true, selected: selected }}
+      onclick={() => {
+        selected.val = !selected.val;
+        selected.val
+          ? props.onadd(props.categoryFoodName)
+          : props.ondelete(props.categoryFoodName);
+      }}
+    >
+      {props.categoryFoodName}
+    </div>
+  );
 })
-export class SearchBar extends Component {}
+export class CategoryFood extends Component {}

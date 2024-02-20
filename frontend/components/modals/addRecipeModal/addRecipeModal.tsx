@@ -1,8 +1,6 @@
 //backend imports
 import { createNewRecipePost } from "backend/functions/recipePostFunctions.ts";
-import {
-  getCurrentUserId,
-} from "backend/functions/usersFunctions.ts";
+import { getCurrentUserId } from "backend/functions/usersFunctions.ts";
 
 //structs imports
 import { RecipePost } from "common/structs/recipePost.ts";
@@ -36,6 +34,7 @@ function addRecipePost() {
   }
 
   console.log("addRecipePost executed");
+
   const stepsInput = document.getElementById("steps-input")?.textContent;
   const newRecipePost: RecipePost = {
     user: getCurrentUserId(),
@@ -45,7 +44,7 @@ function addRecipePost() {
       timeInMinutes: time.val,
       servings: servings.val,
       instruction: stepsInput ? stepsInput : "",
-      tags: tags.val.replace(/\s+/g, '').split(","),
+      tags: tags.val.replace(/\s+/g, "").split(","),
       ingredients: Datex.Pointer.getByValue(ingredients)!.val,
       image: image.val,
     },
@@ -63,6 +62,7 @@ export function resetData() {
   tags.val = "";
   steps.val = "Type cooking steps here...";
   category.val = "dairy";
+
   image.val = "../../utilities/images/default_food.png";
   modalVisible.val = false;
   Datex.Pointer.getByValue(ingredients)!.val = [];
