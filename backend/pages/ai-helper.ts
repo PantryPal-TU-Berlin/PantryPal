@@ -68,7 +68,6 @@ export class RecipeAiBackend {
 
     recipeResponse.image = resultImg;
 
-    writeJson("./test.json", recipeResponse);
     return recipeResponse;
   }
 }
