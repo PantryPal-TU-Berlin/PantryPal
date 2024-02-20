@@ -55,7 +55,6 @@ export class RecipeAiBackend {
       n: 1,
       response_format: "url",
     });
-    console.log("resultUrl: ", resultUrl);
     //recipeResponse.image = resultImg.data[0].b64_json!;
 
     //downloading image
